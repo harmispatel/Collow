@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="270dp">
+
+
+        <ImageView
+            android:id="@+id/imageview_viewevent_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/nature" />
+
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="12dp"
+        android:weightSum="2">
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_viewevent_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="@string/title"
+            android:textSize="@dimen/textsize_medium" />
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/viewevent_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="jsifihg"
+            android:textStyle="bold"
+            android:layout_weight="1.4"
+            android:background="@android:color/transparent"
+            android:textSize="@dimen/textsize_medium" />
+
+    </LinearLayout>
+
+    <include layout="@layout/horizontal_seperator_line"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="12dp"
+        android:weightSum="2">
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_viewevent_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="@string/date"
+            android:textSize="@dimen/textsize_medium" />
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/viewevent_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ksjgihg"
+            android:layout_weight="1.4"
+            android:textStyle="bold"
+            android:background="@android:color/transparent"
+            android:textSize="@dimen/textsize_medium" />
+
+    </LinearLayout>
+
+    <include layout="@layout/horizontal_seperator_line"></include>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="12dp"
+        android:weightSum="2">
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_viewevent_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="@string/time"
+            android:textSize="@dimen/textsize_medium" />
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/viewevent_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="sjgbfshg"
+            android:textStyle="bold"
+            android:layout_weight="1.4"
+            android:background="@android:color/transparent"
+            android:textSize="@dimen/textsize_medium" />
+
+    </LinearLayout>
+
+    <include layout="@layout/horizontal_seperator_line"></include>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="12dp"
+        >
+    <com.app.collow.baseviews.BaseTextview
+        android:id="@+id/textview_viewevent_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/description"
+        android:textSize="@dimen/textsize_medium" />
+    <com.app.collow.baseviews.BaseTextview
+        android:id="@+id/viewevent_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hufu sfhusf fugsfu"
+        android:textStyle="bold"
+        android:background="@android:color/transparent"
+        android:textSize="@dimen/textsize_medium" />
+
+
+</LinearLayout>
+
+
+</LinearLayout>
+    </ScrollView>

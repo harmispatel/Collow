@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="270dp">
+
+
+    <ImageView
+        android:id="@+id/imageview_classifieddetail_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/nature" />
+
+
+</FrameLayout>
+
+    <com.app.collow.baseviews.BaseTextview
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:id="@+id/textview_classifieddetail_status"
+        android:text="For sale"
+        android:textSize="@dimen/textsize_medium"
+        android:layout_height="wrap_content" />
+    <com.app.collow.baseviews.BaseTextview
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:id="@+id/textview_classifieddetail_category"
+        android:text="Roadside community"
+        android:textSize="@dimen/textsize_medium"
+        android:textStyle="bold"
+        android:layout_height="wrap_content" />
+    <com.app.collow.baseviews.BaseTextview
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:id="@+id/textview_classifieddetail_price"
+        android:text="$35"
+        android:textSize="@dimen/textsize_medium"
+        android:layout_height="wrap_content" />
+    <com.app.collow.baseviews.BaseTextview
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:id="@+id/textview_classifieddetail_description"
+        android:text="mkgj ngjdjgi gng fgiojg jgg ssgfg gsfg"
+        android:textSize="@dimen/common_text_size"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:id="@+id/button_classifieddetail_contact"
+        android:text="@string/contact"
+        android:background="@drawable/button_bg_yellow"
+        android:layout_marginTop="35dp"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/common_text_size"
+        android:paddingRight="89dp"
+        android:paddingLeft="89dp"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:id="@+id/button_classifieddetail_iminterested"
+        android:text="@string/iam_interested"
+        android:background="@drawable/buttonwhitebg_whiteborder"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/common_text_size"
+        android:paddingRight="75dp"
+        android:paddingLeft="75dp"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>

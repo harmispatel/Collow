@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_community_polls_detail"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_weight="3"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/background"
+    tools:context="com.app.collow.activities.CommunityPollsDetail">
+
+    <com.app.collow.baseviews.BaseTextview
+        android:layout_width="match_parent"
+        android:padding="8dp"
+        android:layout_weight="1.5"
+        android:id="@+id/textview_pollsdetail_question"
+        android:textSize="@dimen/common_text_size"
+        android:text="Cras ut vehicula tortorhf jfhuh hhu hjh"
+        android:background="@drawable/edittext_background"
+        android:layout_height="wrap_content" />
+
+
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:id="@+id/listview_pollsdetail"
+        android:layout_weight="0.5"
+        android:layout_height="wrap_content"></ListView>
+
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="25dp"
+        android:id="@+id/button_pollssubmit"
+        android:background="@drawable/buttonwhitebg_whiteborder"
+        android:text="@string/submit"
+        android:layout_weight="1"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_mgmt_edit_team_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.app.collow.activities.MgmtEditTeamDetail">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+
+        android:orientation="vertical">
+        <com.app.collow.baseviews.BaseEdittext
+            android:id="@+id/edittext_mgmteditteam_name"
+            style="@style/myEditextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:gravity="left"
+            android:hint="@string/name"
+            android:inputType="text"
+            android:textColor="@color/edittext_text_color"
+            android:textColorHint="@color/edittext_hint_color"
+
+            />
+
+
+        <include layout="@layout/horizontal_seperator_line"></include>
+
+        <com.app.collow.baseviews.BaseEdittext
+            android:id="@+id/edittext_mgmteditteam_address"
+            style="@style/myEditextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:gravity="left"
+            android:hint="@string/address"
+            android:inputType="text"
+            android:textColor="@color/edittext_text_color"
+            android:textColorHint="@color/edittext_hint_color"
+
+            />
+
+
+        <include layout="@layout/horizontal_seperator_line"></include>
+
+
+        <com.app.collow.baseviews.BaseEdittext
+            android:id="@+id/edittext_mgmteditteam_email"
+            style="@style/myEditextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:gravity="left"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/edittext_text_color"
+            android:textColorHint="@color/edittext_hint_color"
+
+            />
+
+        <include layout="@layout/horizontal_seperator_line"></include>
+
+        <com.app.collow.baseviews.BaseEdittext
+            android:id="@+id/edittext_mgmteditteam_phone"
+            style="@style/myEditextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:gravity="left"
+            android:hint="@string/phonenumber"
+            android:inputType="text"
+            android:textColor="@color/edittext_text_color"
+            android:textColorHint="@color/edittext_hint_color"
+
+            />
+
+
+        <include layout="@layout/horizontal_seperator_line"></include>
+        <com.app.collow.baseviews.BaseEdittext
+            android:id="@+id/edittext_mgmteditteam_fax"
+            style="@style/myEditextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:gravity="left"
+            android:hint="@string/fax"
+            android:inputType="text"
+            android:textColor="@color/edittext_text_color"
+            android:textColorHint="@color/edittext_hint_color"
+
+            />
+
+
+        <include layout="@layout/horizontal_seperator_line"></include>
+
+        <RelativeLayout
+            android:id="@+id/relativelayout_profilepic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background">
+
+
+
+
+            <com.app.collow.baseviews.BaseTextview
+                android:id="@+id/textview_mgmteditteam_profilepicture"
+                style="@style/myEditextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:gravity="left"
+                android:inputType="text"
+                android:text="@string/profilepicture"
+                android:textColor="@color/left_Menu_text_color_gray"
+
+                />
+
+
+
+
+            <LinearLayout
+                android:id="@+id/layout_profilepicture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal">
+
+                <ProgressBar
+                    android:id="@+id/progress_profilepicture"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:visibility="gone"
+
+                    android:layout_gravity="right"
+                    android:layout_marginRight="4dp" />
+                <ImageView
+                    android:id="@+id/imageview_mgmgteditteam_profilepicture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="15dp"
+                    android:padding="5dp"
+
+                    android:src="@drawable/updown_arrow" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+        <include layout="@layout/horizontal_seperator_line"></include>
+        <com.app.collow.baseviews.BaseEdittext
+            android:id="@+id/edittext_mgmteditteam_url"
+            style="@style/myEditextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:gravity="left"
+            android:hint="@string/url"
+            android:inputType="text"
+            android:textColor="@color/edittext_text_color"
+            android:textColorHint="@color/edittext_hint_color"
+
+            />
+
+
+        <include layout="@layout/horizontal_seperator_line"></include>
+
+    </LinearLayout>
+
+
+    <com.app.collow.baseviews.MyButtonView
+        android:layout_width="match_parent"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="25dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+
+        android:id="@+id/button_mgmteditteam_save"
+        android:background="@drawable/button_bluebackground"
+        android:text="@string/save"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/textsize_medium"
+        android:layout_height="wrap_content"></com.app.collow.baseviews.MyButtonView>
+
+</RelativeLayout>

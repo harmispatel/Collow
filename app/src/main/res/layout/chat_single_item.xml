@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+
+        >
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/imageview_chat_userprofilepic"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/cicle_background"
+            android:paddingLeft="10dp"
+            android:src="@drawable/user_defualt_icon" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/imageview_chat_userprofilepic"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/layout_chat_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:gravity="center|left"
+
+
+                        android:orientation="horizontal">
+
+                        <com.app.collow.baseviews.BaseTextview
+                            android:id="@+id/textview_chat_username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="Jaffery Simpson"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textsize_medium" />
+
+                        <com.app.collow.baseviews.BaseTextview
+                            android:id="@+id/textview_chat_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="1dp"
+                            android:gravity="center"
+                            android:text="3 Hours ago"
+
+                            android:textSize="@dimen/textsize_small" />
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+
+                <com.app.collow.baseviews.BaseTextview
+                    android:id="@+id/textview_chat_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginTop="8dp"
+                    android:gravity="left|center"
+                    android:text="Personalized Family Canoe Art"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/common_text_size" />
+
+                <com.app.collow.baseviews.BaseTextview
+                    android:id="@+id/textview_chat_community_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginTop="8dp"
+                    android:gravity="left|center"
+
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/common_text_size" />
+
+                <com.app.collow.baseviews.BaseTextview
+
+                    android:id="@+id/textview_communityactivity_text_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginTop="8dp"
+                    android:gravity="left|center"
+                    android:text="Text"
+                    android:textSize="@dimen/common_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <include layout="@layout/view_social_options"></include>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

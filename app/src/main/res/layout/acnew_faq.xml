@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+    <com.app.collow.baseviews.BaseEdittext
+        android:id="@+id/edittext_acnewfaq_question"
+        style="@style/myEditextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_background"
+        android:gravity="left"
+        android:hint="@string/question"
+        android:inputType="text"
+        android:textColor="@color/edittext_text_color"
+        android:textColorHint="@color/edittext_hint_color"
+        android:textSize="@dimen/textsize_medium" />
+
+    <include layout="@layout/horizontal_seperator_line"></include>
+
+
+    <com.app.collow.baseviews.BaseEdittext
+        android:id="@+id/edittext_acnewfaq_answer"
+        style="@style/myEditextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_background"
+        android:gravity="left"
+        android:hint="@string/answer"
+        android:inputType="text"
+        android:textColor="@color/edittext_text_color"
+        android:textColorHint="@color/edittext_hint_color"
+        android:textSize="@dimen/textsize_medium"
+
+        />
+
+    <include layout="@layout/horizontal_seperator_line"></include>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content">
+
+            <com.app.collow.baseviews.MyButtonView
+                android:id="@+id/button_faq_save"
+                style="@style/mybuttonViewStyle_save_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="29dp"
+                android:textColor="@color/white"
+                android:background="@drawable/button_bluebackground"
+                android:text="@string/save"
+                android:textSize="@dimen/textsize_medium"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
+
+</LinearLayout>
+</LinearLayout>

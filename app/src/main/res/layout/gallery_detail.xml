@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/imageview_gallerydetail_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/nature" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="15dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageview_gallerydetail_like"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/facebook" />
+
+            <com.app.collow.baseviews.BaseTextview
+                android:id="@+id/textview_gallerydetail_likes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/likes"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/textsize_medium" />
+
+            <ImageView
+                android:id="@+id/imageview_gallerydetail_comments"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/facebook" />
+
+            <com.app.collow.baseviews.BaseTextview
+                android:id="@+id/textview_gallerydetail_comments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/comments"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textsize_medium" />
+
+            <ImageView
+                android:id="@+id/imageview_gallerydetail_close"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/facebook" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageview_gallerydetail_profileimage"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/ic_launcher" />
+
+                <com.app.collow.baseviews.BaseTextview
+                    android:id="@+id/textview_gallerydetail_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="65dp"
+                    android:text="Decor"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/textsize_medium" />
+
+                <com.app.collow.baseviews.BaseTextview
+                    android:id="@+id/textview_gallerydetail_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/textview_gallerydetail_name"
+                    android:text="20feb 2017"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/common_text_size" />
+
+                <com.app.collow.baseviews.BaseTextview
+                    android:id="@+id/textview_gallerydetail_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/textview_gallerydetail_date"
+                    android:layout_marginLeft="65dp"
+                    android:text="Personalized Family Canoe Art"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/textsize_medium" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+</LinearLayout>

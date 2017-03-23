@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="wrap_content"
+    android:paddingBottom="15dp"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_acnew_event_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+
+    android:orientation="vertical"
+    tools:context="com.app.collow.activities.ACNewEventMainActivity">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+        <com.app.collow.baseviews.BaseEdittext
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/edittext_acnewevent_addimage"
+            android:hint="@string/addimage"
+            android:layout_marginLeft="13dp"
+            android:background="@android:color/transparent"
+            android:layout_height="wrap_content" />
+        <com.app.collow.baseviews.MyButtonView
+            android:layout_width="25dp"
+            android:gravity="right"
+            android:layout_alignParentRight="true"
+            android:id="@+id/button_acnewevent_addimage"
+            android:background="@drawable/ic_launcher"
+            android:layout_height="25dp" />
+
+    </RelativeLayout>
+    <include layout="@layout/horizontal_seperator_line"></include>
+    <com.app.collow.baseviews.BaseEdittext
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/edittext_acnewevent_date"
+        android:hint="@string/date"
+        android:layout_marginLeft="13dp"
+        android:background="@android:color/transparent"
+        android:layout_height="wrap_content" />
+    <include layout="@layout/horizontal_seperator_line"></include>
+    <com.app.collow.baseviews.BaseEdittext
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="13dp"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/edittext_acnewevent_starttime"
+        android:hint="@string/starttime"
+        android:background="@android:color/transparent"
+        android:layout_height="wrap_content" />
+    <include layout="@layout/horizontal_seperator_line"></include>
+
+    <com.app.collow.baseviews.BaseEdittext
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/edittext_acnewevent_endtime"
+        android:hint="@string/endtime"
+        android:background="@android:color/transparent"
+        android:layout_height="wrap_content" />
+    <include layout="@layout/horizontal_seperator_line"></include>
+    <com.app.collow.baseviews.BaseEdittext
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/edittext_acnewevent_eventlocation"
+        android:hint="@string/eventlocation"
+        android:background="@android:color/transparent"
+        android:layout_height="wrap_content" />
+    <include layout="@layout/horizontal_seperator_line"></include>
+
+    <com.app.collow.baseviews.BaseEdittext
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/edittext_acnewevent_description"
+        android:hint="@string/description"
+        android:background="@android:color/transparent"
+        android:layout_height="wrap_content" />
+    <include layout="@layout/horizontal_seperator_line"></include>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="35dp"
+        android:layout_height="wrap_content">
+    <com.app.collow.baseviews.MyButtonView
+        android:layout_width="match_parent"
+        android:id="@+id/button_acnewevent_save"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textSize="@dimen/textsize_medium"
+        android:paddingBottom="11dp"
+        android:paddingTop="11dp"
+        android:background="@drawable/button_bluebackground"
+        android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
+</ScrollView>

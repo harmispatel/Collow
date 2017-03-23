@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_accommunity_features"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.app.collow.activities.ACCommunityFeatureMainActivity">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <com.app.collow.baseviews.BaseTextview
+                android:layout_width="wrap_content"
+                android:id="@+id/textview_communityfeature_title"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize_medium" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ToggleButton
+                    android:id="@+id/mySwitch_communityfeature"
+                    android:layout_width="70dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/toggle_selector"
+                    android:layout_alignParentRight="true"
+                    android:text=""
+                    android:textOff=""
+                    android:textOn=""
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <include
+            layout="@layout/horizontal_seperator_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+
+            android:layout_marginTop="20dp"></include>
+
+        <!--<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/greatschool"
+                android:textColor="@color/black"
+                android:textSize="@dimen/common_text_size" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ToggleButton
+                    android:id="@+id/mySwitch_greatschool"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <include
+            layout="@layout/horizontal_seperator_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+
+            android:layout_marginTop="20dp"></include>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/classified"
+                android:textColor="@color/black"
+                android:textSize="@dimen/common_text_size" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ToggleButton
+                    android:id="@+id/mySwitch_classifieds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <include
+            layout="@layout/horizontal_seperator_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+
+            android:layout_marginTop="20dp"></include>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chat"
+                android:textColor="@color/black"
+                android:textSize="@dimen/common_text_size" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ToggleButton
+                    android:id="@+id/mySwitch_chat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <include
+            layout="@layout/horizontal_seperator_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+
+            android:layout_marginTop="20dp"></include>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/form"
+                android:textColor="@color/black"
+                android:textSize="@dimen/common_text_size" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ToggleButton
+                    android:id="@+id/mySwitch_form"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <include
+            layout="@layout/horizontal_seperator_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+
+            android:layout_marginTop="20dp"></include>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/socialmediafeed"
+                android:textColor="@color/black"
+                android:textSize="@dimen/common_text_size" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ToggleButton
+                    android:id="@+id/mySwitch_socialmedia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <include
+            layout="@layout/horizontal_seperator_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+
+            android:layout_marginTop="20dp"></include>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/addsales"
+                android:textColor="@color/black"
+                android:textSize="@dimen/common_text_size" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ToggleButton
+                    android:id="@+id/mySwitch_addsales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <include
+            layout="@layout/horizontal_seperator_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+
+            android:layout_marginTop="20dp"></include>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/maintanancerequest"
+                android:textColor="@color/black"
+                android:textSize="@dimen/common_text_size" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ToggleButton
+                    android:id="@+id/mySwitch_maintenancereq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <include
+            layout="@layout/horizontal_seperator_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+
+            android:layout_marginTop="20dp"></include>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/packagenotificaion"
+                android:textColor="@color/black"
+                android:textSize="@dimen/common_text_size" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ToggleButton
+                    android:id="@+id/mySwitch_packagenotification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <include
+            layout="@layout/horizontal_seperator_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+
+            android:layout_marginTop="20dp"></include>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/parkingpass"
+                android:textColor="@color/black"
+                android:textSize="@dimen/common_text_size" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ToggleButton
+                    android:id="@+id/mySwitch_parkingpass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <include
+            layout="@layout/horizontal_seperator_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+
+            android:layout_marginTop="20dp"></include>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rentpayment"
+                android:textColor="@color/black"
+                android:textSize="@dimen/common_text_size" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ToggleButton
+                    android:id="@+id/mySwitch_rentpayments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <include
+            layout="@layout/horizontal_seperator_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+
+            android:layout_marginTop="20dp"></include-->>
+    </LinearLayout>
+</ScrollView>
+</RelativeLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_formsanddocs_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="3 feb 2017"
+            android:textSize="@dimen/textsize_medium" />
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_formsanddocs_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="fghugh hu hu"
+            android:textStyle="bold"
+            android:textSize="@dimen/textsize_big" />
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_formsanddocs_downloads"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="5 Downloads"
+            android:textSize="@dimen/textsize_medium" />
+
+    </LinearLayout>
+
+    <include
+        layout="@layout/horizontal_seperator_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_marginTop="8dp"></include>
+
+</LinearLayout>

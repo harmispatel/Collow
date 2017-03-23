@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:minHeight="?attr/actionBarSize"
+        android:paddingLeft="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        card_view:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:fillViewport="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+
+            >
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_view_create_form_and_docx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+
+                android:background="@color/white"
+                card_view:cardCornerRadius="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+
+                    android:orientation="vertical">
+
+
+                    <include layout="@layout/horizontal_seperator_line"></include>
+
+
+                    <com.app.collow.baseviews.BaseEdittext
+                        android:id="@+id/edittext_acnewforms_title"
+                        style="@style/myEditextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_background"
+                        android:gravity="left"
+                        android:hint="@string/title"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/edittext_text_color"
+                        android:textColorHint="@color/edittext_hint_color"
+
+                        />
+
+                    <include layout="@layout/horizontal_seperator_line"></include>
+
+                    <com.app.collow.baseviews.BaseEdittext
+                        android:id="@+id/edittext_acnewforms_description"
+                        style="@style/myEditextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_background"
+                        android:gravity="left"
+                        android:hint="@string/description"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/edittext_text_color"
+                        android:textColorHint="@color/edittext_hint_color"
+
+                        />
+
+                    <include layout="@layout/horizontal_seperator_line"></include>
+
+                    <include layout="@layout/horizontal_seperator_line"></include>
+
+                    <RelativeLayout
+                        android:id="@+id/relativelayout_acnewforms_viewers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_background">
+
+
+                        <com.app.collow.baseviews.BaseTextview
+                            android:id="@+id/textview_acnewforms_viewers"
+                            style="@style/myEditextStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:layout_toLeftOf="@+id/layout_get_communties"
+                            android:gravity="left"
+                            android:hint="@string/viewers"
+                            android:textColor="@color/left_Menu_text_color_gray" />
+
+
+                        <LinearLayout
+                            android:id="@+id/layout_acnewforms"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:orientation="horizontal">
+
+                            <ProgressBar
+                                android:id="@+id/progress_acnewforms"
+                                style="?android:attr/progressBarStyleSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:layout_marginRight="4dp"
+
+                                android:padding="5dp"
+                                android:visibility="gone" />
+
+                            <ImageView
+                                android:id="@+id/imageview_acnewforms_viewerstype"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginRight="15dp"
+                                android:padding="5dp"
+
+                                android:src="@drawable/updown_arrow" />
+
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+                    <include layout="@layout/horizontal_seperator_line"></include>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recycler_view_grid_create_forms"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:columnWidth="90dp"
+                            android:gravity="center"
+                            android:horizontalSpacing="10dp"
+                            android:numColumns="auto_fit"
+                            android:padding="10dp"
+                            android:stretchMode="columnWidth"
+                            android:verticalSpacing="10dp"
+                            android:visibility="gone" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <com.app.collow.baseviews.MyButtonView
+                android:id="@+id/mybuttonview_browse_form_document"
+                style="@style/mybuttonViewStyle_filter_apply_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/card_view_create_form_and_docx"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="15dp"
+
+                android:gravity="center"
+                android:text="@string/browser" />
+
+            <com.app.collow.baseviews.MyButtonView
+                android:id="@+id/mybuttonview_upload_form_document"
+                style="@style/mybuttonViewStyle_filter_apply_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="@string/upload" />
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+</RelativeLayout>

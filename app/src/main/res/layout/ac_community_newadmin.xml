@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <com.app.collow.baseviews.BaseEdittext
+                android:id="@+id/edittext_aclist_newadminfirstname"
+                style="@style/myEditextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_background"
+                android:gravity="left"
+                android:hint="@string/first_name"
+                android:inputType="text"
+                android:textColor="@color/edittext_text_color"
+                android:textColorHint="@color/edittext_hint_color" />
+
+            <View
+                android:layout_width="0.1dp"
+                android:layout_height="match_parent"
+                android:background="@color/line_color_gray"
+                android:orientation="vertical">
+
+            </View>
+
+            <com.app.collow.baseviews.BaseEdittext
+                android:id="@+id/edittext_aclist_newadminlastname"
+                style="@style/myEditextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_background"
+                android:gravity="left"
+                android:hint="@string/last_name"
+                android:inputType="text"
+                android:textColor="@color/edittext_text_color"
+                android:textColorHint="@color/edittext_hint_color"
+
+                />
+
+        </LinearLayout>
+
+
+        <include layout="@layout/horizontal_seperator_line"></include>
+
+
+        <com.app.collow.baseviews.BaseEdittext
+            android:id="@+id/edittext_aclist_newadminemail"
+            style="@style/myEditextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:gravity="left"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/edittext_text_color"
+            android:textColorHint="@color/edittext_hint_color"
+
+            />
+
+        <include layout="@layout/horizontal_seperator_line"></include>
+</LinearLayout>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="25dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+
+        android:id="@+id/button_aclist_newadminsendrequest"
+        android:background="@drawable/button_bluebackground"
+        android:text="@string/sendrequest"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/textsize_medium"
+        android:layout_height="wrap_content"></Button>
+
+
+</RelativeLayout>
