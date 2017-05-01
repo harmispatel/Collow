@@ -13,21 +13,14 @@ import android.widget.ImageView;
 
 import com.app.collow.R;
 import com.app.collow.adapters.ChatAdapter;
-import com.app.collow.adapters.NewsAdapter;
-import com.app.collow.allenums.ScreensEnums;
-import com.app.collow.asyntasks.RequestToServer;
 import com.app.collow.baseviews.BaseTextview;
 import com.app.collow.beans.Chatbean;
 import com.app.collow.beans.CommunityAccessbean;
-import com.app.collow.beans.Gallerybean;
-import com.app.collow.beans.Newsbean;
-import com.app.collow.beans.PassParameterbean;
 import com.app.collow.beans.RequestParametersbean;
 import com.app.collow.beans.Responcebean;
 import com.app.collow.beans.RetryParameterbean;
 import com.app.collow.beans.SocialOptionbean;
 import com.app.collow.collowinterfaces.OnLoadMoreListener;
-import com.app.collow.httprequests.GetPostParameterEachScreen;
 import com.app.collow.recyledecor.DividerItemDecoration;
 import com.app.collow.setupUI.SetupViewInterface;
 import com.app.collow.utils.BaseException;
@@ -36,7 +29,6 @@ import com.app.collow.utils.CommonMethods;
 import com.app.collow.utils.CommonSession;
 import com.app.collow.utils.JSONCommonKeywords;
 import com.app.collow.utils.MyUtils;
-import com.app.collow.utils.URLs;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -53,11 +45,11 @@ public class ChatMainActivity extends BaseActivity implements SetupViewInterface
     public static ArrayList<Chatbean> chatbeanArrayList = new ArrayList<>();
     public static RecyclerView mRecyclerView;
     public static ChatMainActivity chatMainActivity = null;
+    public static BaseTextview baseTextview_error = null;
     protected Handler handler;
     View view_home = null;
     CommonSession commonSession = null;
     BaseTextview baseTextview_header_title = null;
-
     //header iterms
     ImageView imageView_left_menu = null, imageView_right_menu = null;
     RequestParametersbean requestParametersbean = new RequestParametersbean();
@@ -66,7 +58,6 @@ public class ChatMainActivity extends BaseActivity implements SetupViewInterface
     FloatingActionButton floatingActionButton_create_chat = null;
     CommunityAccessbean communityAccessbean = null;
     String communityID = null;
-    public static BaseTextview baseTextview_error = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,7 +146,6 @@ public class ChatMainActivity extends BaseActivity implements SetupViewInterface
             floatingActionButton_create_chat = (FloatingActionButton) view_home.findViewById(R.id.fab_create_new_chat);
 
 
-
             DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(25);
             // use a linear layout manager
             mRecyclerView.setLayoutManager(mLayoutManager);
@@ -219,27 +209,6 @@ public class ChatMainActivity extends BaseActivity implements SetupViewInterface
         }
     }
 
-
-    // this method is used for login user
-    /*public void getNewsListing() {
-        try {
-
-
-            JSONObject jsonObjectGetPostParameterEachScreen = GetPostParameterEachScreen.getPostParametersAccordingIndex(ScreensEnums.CHAT.getScrenIndex(), requestParametersbean);
-            PassParameterbean passParameterbean = new PassParameterbean(this, ChatMainActivity.this, getApplicationContext(), URLs.CHAT, jsonObjectGetPostParameterEachScreen, ScreensEnums.CHAT.getScrenIndex(), ChatMainActivity.class.getClass());
-            requestParametersbean.setStart_limit(current_start);
-            requestParametersbean.setCommunityID(communityID);
-            requestParametersbean.setUserId(commonSession.getLoggedUserID());
-            passParameterbean.setNeedToFirstTakeFacebookProfilePic(false);
-
-            new RequestToServer(passParameterbean, retryParameterbean).execute();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            new BaseException(e, false, retryParameterbean);
-        }
-    }*/
 
     @Override
     public void setupUI(Responcebean responcebean) {

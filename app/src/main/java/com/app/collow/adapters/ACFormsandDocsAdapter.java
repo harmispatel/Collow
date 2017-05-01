@@ -12,40 +12,32 @@ import android.widget.ImageView;
 
 import com.app.collow.R;
 import com.app.collow.activities.ACFormsandDocsMainActivity;
-import com.app.collow.activities.ACListEventsMainActivity;
 import com.app.collow.activities.ACViewFormsandDocs;
-import com.app.collow.activities.AClistEvent_ViewEvents;
 import com.app.collow.baseviews.BaseTextview;
-import com.app.collow.beans.ACFollowersbean;
 import com.app.collow.beans.ACFormsandDocsbean;
-import com.app.collow.beans.ACListEventBean;
 import com.app.collow.collowinterfaces.MyOnClickListener;
 import com.app.collow.collowinterfaces.OnLoadMoreListener;
 import com.app.collow.utils.BundleCommonKeywords;
 import com.app.collow.utils.CommonMethods;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
 /**
  * Created by harmis on 23/2/17.
  */
 
-public class ACFormsandDocsAdapter  extends RecyclerView.Adapter {
+public class ACFormsandDocsAdapter extends RecyclerView.Adapter {
 
     Activity activity = null;
-
+    String communityID = null;
+    View view;
     // The minimum amount of items to have below your current scroll position
     // before loading more.
     private int visibleThreshold = 10;
     private int lastVisibleItem, totalItemCount;
     private boolean loading;
-    String communityID=null;
-
-    View view;
     private OnLoadMoreListener onLoadMoreListener;
 
     public ACFormsandDocsAdapter(Activity activity, RecyclerView recyclerView) {
-        this.activity=activity;
+        this.activity = activity;
         //  this.communityID=communityID;
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
 
@@ -110,7 +102,7 @@ public class ACFormsandDocsAdapter  extends RecyclerView.Adapter {
         }
 
 
-        if (CommonMethods.isImageUrlValid(documentbean.getAclist_image())) {
+       /* if (CommonMethods.isImageUrlValid(documentbean.getAclist_image())) {
 
             Picasso.with(activity)
                     .load(documentbean.getAclist_image())
@@ -128,7 +120,7 @@ public class ACFormsandDocsAdapter  extends RecyclerView.Adapter {
 
         } else {
             ((ACDocumentViewHolder) holder).imageview_aclistdocument.setImageResource(R.drawable.defualt_square);
-        }
+        }*/
 
         ((ACDocumentViewHolder) holder).view_click.setTag(documentbean);
 
@@ -140,15 +132,15 @@ public class ACFormsandDocsAdapter  extends RecyclerView.Adapter {
                 if (isAvailableInternet()) {
                     ACFormsandDocsbean documentbean1_local = (ACFormsandDocsbean) v.getTag();
 
-                    Bundle bundle=new Bundle();
-                    bundle.putSerializable(BundleCommonKeywords.KEY_ACEVENT_BEAN,documentbean1_local);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable(BundleCommonKeywords.KEY_CUSTOM_CLASS_BEAN, documentbean1_local);
                     Intent intent = new Intent(activity, ACViewFormsandDocs.class);
                     bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, communityID);
                        /* bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, eventbean1_local.getAclist_eventdate());
                         bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, eventbean1_local.getAclist_eventtime());*/
                     intent.putExtras(bundle);
                     activity.startActivity(intent);
-                    CommonMethods.displayLog("Details","Details");
+                    CommonMethods.displayLog("Details", "Details");
                 }
             }
         });
@@ -174,13 +166,14 @@ public class ACFormsandDocsAdapter  extends RecyclerView.Adapter {
     public static class ACDocumentViewHolder extends RecyclerView.ViewHolder {
 
         BaseTextview baseTextview_aclistdocument_title = null;
-        BaseTextview baseTextview_aclistdocument_date= null;
+        BaseTextview baseTextview_aclistdocument_date = null;
         BaseTextview baseTextview_aclistdocument_time = null;
-        ImageView imageView_aclistdocument_rightarrow=null;
+        ImageView imageView_aclistdocument_rightarrow = null;
 
         ImageView imageview_aclistdocument = null;
 
         View view_click = null;
+
         public ACDocumentViewHolder(View v) {
             super(v);
             // tvName = (TextView) v.findViewById(R.id.tvName);
@@ -190,9 +183,8 @@ public class ACFormsandDocsAdapter  extends RecyclerView.Adapter {
             baseTextview_aclistdocument_time = (BaseTextview) v.findViewById(R.id.textview_aclistforms_doctime);
 
             imageview_aclistdocument = (ImageView) v.findViewById(R.id.imageview_aclistforms_image);
-            imageView_aclistdocument_rightarrow=(ImageView)v.findViewById(R.id.imageview_aclistforms_rightarrow) ;
+            imageView_aclistdocument_rightarrow = (ImageView) v.findViewById(R.id.imageview_aclistforms_rightarrow);
             view_click = v;
-
 
 
         }

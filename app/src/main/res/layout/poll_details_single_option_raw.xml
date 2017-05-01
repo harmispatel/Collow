@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
 
-            android:layout_weight="1.2"
+            android:layout_weight="2"
             android:padding="8dp">
 
             <ImageView
@@ -27,13 +27,16 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:padding="3dp"
+                android:visibility="gone"
                 android:src="@drawable/poll_selected" />
             <com.app.collow.baseviews.BaseTextview
-                android:id="@+id/textview_each_option_result"
-                android:layout_width="wrap_content"
+                android:id="@+id/textview_each_option_result_for_user_and_percentage_for_admin"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="18%"
+                android:text="100%"
                 android:textSize="@dimen/common_text_size"
+                android:visibility="gone"
+                android:gravity="center"
                 android:layout_centerInParent="true"
                 android:textColor="@color/black"
                 android:textStyle="bold"/>
@@ -46,7 +49,7 @@
             android:id="@+id/view_verticle_line_create_polls"
             android:layout_width="3dp"
             android:layout_height="match_parent"
-            android:background="@color/blue_color_my_post_text"></View>
+            android:background="@color/blue_color_my_post_text"/>
 
         <com.app.collow.baseviews.BaseTextview
 
@@ -54,9 +57,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="8"
+            android:layout_weight="7"
             android:gravity="left"
-            android:text="@string/enter_poll_question"
             android:inputType="textMultiLine"
             android:padding="8dp"
             android:background="@android:color/transparent"
@@ -66,16 +68,7 @@
             android:textSize="@dimen/common_text_size" />
 
 
-        <com.app.collow.baseviews.BaseTextview
-            android:id="@+id/basetextview_need_to_diplay_empty_marker"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="*"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:visibility="visible"
-            android:textColor="@color/holo_red_dark"/>
+
 
         <com.app.collow.baseviews.BaseTextview
             android:id="@+id/basetextview_need_to_diplay_for_admin_results"

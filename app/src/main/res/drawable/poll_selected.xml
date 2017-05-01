@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/outerRectangle"
+        android:height="70dp" android:width="70dp"
+        android:gravity="center">
+        <shape android:shape="oval">
 
-</selector>
+            <stroke
+                android:width="2dp"
+                android:color="@android:color/darker_gray" />
+        </shape>
+    </item>
+    <item
+
+        android:height="50dp" android:width="50dp"
+        android:gravity="center">
+        <shape android:shape="oval">
+
+            <solid android:color="@color/colorPrimary" />
+        </shape>
+    </item>
+</layer-list>

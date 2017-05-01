@@ -1,5 +1,6 @@
 package com.app.collow.adapters;
 
+import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,11 +10,15 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.app.collow.R;
+import com.app.collow.activities.ACAdminListingActivity;
 import com.app.collow.baseviews.BaseTextview;
 import com.app.collow.beans.ACListCommunityAdminbean;
 import com.app.collow.beans.Classifiedbean;
 import com.app.collow.collowinterfaces.OnLoadMoreListener;
+import com.app.collow.utils.CommonKeywords;
 import com.app.collow.utils.CommonMethods;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -22,22 +27,19 @@ import java.util.List;
  */
 
 public class ACListCommunityAdminAdapter extends RecyclerView.Adapter {
-    private final int VIEW_ITEM = 1;
-    private final int VIEW_PROG = 0;
 
-    private List<ACListCommunityAdminbean> adminbeanlist;
+
 
     // The minimum amount of items to have below your current scroll position
     // before loading more.
-    private int visibleThreshold = 10;
     private int lastVisibleItem, totalItemCount;
     private boolean loading;
     private OnLoadMoreListener onLoadMoreListener;
+    Activity activity=null;
 
 
-    public ACListCommunityAdminAdapter(List<ACListCommunityAdminbean> admin, RecyclerView recyclerView) {
-        adminbeanlist = admin;
-
+    public ACListCommunityAdminAdapter(Activity activity,RecyclerView recyclerView) {
+       this.activity=activity;
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
 
             final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView
@@ -55,7 +57,7 @@ public class ACListCommunityAdminAdapter extends RecyclerView.Adapter {
                             lastVisibleItem = linearLayoutManager
                                     .findLastVisibleItemPosition();
                             if (!loading
-                                    && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
+                                    && totalItemCount <= (lastVisibleItem + CommonKeywords.VISIBLE_THRESHOLD)) {
                                 // End has been reached
                                 // Do something
                                 if (onLoadMoreListener != null) {
@@ -68,45 +70,59 @@ public class ACListCommunityAdminAdapter extends RecyclerView.Adapter {
         }
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return adminbeanlist.get(position) != null ? VIEW_ITEM : VIEW_PROG;
-    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                       int viewType) {
         RecyclerView.ViewHolder vh;
-        if (viewType == VIEW_ITEM) {
             View v = LayoutInflater.from(parent.getContext()).inflate(
                     R.layout.aclist_community_admin_single_item, parent, false);
 
             vh = new ACAdminViewHolder(v);
-        } else {
-            View v = LayoutInflater.from(parent.getContext()).inflate(
-                    R.layout.progressbar_item, parent, false);
 
-            vh = new ACADminProgressViewHolder(v);
-        }
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof ClassifiedAdapter.ClassifiedViewHolder) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
 
-            ACListCommunityAdminbean singleStudent = (ACListCommunityAdminbean) adminbeanlist.get(position);
-            ((ACAdminViewHolder) holder).baseTextview_aclistadmin_name.setText(String.valueOf("Position" + position
-            ));
+            ACListCommunityAdminbean acListCommunityAdminbean = ACAdminListingActivity.acListCommunityAdminbeanArrayList.get(position);
+        
+           if(CommonMethods.isTextAvailable(acListCommunityAdminbean.getAcadmin_name()))
+           {
+               ((ACAdminViewHolder) holder).baseTextview_aclistadmin_name.setText(acListCommunityAdminbean.getAcadmin_name());
+           }
 
-            if (CommonMethods.isTextAvailable(singleStudent.getMessage())) {
-                ((ACAdminViewHolder) holder).baseTextview_aclistadmin_email.setText(singleStudent.getMessage());
-            }
+        if(CommonMethods.isTextAvailable(acListCommunityAdminbean.getAcadmin_eamil()))
+        {
+            ((ACAdminViewHolder) holder).baseTextview_aclistadmin_email.setText(acListCommunityAdminbean.getAcadmin_eamil());
+        }
 
+
+
+        if (CommonMethods.isImageUrlValid(acListCommunityAdminbean.getAcadmin_userprofilepic())) {
+
+            Picasso.with(activity)
+                    .load(acListCommunityAdminbean.getAcadmin_userprofilepic())
+                    .into(((ACAdminViewHolder) holder).imageview_aclistadmin_profilepic, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                        }
+
+                        @Override
+                        public void onError() {
+                            ((ACAdminViewHolder) holder).imageview_aclistadmin_profilepic.setImageResource(R.drawable.defualt_square);
+
+                        }
+                    });
 
         } else {
-            ((ACADminProgressViewHolder) holder).progressBar.setIndeterminate(true);
+            ((ACAdminViewHolder) holder).imageview_aclistadmin_profilepic.setImageResource(R.drawable.defualt_square);
         }
+
+
+
+
     }
 
     public void setLoaded() {
@@ -115,7 +131,7 @@ public class ACListCommunityAdminAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return adminbeanlist.size();
+        return ACAdminListingActivity.acListCommunityAdminbeanArrayList.size();
     }
 
     public void setOnLoadMoreListener(OnLoadMoreListener onLoadMoreListener) {
@@ -141,27 +157,10 @@ public class ACListCommunityAdminAdapter extends RecyclerView.Adapter {
             imageview_aclistadmin_profilepic = (ImageView) v.findViewById(R.id.imageview_aclist_adminprofilepic);
 
 
-         /*   v.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(v.getContext(),
-                            "OnClick :" + student.getName() + " \n " + student.getEmailId(),
-                            Toast.LENGTH_SHORT).show();
-
-                }
-            });*/
 
         }
     }
 
 
-    public static class ACADminProgressViewHolder extends RecyclerView.ViewHolder {
-        public ProgressBar progressBar;
 
-        public ACADminProgressViewHolder(View v) {
-            super(v);
-            progressBar = (ProgressBar) v.findViewById(R.id.progressBar1);
-        }
-    }
 }

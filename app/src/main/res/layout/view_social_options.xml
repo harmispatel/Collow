@@ -1,6 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:weightSum="3.2"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:id="@+id/layout_likes"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|left"
+        android:gravity="center|left"
+        android:orientation="horizontal"
+
+        android:padding="4dp">
+
+
+            <ImageView
+                android:id="@+id/imageview_likes"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+
+                android:layout_gravity="center|left"
+                android:src="@drawable/like_blue"
+                />
+
+            <com.app.collow.baseviews.BaseTextview
+                android:id="@+id/textview_likes_counts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="0 Likes"
+                android:layout_gravity="center|left"
+
+
+                android:textSize="@dimen/textsize_small_chat_day_time" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_comments"
+
+        android:layout_width="0dp"
+        android:layout_weight="1.2"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|left"
+        android:gravity="center|left"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+
+
+            <ImageView
+                android:id="@+id/imageview_communityactivity_download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center|left"
+                android:gravity="center|left"
+                android:src="@drawable/comment_blue"
+                />
+
+            <com.app.collow.baseviews.BaseTextview
+                android:id="@+id/textview_comments_counts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+
+                android:text="0 Comments"
+                android:textSize="@dimen/textsize_small_chat_day_time" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_views"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+
+
+            <ImageView
+                android:id="@+id/imageview_communityactivity_view"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/view_blue"
+
+                android:layout_marginLeft="5dp"
+               />
+
+            <com.app.collow.baseviews.BaseTextview
+                android:id="@+id/textview_view_counts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+
+                android:text="0 Views"
+                android:textSize="@dimen/textsize_small_chat_day_time" />
+
+    </LinearLayout>
+
 
 </LinearLayout>
+
+
+        

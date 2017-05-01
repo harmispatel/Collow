@@ -11,6 +11,47 @@ public class ACFollowersbean extends Basebean implements Serializable {
     String followers_name=null;
     String followers_address=null;
     String followers_type=null;
+    String communityID=null;
+    String followersUserID=null;
+
+    public int getPosition_main_item() {
+        return position_main_item;
+    }
+
+    public void setPosition_main_item(int position_main_item) {
+        this.position_main_item = position_main_item;
+    }
+
+    int position_main_item=0;
+
+    public boolean isApproved() {
+        return isApproved;
+    }
+
+    public void setApproved(boolean approved) {
+        isApproved = approved;
+    }
+
+    boolean isApproved=false;
+
+
+
+    public String getFollowersUserID() {
+        return followersUserID;
+    }
+
+    public void setFollowersUserID(String followersUserID) {
+        this.followersUserID = followersUserID;
+    }
+
+    public String getCommunityID() {
+        return communityID;
+    }
+
+    public void setCommunityID(String communityID) {
+        this.communityID = communityID;
+    }
+
 
     public ACFollowersbean() {
     }

@@ -1,7 +1,9 @@
 package com.app.collow.activities;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,20 +21,28 @@ import com.app.collow.allenums.ScreensEnums;
 import com.app.collow.asyntasks.RequestToServer;
 import com.app.collow.baseviews.BaseTextview;
 import com.app.collow.beans.Classifiedbean;
+import com.app.collow.beans.CommunityAccessbean;
+import com.app.collow.beans.Eventbean;
 import com.app.collow.beans.FormsAndDocsbean;
+import com.app.collow.beans.Newsbean;
 import com.app.collow.beans.PassParameterbean;
 import com.app.collow.beans.RequestParametersbean;
 import com.app.collow.beans.Responcebean;
 import com.app.collow.beans.RetryParameterbean;
+import com.app.collow.beans.SocialOptionbean;
 import com.app.collow.collowinterfaces.OnLoadMoreListener;
 import com.app.collow.httprequests.GetPostParameterEachScreen;
 import com.app.collow.recyledecor.DividerItemDecoration;
 import com.app.collow.setupUI.SetupViewInterface;
 import com.app.collow.utils.BaseException;
+import com.app.collow.utils.BundleCommonKeywords;
 import com.app.collow.utils.CommonMethods;
 import com.app.collow.utils.CommonSession;
+import com.app.collow.utils.JSONCommonKeywords;
+import com.app.collow.utils.MyUtils;
 import com.app.collow.utils.URLs;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -40,145 +50,198 @@ import java.util.ArrayList;
 public class FormsAndDocsMainActivity extends BaseActivity implements SetupViewInterface {
 
     View view_home = null;
-    FormsAndDocsAdapter formsanddocsAdapter = null;
+  public static  FormsAndDocsAdapter formsanddocsAdapter = null;
     public static ArrayList<FormsAndDocsbean> formsanddocsbeanlist = new ArrayList<>();
     private BaseTextview baseTextview_error = null;
-    private RecyclerView mRecyclerView;
+    public static RecyclerView mRecyclerView;
     protected Handler handler;
     CommonSession commonSession = null;
 
     //header iterms
-    ImageView imageView_left_menu = null, imageView_right_menu = null;
+    ImageView imageView_left_menu = null, imageView_right_menu = null,imageview_community_menu=null;
     RequestParametersbean requestParametersbean = new RequestParametersbean();
     RetryParameterbean retryParameterbean = null;
+    BaseTextview baseTextview_header_title=null;
+    public static FormsAndDocsMainActivity formsAndDocsMainActivity=null;
+    FloatingActionButton floatingActionButton_create_forms_and_docx=null;
+    int current_start = 0;
+    CommunityAccessbean communityAccessbean = null;
+    String communityID = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        retryParameterbean = new RetryParameterbean(FormsAndDocsMainActivity.this, getApplicationContext(), getIntent().getExtras(), FormsAndDocsMainActivity.class.getClass());
-        commonSession = new CommonSession(FormsAndDocsMainActivity.this);
-
-        handler = new Handler();
-        setupHeaderView();
-        findViewByIDs();
-        setupEvents();
-
-        BaseTextview baseTextview_formsanddocs_category=(BaseTextview)findViewById(R.id.textview_formsanddocs_category);
-        baseTextview_formsanddocs_category.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v1) {
-                Intent launchActivity1= new Intent(FormsAndDocsMainActivity.this,FormsAndDocs_Detail.class);
-                startActivity(launchActivity1);
-
+        try {
+            retryParameterbean = new RetryParameterbean(FormsAndDocsMainActivity.this, getApplicationContext(), getIntent().getExtras(), FormsAndDocsMainActivity.class.getClass());
+            commonSession = new CommonSession(FormsAndDocsMainActivity.this);
+           Bundle bundle = getIntent().getExtras();
+            if (bundle != null) {
+                communityID = bundle.getString(BundleCommonKeywords.KEY_COMMUNITY_ID);
+                communityAccessbean = (CommunityAccessbean) bundle.getSerializable(BundleCommonKeywords.KEY_COMMUNITY_ACCESSBEAN);
             }
-        });
+            formsAndDocsMainActivity=this;
+            handler = new Handler();
+            setupHeaderView();
+            findViewByIDs();
+            setupEvents();
+            getdocslisting();
+
+        } catch (Exception e) {
+            new BaseException(e, false, retryParameterbean);
+
+        }
+
 
     }
 
     public void setupHeaderView() {
-        View headerview = getLayoutInflater().inflate(R.layout.header, null);
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        headerview.setLayoutParams(layoutParams);
+        try {
+            baseTextview_header_title=(BaseTextview)toolbar_header.findViewById(R.id.textview_header_title) ;
+            baseTextview_header_title.setText(getResources().getString(R.string.forms));
+
+            imageView_left_menu = (ImageView) toolbar_header.findViewById(R.id.imageview_left_menu);
+            imageView_left_menu.setVisibility(View.VISIBLE);
+            imageView_right_menu = (ImageView) toolbar_header.findViewById(R.id.imageview_right_menu);
+            imageView_right_menu.setVisibility(View.VISIBLE);
+            imageview_community_menu = (ImageView) toolbar_header.findViewById(R.id.imageview_community_menu);
+            imageview_community_menu.setVisibility(View.VISIBLE);
+
+            imageView_left_menu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    drawerLayout.openDrawer(Gravity.LEFT);
 
 
-        imageView_left_menu = (ImageView) headerview.findViewById(R.id.imageview_left_menu);
-        imageView_left_menu.setVisibility(View.VISIBLE);
-        imageView_right_menu = (ImageView) headerview.findViewById(R.id.imageview_right_menu);
-        imageView_right_menu.setVisibility(View.VISIBLE);
+                }
+            });
+            imageView_right_menu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    drawerLayout.openDrawer(Gravity.RIGHT);
 
 
-        imageView_left_menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(Gravity.LEFT);
+                }
+            });
+            imageview_community_menu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //MyUtils.openCommunityMenu(FormsAndDocsMainActivity.this,false,false,"1","1");
 
 
-            }
-        });
-        imageView_right_menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(Gravity.RIGHT);
+                }
+            });
 
+        } catch (Exception e) {
+            new BaseException(e, false, retryParameterbean);
 
-            }
-        });
-        setSupportActionBar(toolbar_header);
-        toolbar_header.addView(headerview);
+        }
 
 
     }
 
     private void findViewByIDs() {
-        view_home = getLayoutInflater().inflate(R.layout.recyleview_main, null);
+        try {
+            view_home = getLayoutInflater().inflate(R.layout.formanddocx_main, null);
 
 
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        baseTextview_error = (BaseTextview) view_home.findViewById(R.id.empty_view);
-        mRecyclerView = (RecyclerView) view_home.findViewById(R.id.my_recycler_view);
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+            baseTextview_error = (BaseTextview) view_home.findViewById(R.id.empty_view);
+            mRecyclerView = (RecyclerView) view_home.findViewById(R.id.my_recycler_view);
+            FormsAndDocsbean docsbean = new FormsAndDocsbean();
+            formsanddocsbeanlist.add(docsbean);
+            formsanddocsbeanlist.add(docsbean);
+            formsanddocsbeanlist.add(docsbean);
+            formsanddocsbeanlist.add(docsbean);
+            formsanddocsbeanlist.add(docsbean);
+            formsanddocsbeanlist.add(docsbean);
+            formsanddocsbeanlist.add(docsbean);
+            formsanddocsbeanlist.add(docsbean);
+            formsanddocsbeanlist.add(docsbean);
+            formsanddocsbeanlist.add(docsbean);
+            formsanddocsbeanlist.add(docsbean);
+            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(25);
+            // use a linear layout manager
+            mRecyclerView.setLayoutManager(mLayoutManager);
+            mRecyclerView.addItemDecoration(dividerItemDecoration);
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(25);
-        // use a linear layout manager
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.addItemDecoration(dividerItemDecoration);
-
-        formsanddocsAdapter = new FormsAndDocsAdapter(formsanddocsbeanlist, mRecyclerView);
-        mRecyclerView.setAdapter(formsanddocsAdapter);
-        frameLayout_container.addView(view_home);
-
-        getClassified(0);
-
-
-        formsanddocsAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
-                //add null , so the adapter will check view_type and show progress bar at bottom
-                formsanddocsbeanlist.add(null);
-                mRecyclerView.post(new Runnable() {
-                    public void run() {
-                        formsanddocsAdapter.notifyItemInserted(formsanddocsbeanlist.size() - 1);
-                    }
-                });
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //   remove progress item
-                        formsanddocsbeanlist.remove(formsanddocsbeanlist.size() - 1);
-                        formsanddocsAdapter.notifyItemRemoved(formsanddocsbeanlist.size());
-                        //add items one by one
-                        int start = formsanddocsbeanlist.size();
-                        int end = start + 20;
-                        getClassified(20);
-
-                        for (int i = start + 1; i <= end; i++) {
-                            formsanddocsbeanlist.add(new FormsAndDocsbean());
-                            formsanddocsAdapter.notifyItemInserted(formsanddocsbeanlist.size());
-                        }
-                        formsanddocsAdapter.setLoaded();
-                        //or you can add all at once but do not forget to call mAdapter.notifyDataSetChanged();
-                    }
-                }, 2000);
+           floatingActionButton_create_forms_and_docx= (FloatingActionButton) view_home.findViewById(R.id.fab_create_form_and_docx);
+            if(commonSession.isUserAdminNow())
+            {
+                floatingActionButton_create_forms_and_docx.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                floatingActionButton_create_forms_and_docx.setVisibility(View.VISIBLE);
 
             }
-        });
+
+
+            formsanddocsAdapter = new FormsAndDocsAdapter(FormsAndDocsMainActivity.this,mRecyclerView);
+            mRecyclerView.setAdapter(formsanddocsAdapter);
+            frameLayout_container.addView(view_home);
+
+
+            formsanddocsAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
+                @Override
+                public void onLoadMore() {
+
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            current_start = +10;
+
+                            //   searchbean_post_data.getStart_limit()+=10;
+
+                            requestParametersbean.setStart_limit(current_start);
+                            //  getNewsListing();
+                            //or you can add all at once but do not forget to call mAdapter.notifyDataSetChanged();
+                        }
+                    }, 2000);
+
+                }
+            });
+
+
+        } catch (Exception e) {
+            new BaseException(e, false, retryParameterbean);
+
+        }
 
     }
 
     private void setupEvents() {
+       floatingActionButton_create_forms_and_docx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(commonSession.isUserAdminNow())
+                {
+                    Intent intent = new Intent(FormsAndDocsMainActivity.this, CreateFormAndDocumentActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, communityID);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                else
+                {
 
+                }
+
+            }
+        });
     }
 
 
     // this method is used for login user
-    public void getClassified(int startLimit) {
+    public void getdocslisting() {
         try {
 
-            requestParametersbean.setStart_limit(startLimit);
-
+            requestParametersbean.setStart_limit(current_start);
+            requestParametersbean.setCommunityID(communityID);
+            requestParametersbean.setUserId(commonSession.getLoggedUserID());
             JSONObject jsonObjectGetPostParameterEachScreen = GetPostParameterEachScreen.getPostParametersAccordingIndex(ScreensEnums.FORMSANDDOCS.getScrenIndex(), requestParametersbean);
-            PassParameterbean passParameterbean = new PassParameterbean(this, FormsAndDocsMainActivity.this, getApplicationContext(), URLs.FORMSANDDOCS, jsonObjectGetPostParameterEachScreen, ScreensEnums.FORMSANDDOCS.getScrenIndex(), FormsAndDocsMainActivity.class.getClass());
+            PassParameterbean passParameterbean = new PassParameterbean(this,FormsAndDocsMainActivity.this, getApplicationContext(), URLs.CREATE_FORM_AND_DOCX, jsonObjectGetPostParameterEachScreen, ScreensEnums.FORMSANDDOCS.getScrenIndex(), FormsAndDocsMainActivity.class.getClass());
 
+            passParameterbean.setNeedToFirstTakeFacebookProfilePic(false);
 
             new RequestToServer(passParameterbean, retryParameterbean).execute();
 
@@ -200,6 +263,113 @@ public class FormsAndDocsMainActivity extends BaseActivity implements SetupViewI
                     //parse here data of following
 
 
+                    if (CommonMethods.checkJSONArrayHasData(jsonObject_main, JSONCommonKeywords.NewsLists)) {
+
+                        ArrayList<FormsAndDocsbean> formsbeanArrayList_local = new ArrayList<>();
+                        JSONArray jsonArray_docs_list = jsonObject_main.getJSONArray(JSONCommonKeywords.NewsLists);
+                        for (int i = 0; i < jsonArray_docs_list.length(); i++) {
+
+                            FormsAndDocsbean docsbean = new FormsAndDocsbean();
+                            JSONObject jsonObject_single = jsonArray_docs_list.getJSONObject(i);
+
+
+                            if (CommonMethods.handleKeyInJSON(jsonObject_single, JSONCommonKeywords.News)) {
+                                docsbean.setFormsanddocs_title(jsonObject_single.getString(JSONCommonKeywords.News));
+
+                            }
+                            if (CommonMethods.handleKeyInJSON(jsonObject_single, JSONCommonKeywords.Description)) {
+                                docsbean.setFormsanddocs_date(jsonObject_single.getString(JSONCommonKeywords.Description));
+
+                            }
+
+                            if (CommonMethods.handleKeyInJSON(jsonObject_single, JSONCommonKeywords.NewsDate)) {
+                                docsbean.setFormsanddocs_description(jsonObject_single.getString(JSONCommonKeywords.NewsDate));
+
+                            }
+
+
+                            if (CommonMethods.handleKeyInJSON(jsonObject_single, JSONCommonKeywords.UserName)) {
+                                docsbean.setFormsanddocs_download(jsonObject_single.getString(JSONCommonKeywords.UserName));
+
+                            }
+
+
+
+                            if (jsonObject_single.has(JSONCommonKeywords.isLiked)) {
+
+
+                                String islikedfeedString = jsonObject_single.getString(JSONCommonKeywords.isLiked);
+                                if (islikedfeedString == null || islikedfeedString.equals("")) {
+                                    docsbean.setLiked(false);
+                                } else if (islikedfeedString.equals("1")) {
+                                    docsbean.setLiked(true);
+
+                                } else {
+                                    docsbean.setLiked(false);
+
+                                }
+
+
+                            }
+
+                            ArrayList<String> files_of_news = new ArrayList<>();
+
+
+                            if (CommonMethods.handleKeyInJSON(jsonObject_single, JSONCommonKeywords.Image))
+
+                            {
+                                if (CommonMethods.checkJSONArrayHasData(jsonObject_single, JSONCommonKeywords.Image)) {
+                                    JSONArray jsonArray_images = jsonObject_single.getJSONArray(JSONCommonKeywords.Image);
+                                    for (int j = 0; j < jsonArray_images.length(); j++) {
+
+                                        if (CommonMethods.isImageUrlValid(jsonArray_images.getString(j))) {
+                                            files_of_news.add(jsonArray_images.getString(j));
+                                        }
+                                    }
+
+
+                                }
+
+
+                            } else {
+
+                            }
+
+
+                            docsbean.setStringArrayList_fileURLs(files_of_news);
+
+
+                            docsbean.setPosition(i);
+                            formsbeanArrayList_local.add(docsbean);
+                        }
+
+                        if (current_start == 0) {
+                            formsanddocsbeanlist = formsbeanArrayList_local;
+                            formsanddocsAdapter.notifyDataSetChanged();
+
+                        } else {
+
+                            int start = formsanddocsbeanlist.size();
+
+                            for (int i = 0; i < formsbeanArrayList_local.size(); i++) {
+
+                                FormsAndDocsbean docsbean = formsbeanArrayList_local.get(i);
+                                docsbean.setPosition(start);
+                                formsanddocsbeanlist.add(start, docsbean);
+                                formsanddocsAdapter.notifyItemInserted(formsanddocsbeanlist.size());
+
+                                start++;
+
+                            }
+                            formsanddocsAdapter.setLoaded();
+
+                        }
+                    } else {
+                        handlerError(responcebean);
+
+                    }
+
+
                 } else {
                     handlerError(responcebean);
 
@@ -213,39 +383,42 @@ public class FormsAndDocsMainActivity extends BaseActivity implements SetupViewI
             new BaseException(e, false, retryParameterbean);
 
         }
-
-
     }
 
     public void handlerError(Responcebean responcebean)
     {
-        if (responcebean.getErrorMessage() == null || responcebean.getErrorMessage().equals(""))
-        {
-            if(requestParametersbean.getStart_limit()==0)
+        try {
+            if (responcebean.getErrorMessage() == null || responcebean.getErrorMessage().equals(""))
             {
-                baseTextview_error.setText(getResources().getString(R.string.no_data_founds));
-                mRecyclerView.setVisibility(View.GONE);
-                baseTextview_error.setVisibility(View.VISIBLE);
+                if(current_start==0)
+                {
+                    baseTextview_error.setText(getResources().getString(R.string.no_form_and_document_found));
+                    mRecyclerView.setVisibility(View.GONE);
+                    baseTextview_error.setVisibility(View.VISIBLE);
 
+                }
+                else
+                {
+
+                }
             }
             else
             {
+                if(current_start==0)
+                {
+                    baseTextview_error.setText(responcebean.getErrorMessage());
+                    mRecyclerView.setVisibility(View.GONE);
+                    baseTextview_error.setVisibility(View.VISIBLE);
 
-            }
-        }
-        else
-        {
-            if(requestParametersbean.getStart_limit()==0)
-            {
-                baseTextview_error.setText(responcebean.getErrorMessage());
-                mRecyclerView.setVisibility(View.GONE);
-                baseTextview_error.setVisibility(View.VISIBLE);
+                }
+                else
+                {
 
+                }
             }
-            else
-            {
+        } catch (Resources.NotFoundException e) {
+            new BaseException(e, false, retryParameterbean);
 
-            }
         }
     }
 }

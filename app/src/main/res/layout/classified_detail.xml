@@ -1,83 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="10dp"
+    android:fillViewport="true">
+    >
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="270dp">
-
-
-    <ImageView
-        android:id="@+id/imageview_classifieddetail_image"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/nature" />
+        android:orientation="vertical">
+
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:background="@color/colorPrimary">
 
 
-</FrameLayout>
+            <android.support.v4.view.ViewPager
+                android:id="@+id/pager_feature_product"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_above="@+id/viewPagerIndicator"
+                android:layout_alignParentTop="true"
 
-    <com.app.collow.baseviews.BaseTextview
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:id="@+id/textview_classifieddetail_status"
-        android:text="For sale"
-        android:textSize="@dimen/textsize_medium"
-        android:layout_height="wrap_content" />
-    <com.app.collow.baseviews.BaseTextview
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:id="@+id/textview_classifieddetail_category"
-        android:text="Roadside community"
-        android:textSize="@dimen/textsize_medium"
-        android:textStyle="bold"
-        android:layout_height="wrap_content" />
-    <com.app.collow.baseviews.BaseTextview
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:id="@+id/textview_classifieddetail_price"
-        android:text="$35"
-        android:textSize="@dimen/textsize_medium"
-        android:layout_height="wrap_content" />
-    <com.app.collow.baseviews.BaseTextview
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:id="@+id/textview_classifieddetail_description"
-        android:text="mkgj ngjdjgi gng fgiojg jgg ssgfg gsfg"
-        android:textSize="@dimen/common_text_size"
-        android:layout_height="wrap_content" />
+                android:layout_marginTop="10dp"
+                android:layout_weight="10"
+                android:background="@android:color/transparent" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:id="@+id/button_classifieddetail_contact"
-        android:text="@string/contact"
-        android:background="@drawable/button_bg_yellow"
-        android:layout_marginTop="35dp"
-        android:layout_gravity="center"
-        android:textColor="@color/white"
-        android:textSize="@dimen/common_text_size"
-        android:paddingRight="89dp"
-        android:paddingLeft="89dp"
-        android:layout_height="wrap_content" />
+        </FrameLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:id="@+id/button_classifieddetail_iminterested"
-        android:text="@string/iam_interested"
-        android:background="@drawable/buttonwhitebg_whiteborder"
-        android:layout_marginTop="15dp"
-        android:layout_gravity="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/common_text_size"
-        android:paddingRight="75dp"
-        android:paddingLeft="75dp"
-        android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:orientation="vertical">
+
+            <com.app.collow.baseviews.BaseTextview
+                android:id="@+id/textview_classifieddetail_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/textsize_medium" />
+
+            <com.app.collow.baseviews.BaseTextview
+                android:id="@+id/textview_classifieddetail_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textSize="@dimen/textsize_medium"
+                android:textStyle="bold" />
+
+            <com.app.collow.baseviews.BaseTextview
+                android:id="@+id/textview_classifieddetail_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/textsize_medium" />
+
+            <com.app.collow.baseviews.BaseTextview
+                android:id="@+id/textview_classifieddetail_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/common_text_size" />
+        </LinearLayout>
 
 
 
-</LinearLayout>
+        <Button
+            android:id="@+id/button_classifieddetail_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/button_bg_yellow"
+            android:paddingLeft="89dp"
+            android:paddingRight="89dp"
+            android:text="@string/contact"
+            android:textColor="@color/white"
+            android:textSize="@dimen/common_text_size" />
+
+        <Button
+            android:id="@+id/button_classifieddetail_iminterested"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/buttonwhitebg_whiteborder"
+            android:paddingLeft="75dp"
+            android:paddingRight="75dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/iam_interested"
+            android:textColor="@color/black"
+            android:textSize="@dimen/common_text_size" />
+
+
+    </LinearLayout>
+</ScrollView>

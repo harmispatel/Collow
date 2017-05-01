@@ -67,16 +67,7 @@ public class ACListFAQsMainActivity extends BaseActivity implements SetupViewInt
             findViewByIDs();
             setupEvents();
 
-            BaseTextview baseTextview_acfaq_title=(BaseTextview)findViewById(R.id.textview_acfaq_faqtitle);
-            baseTextview_acfaq_title.setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View v1) {
-                    Intent launchActivity1= new Intent(ACListFAQsMainActivity.this,ACViewFaq.class);
-                    startActivity(launchActivity1);
-
-                }
-            });
         } catch (Exception e) {
             new BaseException(e, false, retryParameterbean);
 
@@ -87,9 +78,7 @@ public class ACListFAQsMainActivity extends BaseActivity implements SetupViewInt
 
     public void setupHeaderView() {
         try {
-          /*  View headerview = getLayoutInflater().inflate(R.layout.header, null);
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            headerview.setLayoutParams(layoutParams);*/
+
             baseTextview_header_title= (BaseTextview) toolbar_header.findViewById(R.id.textview_header_title);
             baseTextview_header_title.setText(getResources().getString(R.string.faq));
 
@@ -107,8 +96,6 @@ public class ACListFAQsMainActivity extends BaseActivity implements SetupViewInt
             imageview_right_foursquare= (ImageView) toolbar_header.findViewById(R.id.imageview_community_menu);
             imageview_right_foursquare.setVisibility(View.VISIBLE);
 
-            imageView_search= (ImageView) toolbar_header.findViewById(R.id.imageview_community_search);
-            imageView_search.setVisibility(View.VISIBLE);
       /*  baseTextview_left_side = (BaseTextview) headerview.findViewById(R.id.textview_left_side_title);
 
         // baseTextview_left_side.setText(getResources().getString(R.string.cancel));
@@ -176,28 +163,12 @@ public class ACListFAQsMainActivity extends BaseActivity implements SetupViewInt
                 @Override
                 public void onLoadMore() {
                     //add null , so the adapter will check view_type and show progress bar at bottom
-                    acfaqbeanArrayList.add(null);
-                    mRecyclerView.post(new Runnable() {
-                        public void run() {
-                            acFaqAdapter.notifyItemInserted(acfaqbeanArrayList.size() - 1);
-                        }
-                    });
+
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            //   remove progress item
-                            acfaqbeanArrayList.remove(acfaqbeanArrayList.size() - 1);
-                            acFaqAdapter.notifyItemRemoved(acfaqbeanArrayList.size());
-                            //add items one by one
-                            int start = acfaqbeanArrayList.size();
-                            int end = start + 20;
-                           // getFaqtList();
 
-                            for (int i = start + 1; i <= end; i++) {
-                                acfaqbeanArrayList.add(new ACFAQbean());
-                                acFaqAdapter.notifyItemInserted(acfaqbeanArrayList.size());
-                            }
-                            acFaqAdapter.setLoaded();
+
                             //or you can add all at once but do not forget to call mAdapter.notifyDataSetChanged();
                         }
                     }, 2000);

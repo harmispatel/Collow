@@ -49,9 +49,9 @@ public class FeatureMainActivity extends BaseActivity implements SetupViewInterf
     RequestParametersbean requestParametersbean = new RequestParametersbean();
     RetryParameterbean retryParameterbean = null;
     String communityID = null;
-    int current_start = 0;
     private BaseTextview baseTextview_error = null;
     private RecyclerView mRecyclerView;
+    public static FeatureMainActivity featureMainActivity=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +59,7 @@ public class FeatureMainActivity extends BaseActivity implements SetupViewInterf
         try {
             retryParameterbean = new RetryParameterbean(FeatureMainActivity.this, getApplicationContext(), null, FeatureMainActivity.class.getClass());
             commonSession = new CommonSession(FeatureMainActivity.this);
-
+            featureMainActivity=this;
             handler = new Handler();
             setupHeaderView();
             findViewByIDs();
@@ -175,34 +175,14 @@ public class FeatureMainActivity extends BaseActivity implements SetupViewInterf
             mRecyclerView.setLayoutManager(mLayoutManager);
             mRecyclerView.addItemDecoration(dividerItemDecoration);
 
-            acCommunityAdapter = new ACCommunityFeatureAdapter(FeatureMainActivity.this, mRecyclerView);
+            acCommunityAdapter = new ACCommunityFeatureAdapter(FeatureMainActivity.this);
             mRecyclerView.setAdapter(acCommunityAdapter);
             frameLayout_container.addView(view_home);
 
             // getCommunityFeatures();
 
 
-            acCommunityAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
-                @Override
-                public void onLoadMore() {
-                    //add null , so the adapter will check view_type and show progress bar at bottom
 
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            current_start += 10;
-
-                            //   searchbean_post_data.getStart_limit()+=10;
-
-                            requestParametersbean.setStart_limit(current_start);
-
-
-                        }
-                    }, 2000);
-
-                }
-            });
         } catch (Exception e) {
             new BaseException(e, false, retryParameterbean);
 
@@ -263,48 +243,13 @@ public class FeatureMainActivity extends BaseActivity implements SetupViewInterf
                 if (CommonMethods.checkSuccessResponceFromServer(jsonObject_main)) {
                     //parse here data of following
 
-                    ArrayList<ACCommunityFeaturebean> acCommunityBeen_local = new ArrayList<>();
-                    if (CommonMethods.checkJSONArrayHasData(jsonObject_main, JSONCommonKeywords.Activities)) {
-                        JSONArray jsonArray_community = jsonObject_main.getJSONArray(JSONCommonKeywords.Activities);
-                        for (int i = 0; i < jsonArray_community.length(); i++) {
 
-                            JSONObject jsonObject_single_community = jsonArray_community.getJSONObject(i);
-                            ACCommunityFeaturebean acCommunityBean = new ACCommunityFeaturebean();
-                            acCommunityBeen_local.add(acCommunityBean);
-                        }
-
-                        if (current_start == 0) {
-                            accommunityfeaturebeanArrayList = acCommunityBeen_local;
-                            acCommunityAdapter.notifyDataSetChanged();
-
-                        } else {
-
-                            int start = accommunityfeaturebeanArrayList.size();
-
-                            for (int i = 0; i < acCommunityBeen_local.size(); i++) {
-
-                                accommunityfeaturebeanArrayList.add(start, acCommunityBeen_local.get(i));
-                                acCommunityAdapter.notifyItemInserted(accommunityfeaturebeanArrayList.size());
-                                start++;
-
-                            }
-                            acCommunityAdapter.setLoaded();
-
-                        }
-
-
-                    } else {
-                        handlerError(responcebean);
-
-                    }
                 } else {
-                    handlerError(responcebean);
 
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-            handlerError(responcebean);
             new BaseException(e, false, retryParameterbean);
 
         }
@@ -312,26 +257,5 @@ public class FeatureMainActivity extends BaseActivity implements SetupViewInterf
 
     }
 
-    public void handlerError(Responcebean responcebean) {
-        if (responcebean.getErrorMessage() == null || responcebean.getErrorMessage().equals("")) {
-            if (current_start == 0) {
-                baseTextview_error.setText(getResources().getString(R.string.no_data_founds));
-                mRecyclerView.setVisibility(View.GONE);
-                baseTextview_error.setVisibility(View.VISIBLE);
 
-            } else {
-
-
-            }
-        } else {
-            if (current_start == 0) {
-                baseTextview_error.setText(responcebean.getErrorMessage());
-                mRecyclerView.setVisibility(View.GONE);
-                baseTextview_error.setVisibility(View.VISIBLE);
-
-            } else {
-
-            }
-        }
-    }
 }

@@ -1,6 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical">
 
-</LinearLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:minHeight="?attr/actionBarSize"
+        android:paddingLeft="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:fillViewport="true">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+
+            >
+
+            <com.app.collow.baseviews.MyButtonView
+                android:id="@+id/mybuttonview_create_gallery"
+                style="@style/mybuttonViewStyle_save_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/card_view_edit_profile"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="28dp"
+                android:gravity="center"
+                android:text="@string/upload" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_view_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@color/white"
+                card_view:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+
+                    android:orientation="vertical">
+
+
+                    <include layout="@layout/horizontal_seperator_line"></include>
+
+
+                    <com.app.collow.baseviews.BaseEdittext
+                        android:id="@+id/edittext_create_gallery_title"
+                        style="@style/myEditextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_background"
+                        android:gravity="left"
+                        android:hint="@string/title"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/edittext_text_color"
+                        android:textColorHint="@color/edittext_hint_color"
+
+                        />
+
+                    <include layout="@layout/horizontal_seperator_line"></include>
+
+
+                    <com.app.collow.baseviews.BaseEdittext
+                        android:id="@+id/edittext_create_album_title"
+                        style="@style/myEditextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_background"
+                        android:gravity="left"
+                        android:hint="@string/album_title"
+                        android:visibility="gone"
+                        android:inputType="text"
+                        android:textColor="@color/edittext_text_color"
+                        android:textColorHint="@color/edittext_hint_color"
+
+                        />
+
+                    <include layout="@layout/horizontal_seperator_line"></include>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recycler_view_grid_create_gallery"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:numColumns="3"
+                             android:layout_marginTop="5dp"
+                            android:stretchMode="none"
+                            android:visibility="gone" />
+
+                        <RelativeLayout
+                            android:id="@+id/relativelayout_upload_create_images_gallery"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edittext_background"
+                            android:visibility="visible">
+
+                            <com.app.collow.baseviews.BaseTextview
+                                android:id="@+id/communtitytextview_editprofile_select_your_interest"
+                                style="@style/myEditextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerInParent="true"
+                                android:layout_toLeftOf="@+id/layout_get_interesets"
+                                android:gravity="left"
+                                android:hint="@string/uploadimages"
+                                android:textColor="@color/left_Menu_text_color_gray"
+
+                                />
+
+
+                            <ImageView
+                                android:id="@+id/imageview_upload_image_plus_icon_gallery"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginRight="5dp"
+                                android:padding="5dp"
+                                android:src="@drawable/plus_icon" />
+
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+</RelativeLayout>

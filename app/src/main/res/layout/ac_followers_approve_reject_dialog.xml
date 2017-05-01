@@ -1,6 +1,133 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
 
-</LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@android:color/transparent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_bg"
+            android:padding="10dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <com.app.collow.baseviews.BaseTextview
+                    android:id="@+id/textview_dialog_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:text="@string/delete_event_confirm"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dialog_title"
+
+
+                    android:visibility="gone" />
+
+
+                <com.app.collow.baseviews.MyButtonView
+                    android:id="@+id/mybuttonview_approve"
+                    style="@style/mybuttonViewStyle_filter_apply_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edittext_classfied_contact_message"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/approve"
+                    android:visibility="visible" />
+
+                <com.app.collow.baseviews.MyButtonView
+                    android:id="@+id/mybuttonview_reject"
+                    style="@style/mybuttonViewStyle_filter_reject_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edittext_classfied_contact_message"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/reject"
+
+                    android:visibility="visible" />
+
+                <LinearLayout
+                    android:id="@+id/gallery_options"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+
+                    <com.app.collow.baseviews.MyButtonView
+                        android:id="@+id/mybuttonview_views"
+                        style="@style/mybuttonViewStyle_filter_apply_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/edittext_classfied_contact_message"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/views" />
+
+
+                    <com.app.collow.baseviews.MyButtonView
+                        android:id="@+id/mybuttonview_download"
+                        style="@style/mybuttonViewStyle_filter_apply_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/edittext_classfied_contact_message"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+
+                        android:gravity="center"
+                        android:text="@string/download_small" />
+
+
+                    <com.app.collow.baseviews.MyButtonView
+                        android:id="@+id/mybuttonview_flag_as_inappropriate"
+                        style="@style/mybuttonViewStyle_filter_apply_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/edittext_classfied_contact_message"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+
+                        android:text="@string/flag_as_inappropriate" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/close_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:layout_marginRight="-5dp"
+        android:layout_marginTop="-10dp"
+
+
+        android:src="@android:drawable/ic_menu_close_clear_cancel" />
+</FrameLayout>

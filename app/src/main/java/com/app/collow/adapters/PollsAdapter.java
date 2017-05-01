@@ -1,40 +1,49 @@
 package com.app.collow.adapters;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import com.app.collow.R;
+import com.app.collow.activities.PollsMainActivity;
+import com.app.collow.activities.PollDetailsActivity;
 import com.app.collow.baseviews.BaseTextview;
+import com.app.collow.beans.CommunityAccessbean;
 import com.app.collow.beans.Pollsbean;
+import com.app.collow.collowinterfaces.MyOnClickListener;
 import com.app.collow.collowinterfaces.OnLoadMoreListener;
+import com.app.collow.utils.BundleCommonKeywords;
+import com.app.collow.utils.CommonKeywords;
 import com.app.collow.utils.CommonMethods;
-
-import java.util.List;
 
 /**
  * Created by harmis on 1/2/17.
  */
 
 public class PollsAdapter extends RecyclerView.Adapter {
-    private final int VIEW_ITEM = 1;
-    private final int VIEW_PROG = 0;
 
-    private List<Pollsbean> pollsList;
 
+    Activity activity = null;
     // The minimum amount of items to have below your current scroll position
     // before loading more.
-    private int visibleThreshold = 10;
     private int lastVisibleItem, totalItemCount;
     private boolean loading;
     private OnLoadMoreListener onLoadMoreListener;
+    String communityID = null,communityText=null;
+    CommunityAccessbean communityAccessbean=null;
 
 
-    public PollsAdapter(List<Pollsbean> polls, RecyclerView recyclerView) {
-        pollsList = polls;
+
+    public PollsAdapter(Activity activity, RecyclerView recyclerView, String communityID, String communityText, CommunityAccessbean communityAccessbean) {
+        this.activity = activity;
+        this.communityID=communityID;
+        this.communityText=communityText;
+        this.communityAccessbean=communityAccessbean;
 
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
 
@@ -53,7 +62,7 @@ public class PollsAdapter extends RecyclerView.Adapter {
                             lastVisibleItem = linearLayoutManager
                                     .findLastVisibleItemPosition();
                             if (!loading
-                                    && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
+                                    && totalItemCount <= (lastVisibleItem + CommonKeywords.VISIBLE_THRESHOLD)) {
                                 // End has been reached
                                 // Do something
                                 if (onLoadMoreListener != null) {
@@ -66,45 +75,68 @@ public class PollsAdapter extends RecyclerView.Adapter {
         }
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return pollsList.get(position) != null ? VIEW_ITEM : VIEW_PROG;
-    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                       int viewType) {
         RecyclerView.ViewHolder vh;
-        if (viewType == VIEW_ITEM) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(
-                    R.layout.polls_single_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.polls_single_item, parent, false);
 
-            vh = new PollsViewHolder(v);
-        } else {
-            View v = LayoutInflater.from(parent.getContext()).inflate(
-                    R.layout.progressbar_item, parent, false);
+        vh = new PollsViewHolder(v);
 
-            vh = new PollsProgressViewHolder(v);
-        }
         return vh;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof PollsViewHolder) {
 
-            Pollsbean singleStudent = (Pollsbean) pollsList.get(position);
-            ((PollsViewHolder) holder).baseTextview_polls_title.setText(String.valueOf("Position" + position
-            ));
+        Pollsbean pollsbean = PollsMainActivity.pollsbeanArrayList.get(position);
+        if(CommonMethods.isTextAvailable(pollsbean.getTitle()))
+        {
+            ((PollsViewHolder) holder).baseTextview_polls_title.setText(String.valueOf(pollsbean.getTitle()));
 
-            if (CommonMethods.isTextAvailable(singleStudent.getMessage())) {
-                ((PollsViewHolder) holder).baseTextview_polls_title.setText(singleStudent.getMessage());
-            }
-
-
-        } else {
-            ((PollsProgressViewHolder) holder).progressBar.setIndeterminate(true);
         }
+
+
+        if(CommonMethods.isTextAvailable(pollsbean.getCreatedDate()))
+        {
+            ((PollsViewHolder) holder).baseTextview_polls_time.setText(String.valueOf(pollsbean.getCreatedDate()));
+
+        }
+
+        if(CommonMethods.isTextAvailable(pollsbean.getPollVotes()))
+        {
+            ((PollsViewHolder) holder).baseTextview_polls_votes.setText(String.valueOf(pollsbean.getPollVotes())+" "+activity.getResources().getString(R.string.votes));
+
+        }
+
+
+        ((PollsViewHolder) holder).view_click.setTag(pollsbean);
+
+
+        ((PollsViewHolder) holder).view_click.setOnClickListener(new MyOnClickListener(activity) {
+            @Override
+            public void onClick(View v) {
+
+                if (isAvailableInternet()) {
+                    Pollsbean pollsbean1_local = (Pollsbean) v.getTag();
+                    Bundle bundle = new Bundle();
+
+                    Intent intent = new Intent(activity, PollDetailsActivity.class);
+                    bundle.putSerializable(BundleCommonKeywords.KEY_CUSTOM_CLASS_BEAN, pollsbean1_local);
+                    bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID,communityID);
+                    bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_NAME_TEXT, communityText);
+
+                    bundle.putSerializable(BundleCommonKeywords.KEY_COMMUNITY_ACCESSBEAN, communityAccessbean);
+                    intent.putExtras(bundle);
+                    activity.startActivity(intent);
+                }
+
+
+
+            }
+        });
     }
 
     public void setLoaded() {
@@ -113,7 +145,7 @@ public class PollsAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return pollsList.size();
+        return PollsMainActivity.pollsbeanArrayList.size();
     }
 
     public void setOnLoadMoreListener(OnLoadMoreListener onLoadMoreListener) {
@@ -124,9 +156,9 @@ public class PollsAdapter extends RecyclerView.Adapter {
     //
     public static class PollsViewHolder extends RecyclerView.ViewHolder {
         BaseTextview baseTextview_polls_title = null;
-        BaseTextview baseTextview_polls_votes= null;
+        BaseTextview baseTextview_polls_votes = null;
         BaseTextview baseTextview_polls_time = null;
-
+        View view_click = null;
 
 
         public PollsViewHolder(View v) {
@@ -137,29 +169,13 @@ public class PollsAdapter extends RecyclerView.Adapter {
             baseTextview_polls_votes = (BaseTextview) v.findViewById(R.id.textview_polls_votes);
             baseTextview_polls_time = (BaseTextview) v.findViewById(R.id.textview_polls_duration);
 
+            view_click = v;
 
 
-         /*   v.setOnClickListener(new OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(v.getContext(),
-                            "OnClick :" + student.getName() + " \n " + student.getEmailId(),
-                            Toast.LENGTH_SHORT).show();
-
-                }
-            });*/
 
         }
     }
 
 
-    public static class PollsProgressViewHolder extends RecyclerView.ViewHolder {
-        public ProgressBar progressBar;
-
-        public PollsProgressViewHolder(View v) {
-            super(v);
-            progressBar = (ProgressBar) v.findViewById(R.id.progressBar1);
-        }
-    }
 }

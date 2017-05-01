@@ -7,24 +7,34 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.app.collow.R;
-import com.app.collow.adapters.PollsOptionAdapter;
+import com.app.collow.adapters.DetailsPollsOptionAdapter;
+import com.app.collow.allenums.ScreensEnums;
+import com.app.collow.asyntasks.RequestToServer;
 import com.app.collow.baseviews.BaseTextview;
 import com.app.collow.baseviews.MyButtonView;
+import com.app.collow.beans.CommunityAccessbean;
+import com.app.collow.beans.PassParameterbean;
 import com.app.collow.beans.PollOptionbean;
+import com.app.collow.beans.Pollsbean;
 import com.app.collow.beans.RequestParametersbean;
 import com.app.collow.beans.Responcebean;
 import com.app.collow.beans.RetryParameterbean;
+import com.app.collow.beansgenerate.PollsbeanBuild;
+import com.app.collow.collowinterfaces.MyOnClickListener;
+import com.app.collow.httprequests.GetPostParameterEachScreen;
 import com.app.collow.recyledecor.DividerItemDecoration;
 import com.app.collow.setupUI.SetupViewInterface;
 import com.app.collow.utils.BaseException;
+import com.app.collow.utils.BundleCommonKeywords;
+import com.app.collow.utils.CommonKeywords;
 import com.app.collow.utils.CommonMethods;
 import com.app.collow.utils.CommonSession;
 import com.app.collow.utils.JSONCommonKeywords;
+import com.app.collow.utils.MyUtils;
+import com.app.collow.utils.URLs;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -35,8 +45,8 @@ import java.util.ArrayList;
 
 public class PollDetailsActivity extends BaseActivity implements SetupViewInterface {
 
-    public static ArrayList<PollOptionbean> pollOptionbeanArrayList = new ArrayList<>();
-    BaseTextview baseTextview_left_side = null, baseTextview_right_side = null;
+    BaseTextview baseTextview_left_side = null;
+
     View view_home = null;
     //header iterms
     ImageView imageView_left_menu = null, imageView_right_menu = null, imageView_plus_icon_only;
@@ -46,17 +56,20 @@ public class PollDetailsActivity extends BaseActivity implements SetupViewInterf
     BaseTextview baseTextview_header_title = null;
     ImageView imageview_right_foursquare = null;
     ImageView imageview_circle = null;
-    RecyclerView recyclerView_grid_classfied_images = null;
 
     int current_start = 0;
     BaseTextview textview_pools_question = null;
+    BaseTextview baseTextview_number_of_votes = null;
     MyButtonView button_polls_submit = null;
     RecyclerView recyclerView_options = null;
-    RelativeLayout relativeLayout_upload_options = null;
-    PollsOptionAdapter pollsOptionsAdapter = null;
-    private BaseTextview baseTextview_error = null;
-    private RecyclerView mRecyclerView;
-    private boolean loading;
+    DetailsPollsOptionAdapter pollsOptionsAdapter = null;
+
+    Pollsbean pollsbean = null;
+    ArrayList<PollOptionbean> pollOptionbeanArrayList = new ArrayList<>();
+    String communityID = null,communityText=null;
+    CommunityAccessbean communityAccessbean=null;
+
+    boolean isVoteSentSucuesssfully = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,21 +78,15 @@ public class PollDetailsActivity extends BaseActivity implements SetupViewInterf
             retryParameterbean = new RetryParameterbean(PollDetailsActivity.this, getApplicationContext(), getIntent().getExtras(), PollDetailsActivity.class.getClass());
             commonSession = new CommonSession(PollDetailsActivity.this);
             Bundle bundle = getIntent().getExtras();
+            if (bundle != null) {
+                pollsbean = (Pollsbean) bundle.getSerializable(BundleCommonKeywords.KEY_CUSTOM_CLASS_BEAN);
+                communityID = bundle.getString(BundleCommonKeywords.KEY_COMMUNITY_ID);
+                communityAccessbean= (CommunityAccessbean) bundle.getSerializable(BundleCommonKeywords.KEY_COMMUNITY_ACCESSBEAN);
+                communityText=bundle.getString(BundleCommonKeywords.KEY_COMMUNITY_NAME_TEXT);
 
-            pollOptionbeanArrayList.clear();
-            //create default two options
+                MyUtils.markAsViewed(PollDetailsActivity.this, pollsbean.getId(), CommonKeywords.TYPE_FEED_POLL, ScreensEnums.POLLS_DETAILS_FOR_USER.getScrenIndex(),pollsbean.getPosition(),requestParametersbean,null);
 
-            PollOptionbean pollOptionbean1 = new PollOptionbean();
-            pollOptionbean1.setHint_title(getResources().getString(R.string.option) + "1");
-            pollOptionbean1.setNeedToCreateOptions(true);
-
-
-            PollOptionbean pollOptionbean2 = new PollOptionbean();
-            pollOptionbean2.setHint_title(getResources().getString(R.string.option) + "2");
-            pollOptionbean2.setNeedToCreateOptions(true);
-
-            pollOptionbeanArrayList.add(pollOptionbean1);
-            pollOptionbeanArrayList.add(pollOptionbean2);
+            }
 
 
             setupHeaderView();
@@ -105,7 +112,14 @@ public class PollDetailsActivity extends BaseActivity implements SetupViewInterf
 
             imageview_right_foursquare = (ImageView) toolbar_header.findViewById(R.id.imageview_community_menu);
             imageview_right_foursquare.setVisibility(View.VISIBLE);
-            //baseTextview_left_side.setCompoundDrawablesWithIntrinsicBounds(R.drawable.left_arrow, 0, 0, 0);
+
+            imageview_right_foursquare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyUtils.openCommunityMenu(PollDetailsActivity.this,communityID,communityText,communityAccessbean);
+
+                }
+            });
 
 
             imageView_left_menu.setOnClickListener(new View.OnClickListener() {
@@ -139,13 +153,7 @@ public class PollDetailsActivity extends BaseActivity implements SetupViewInterf
         try {
             view_home = getLayoutInflater().inflate(R.layout.polls_detail, null);
 
-
-           /* imageView_plus_icon_only = (ImageView) view_home.findViewById(R.id.imageview_upload_image_plus_icon_image);
-            relativeLayout_upload_image_plus_view = (RelativeLayout) view_home.findViewById(R.id.relativelayout_upload_create_polls_images);
-
-
-            baseEdittext_enter_questions= (BaseEdittext) view_home.findViewById(R.id.edittext_enter_poll_question);
-            relativeLayout_upload_options= (RelativeLayout) view_home.findViewById(R.id.relativelayout_upload_create_polls_options);*/
+            baseTextview_number_of_votes = (BaseTextview) view_home.findViewById(R.id.textview_total_number_votes);
             textview_pools_question = (BaseTextview) view_home.findViewById(R.id.textview_enter_poll_question);
             button_polls_submit = (MyButtonView) view_home.findViewById(R.id.button_polls_submit);
             recyclerView_options = (RecyclerView) view_home.findViewById(R.id.my_recycler_view_polls_options);
@@ -156,42 +164,10 @@ public class PollDetailsActivity extends BaseActivity implements SetupViewInterf
             recyclerView_options.addItemDecoration(dividerItemDecoration);
             // use a linear layout manager
             recyclerView_options.setLayoutManager(mLayoutManager);
-            pollsOptionsAdapter = new PollsOptionAdapter();
-            recyclerView_options.setAdapter(pollsOptionsAdapter);
 
 
             frameLayout_container.addView(view_home);
             imageview_circle = (ImageView) view_home.findViewById(R.id.imageview_create_polls_circle_selected);
-
-            //recyclerView_grid_classfied_images = (RecyclerView) view_home.findViewById(R.id.recycler_view_grid_create_polls);
-            // recyclerView_grid_classfied_images.setHasFixedSize(true);
-            // Disabled nested scrolling since Parent scrollview will scroll the content.
-            // recyclerView_grid_classfied_images.setNestedScrollingEnabled(false);
-            //StaggeredGridLayoutManager gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
-            // recyclerView_grid_classfied_images.setLayoutManager(gaggeredGridLayoutManager);
-
-
-           /* int spanCount = 3; // 3 columns
-            int spacing = 15; // 50px
-            boolean includeEdge = false;
-            recyclerView_grid_classfied_images.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, includeEdge));
-
-
-            uploadImageAdapter = new ACCreatePollsActivity.UploadImageAdapter(this);
-            recyclerView_grid_classfied_images.setAdapter(uploadImageAdapter);
-            relativeLayout_upload_image_plus_view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startDialog();
-                }
-            });
-            imageView_plus_icon_only.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startDialog();
-                }
-            });
-*/
 
 
         } catch (Exception e) {
@@ -201,87 +177,155 @@ public class PollDetailsActivity extends BaseActivity implements SetupViewInterf
 
     private void setupEvents() {
 
+        if (pollsbean != null) {
+            pollOptionbeanArrayList = pollsbean.getPollOptionbeanArrayList();
+
+            // button should be disable if logged already submitted answer for this poll
+            if (pollsbean.isAdminForThisPoll()) {
+                pollsOptionsAdapter = new DetailsPollsOptionAdapter(pollOptionbeanArrayList, ScreensEnums.ADMIN_OF_POLL.getScrenIndex());
+                recyclerView_options.setAdapter(pollsOptionsAdapter);
+                button_polls_submit.setVisibility(View.GONE);
+            } else if (pollsbean.isVotedByLoggedUser()) {
+
+                button_polls_submit.setVisibility(View.GONE);
+                pollsOptionsAdapter = new DetailsPollsOptionAdapter(pollOptionbeanArrayList, ScreensEnums.SUBMITTED_POLL.getScrenIndex());
+                recyclerView_options.setAdapter(pollsOptionsAdapter);
+
+            } else {
+                pollsOptionsAdapter = new DetailsPollsOptionAdapter(pollOptionbeanArrayList, ScreensEnums.POLLS_DETAILS_FOR_USER.getScrenIndex());
+                recyclerView_options.setAdapter(pollsOptionsAdapter);
+                button_polls_submit.setVisibility(View.VISIBLE);
+
+            }
+
+            if (CommonMethods.isTextAvailable(pollsbean.getTitle())) {
+                textview_pools_question.setText(pollsbean.getTitle());
+            }
+
+
+            if (CommonMethods.isTextAvailable(pollsbean.getPollVotes())) {
+                baseTextview_number_of_votes.setText(String.valueOf(pollsbean.getPollVotes()) + " " + getResources().getString(R.string.votes));
+
+            }
+
+
+        }
+
+        button_polls_submit.setOnClickListener(new MyOnClickListener(PollDetailsActivity.this) {
+            @Override
+            public void onClick(View v) {
+                if (isAvailableInternet()) {
+
+                    //if user had already given votes at that time this flag should be on
+                    if (isVoteSentSucuesssfully) {
+
+                    } else {
+                        boolean atleastOneOptionsSelected = false;
+                        for (int i = 0; i < DetailsPollsOptionAdapter.pollOptionbeanArrayList.size(); i++) {
+
+                            PollOptionbean pollOptionbean = DetailsPollsOptionAdapter.pollOptionbeanArrayList.get(i);
+                            if (pollOptionbean.isSelectedOptions()) {
+                                atleastOneOptionsSelected = true;
+                                requestParametersbean.setPollOptionID(String.valueOf(pollOptionbean.getOptionID()));
+                            } else {
+                            }
+                        }
+
+                        if (!atleastOneOptionsSelected) {
+                            CommonMethods.customToastMessage(getResources().getString(R.string.select_one_options), PollDetailsActivity.this);
+                        } else {
+                            sendVoteRequest();
+
+
+                        }
+
+                    }
+
+
+                } else {
+                    showInternetNotfoundMessage();
+                }
+
+            }
+        });
     }
 
+
+    public void sendVoteRequest() {
+        requestParametersbean.setUserId(commonSession.getLoggedUserID());
+        requestParametersbean.setCommunityID(communityID);
+        requestParametersbean.setPollID(pollsbean.getId());
+        JSONObject jsonObjectGetPostParameterEachScreen = GetPostParameterEachScreen.getPostParametersAccordingIndex(ScreensEnums.GIVE_VOTE.getScrenIndex(), requestParametersbean);
+        PassParameterbean passParameterbean = new PassParameterbean(this, PollDetailsActivity.this, getApplicationContext(), URLs.SAVEPOLLVOTE, jsonObjectGetPostParameterEachScreen, ScreensEnums.GIVE_VOTE.getScrenIndex(), PollDetailsActivity.class.getClass());
+        passParameterbean.setNeedToFirstTakeFacebookProfilePic(false);
+        new RequestToServer(passParameterbean, retryParameterbean).execute();
+    }
+
+    public void submittedAnswerofQuestion() {
+        pollsOptionsAdapter = new DetailsPollsOptionAdapter(pollOptionbeanArrayList, ScreensEnums.SUBMITTED_POLL.getScrenIndex());
+        recyclerView_options.setAdapter(pollsOptionsAdapter);
+    }
 
     @Override
     public void setupUI(Responcebean responcebean) {
-        try {
-            if (responcebean.isServiceSuccess()) {
-
+        if (responcebean.isServiceSuccess()) {
+            try {
                 JSONObject jsonObject_main = new JSONObject(responcebean.getResponceContent());
+
                 if (CommonMethods.checkSuccessResponceFromServer(jsonObject_main)) {
-                    //parse here data of following
-
-                    ArrayList<PollOptionbean> pollsbean_local = new ArrayList<>();
-                    if (CommonMethods.checkJSONArrayHasData(jsonObject_main, JSONCommonKeywords.Activities)) {
-                        JSONArray jsonArray_events = jsonObject_main.getJSONArray(JSONCommonKeywords.Activities);
-                        for (int i = 0; i < jsonArray_events.length(); i++) {
-
-                            JSONObject jsonObject_single_event = jsonArray_events.getJSONObject(i);
-                            PollOptionbean pollsoptionbean = new PollOptionbean();
-                            pollsbean_local.add(pollsoptionbean);
-                        }
-
-                        if (current_start == 0) {
-                            pollOptionbeanArrayList = pollsbean_local;
-                            pollsOptionsAdapter.notifyDataSetChanged();
-
-                        } else {
-
-                            int start = pollOptionbeanArrayList.size();
-
-                            for (int i = 0; i < pollsbean_local.size(); i++) {
-
-                                pollOptionbeanArrayList.add(start, pollsbean_local.get(i));
-                                pollsOptionsAdapter.notifyItemInserted(pollOptionbeanArrayList.size());
-                                start++;
-
-                            }
 
 
-                        }
-
-
+                    if (jsonObject_main.has(JSONCommonKeywords.message)) {
+                        responcebean.setErrorMessage(jsonObject_main.getString(JSONCommonKeywords.message));
                     } else {
-                        handlerError(responcebean);
+                        responcebean.setErrorMessage(getResources().getString(R.string.your_votes_saved_succesfully));
 
                     }
+
+                    JSONObject jsonObject_single_polls = jsonObject_main.getJSONObject(JSONCommonKeywords.Pollvote);
+
+                    Pollsbean pollsbean = PollsbeanBuild.getPollsbean(jsonObject_single_polls, PollDetailsActivity.this);
+
+                    if ((PollsMainActivity.pollsbeanArrayList != null)) {
+                        PollsMainActivity.pollsbeanArrayList.set(pollsbean.getPosition(), pollsbean);
+                        PollsMainActivity.pollsAdapter.notifyItemInserted(pollsbean.getPosition());
+                    }
+                    isVoteSentSucuesssfully = true;
+                    button_polls_submit.setText(getResources().getString(R.string.thank_you));
+                    pollOptionbeanArrayList = pollsbean.getPollOptionbeanArrayList();
+                    submittedAnswerofQuestion();
+
                 } else {
-                    handlerError(responcebean);
+                    if (jsonObject_main.has(JSONCommonKeywords.message)) {
+                        responcebean.setErrorMessage(jsonObject_main.getString(JSONCommonKeywords.message));
+                    }
+
+
+                    if (responcebean.getErrorMessage() == null) {
+                        CommonMethods.customToastMessage(getResources().getString(R.string.your_votes_saved_failed), PollDetailsActivity.this);
+                    } else {
+                        CommonMethods.customToastMessage(responcebean.getErrorMessage(), PollDetailsActivity.this);
+
+                    }
 
                 }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            handlerError(responcebean);
-            new BaseException(e, false, retryParameterbean);
-
-        }
-
-    }
 
 
-    public void handlerError(Responcebean responcebean) {
-        if (responcebean.getErrorMessage() == null || responcebean.getErrorMessage().equals("")) {
-            if (current_start == 0) {
-                baseTextview_error.setText(getResources().getString(R.string.no_events_exist));
-                mRecyclerView.setVisibility(View.GONE);
-                baseTextview_error.setVisibility(View.VISIBLE);
-
-            } else {
-
+            } catch (Exception e) {
+                CommonMethods.customToastMessage(e.getMessage(), PollDetailsActivity.this);
 
             }
+
         } else {
-            if (current_start == 0) {
-                baseTextview_error.setText(responcebean.getErrorMessage());
-                mRecyclerView.setVisibility(View.GONE);
-                baseTextview_error.setVisibility(View.VISIBLE);
-
+            if (responcebean.getErrorMessage() == null) {
+                CommonMethods.customToastMessage(getResources().getString(R.string.polls_created_failed), PollDetailsActivity.this);
             } else {
+                CommonMethods.customToastMessage(responcebean.getErrorMessage(), PollDetailsActivity.this);
 
             }
         }
+
+
     }
+
 }

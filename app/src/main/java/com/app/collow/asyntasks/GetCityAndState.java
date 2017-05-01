@@ -26,6 +26,7 @@ import com.app.collow.utils.GPSTracker;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
@@ -175,6 +176,18 @@ public class GetCityAndState {
 
         } catch (Exception e) {
             e.printStackTrace();
+            if(e instanceof IOException)
+            {
+
+               String url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + lattitude + ","
+                        + longitude + "&sensor=true";
+
+                passParameterbean = new PassParameterbean(setupViewInterface, activity, context, url, null, -1, activity.getClass());
+                passParameterbean.setNoNeedToDisplayLoadingDialog(true);
+                passParameterbean.setScreenIndex(ScreensEnums.GET_LATLONG_BY_GOOGLE.getScrenIndex());
+                //  baseTextview_city_country_name_current_location.setText(getResources().getString(R.string.fetching_location));
+                new RequestToServer(passParameterbean, retryParameterbean).execute();
+            }
         }
         return locationbean;
 

@@ -1,6 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal"
+
+    android:weightSum="3">
+
+
+    <LinearLayout
+        android:id="@+id/layout_likes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@drawable/view_social_option_bg"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="3dp">
+
+        <ImageView
+            android:id="@+id/imageview_likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/like_blue" />
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_likes_counts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="3dp"
+            android:text="0 Likes"
+
+            android:textSize="@dimen/textsize_moresmall" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_comments"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="3dp"
+        android:layout_weight="1"
+
+        android:background="@drawable/view_social_option_bg"
+
+        android:gravity="center"
+
+        android:orientation="horizontal"
+        android:padding="3dp">
+
+        <ImageView
+            android:id="@+id/imageview_communityactivity_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:layout_marginLeft="7dp"
+            android:src="@drawable/comment_blue" />
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_comments_counts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+
+            android:text="0 Comments"
+            android:textSize="@dimen/textsize_moresmall" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_views"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="3dp"
+
+        android:layout_weight="1"
+        android:background="@drawable/view_social_option_bg"
+        android:gravity="center"
+
+        android:orientation="horizontal"
+        android:padding="3dp">
+
+        <ImageView
+            android:id="@+id/imageview_communityactivity_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/view_blue" />
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_view_counts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+
+            android:text="0 Views"
+            android:textSize="@dimen/textsize_moresmall" />
+
+    </LinearLayout>
+
 
 </LinearLayout>
+
+

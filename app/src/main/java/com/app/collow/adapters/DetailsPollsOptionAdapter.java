@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.app.collow.R;
-import com.app.collow.activities.PollDetailsActivity;
 import com.app.collow.activities.SplashActvitiy;
 import com.app.collow.allenums.ScreensEnums;
 import com.app.collow.baseviews.BaseTextview;
@@ -23,13 +22,14 @@ import java.util.ArrayList;
 
 public class DetailsPollsOptionAdapter extends RecyclerView.Adapter {
 
+    public static ArrayList<PollOptionbean> pollOptionbeanArrayList = null;
     Activity activity = null;
     String communityID = null;
-    public static ArrayList<PollOptionbean> pollOptionbeanArrayList=null;
     int indexFromWhichScreen;
+
     public DetailsPollsOptionAdapter(ArrayList<PollOptionbean> pollOptionbeanArrayList, int indexFromWhichScreen) {
- this.pollOptionbeanArrayList=pollOptionbeanArrayList;
-this.indexFromWhichScreen=indexFromWhichScreen;
+        this.pollOptionbeanArrayList = pollOptionbeanArrayList;
+        this.indexFromWhichScreen = indexFromWhichScreen;
     }
 
 
@@ -38,7 +38,7 @@ this.indexFromWhichScreen=indexFromWhichScreen;
                                                       int viewType) {
 
         View vh = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.polls_create_single_item, parent, false);
+                R.layout.poll_details_single_option_raw, parent, false);
 
 
         return new PollsOptionsViewHolder(vh);
@@ -50,37 +50,28 @@ this.indexFromWhichScreen=indexFromWhichScreen;
 
         PollOptionbean pollOptionbean = pollOptionbeanArrayList.get(position);
 
-        if (pollOptionbean.isNeedToCreateOptions()) {
-            ((PollsOptionsViewHolder) holder).textview_options.setHint(pollOptionbean.getHint_title());
+        if (CommonMethods.isTextAvailable(pollOptionbean.getOption())) {
+            ((PollsOptionsViewHolder) holder).textview_options.setHint(pollOptionbean.getOption());
         }
 
-        int colorRandom= SplashActvitiy.integerArrayList_colors.get(CommonMethods.randInt(0,SplashActvitiy.integerArrayList_colors.size()-1));
+        int colorRandom = SplashActvitiy.integerArrayList_colors.get(CommonMethods.randInt(0, SplashActvitiy.integerArrayList_colors.size() - 1));
         ((PollsOptionsViewHolder) holder).view_line.setBackgroundColor(colorRandom);
 
 
-        if(indexFromWhichScreen== ScreensEnums.CREATE_POLLS.getScrenIndex())
+        if (indexFromWhichScreen == ScreensEnums.CREATE_POLLS.getScrenIndex())
 
         {
-            if (pollOptionbean.isEmptyOption())
 
-            {
-                ((PollsOptionsViewHolder) holder).baseTextview_empty_marker.setVisibility(View.VISIBLE);
+
+        } else if (indexFromWhichScreen == ScreensEnums.POLLS_DETAILS_FOR_USER.getScrenIndex()) {
+            ((PollsOptionsViewHolder) holder).textview_each_option_result_for_user_and_percentage_for_admin.setVisibility(View.GONE);
+            ((PollsOptionsViewHolder) holder).imageView_circle.setVisibility(View.VISIBLE);
+
+            if (pollOptionbean.isSelectedOptions()) {
+                ((PollsOptionsViewHolder) holder).imageView_circle.setImageResource(R.drawable.poll_selected);
+
             } else {
-                ((PollsOptionsViewHolder) holder).baseTextview_empty_marker.setVisibility(View.GONE);
-
-            }
-
-        }
-        else if(indexFromWhichScreen==ScreensEnums.POLLS_DETAILS_FOR_USER.getScrenIndex())
-        {
-            if(pollOptionbean.isSelectedOptions())
-            {
-                ((PollsOptionsViewHolder) holder).imageView_circle.setBackgroundResource(R.drawable.poll_selected);
-
-            }
-            else
-            {
-                ((PollsOptionsViewHolder) holder).imageView_circle.setBackgroundResource(R.drawable.poll_unselected);
+                ((PollsOptionsViewHolder) holder).imageView_circle.setImageResource(R.drawable.poll_unselected);
 
             }
 
@@ -89,22 +80,19 @@ this.indexFromWhichScreen=indexFromWhichScreen;
             ((PollsOptionsViewHolder) holder).view_click.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    PollOptionbean pollOptionbean1= (PollOptionbean) v.getTag();
+                    PollOptionbean pollOptionbean1 = (PollOptionbean) v.getTag();
 
                     for (int i = 0; i < pollOptionbeanArrayList.size(); i++) {
 
-                        PollOptionbean pollOptionbean2=pollOptionbeanArrayList.get(i);
-                        if(pollOptionbean2.getOptionID()==pollOptionbean1.getOptionID())
-                        {
+                        PollOptionbean pollOptionbean2 = pollOptionbeanArrayList.get(i);
+                        if (pollOptionbean2.getOptionID() == pollOptionbean1.getOptionID()) {
                             pollOptionbean2.setSelectedOptions(true);
-                        }
-                        else
-                        {
+                        } else {
                             pollOptionbean2.setSelectedOptions(false);
                         }
 
                         pollOptionbeanArrayList.remove(i);
-                        pollOptionbeanArrayList.add(i,pollOptionbean2);
+                        pollOptionbeanArrayList.add(i, pollOptionbean2);
 
                     }
                     notifyDataSetChanged();
@@ -115,37 +103,32 @@ this.indexFromWhichScreen=indexFromWhichScreen;
 
 
         }
-        else if(indexFromWhichScreen==ScreensEnums.SUBMITTED_POLL.getScrenIndex())
-        {
+        //if admin will open this poll options
+        else if (indexFromWhichScreen == ScreensEnums.ADMIN_OF_POLL.getScrenIndex()) {
+            ((PollsOptionsViewHolder) holder).imageView_circle.setVisibility(View.GONE);
+            ((PollsOptionsViewHolder) holder).textview_each_option_result_for_user_and_percentage_for_admin.setVisibility(View.VISIBLE);
+            ((PollsOptionsViewHolder) holder).textview_each_options_results_if_admin.setVisibility(View.VISIBLE);
 
-            if(pollOptionbean.isAdminForThisPoll())
-            {
-                if(CommonMethods.isTextAvailable(pollOptionbean.getEachOptionPerecentage()))
-                {
-                    ((PollsOptionsViewHolder) holder).textview_each_options_results_and_option_votes_if_admin.setText(pollOptionbean.getEachOptionVotes());
-                }
-
-
-                if(CommonMethods.isTextAvailable(pollOptionbean.getEachOptionPerecentage()))
-                {
-                    ((PollsOptionsViewHolder) holder).textview_each_options_results_if_admin.setText(pollOptionbean.getEachOptionPerecentage());
-                }
-
-
+            if (CommonMethods.isTextAvailable(pollOptionbean.getEachOptionVotes())) {
+                ((PollsOptionsViewHolder) holder).textview_each_option_result_for_user_and_percentage_for_admin.setText(pollOptionbean.getEachOptionPerecentage());
             }
-            else
-            {
-                ((PollsOptionsViewHolder) holder).imageView_circle.setVisibility(View.GONE);
-                ((PollsOptionsViewHolder) holder).textview_each_options_results_if_admin.setVisibility(View.GONE);
 
-                ((PollsOptionsViewHolder) holder).textview_each_options_results_and_option_votes_if_admin.setVisibility(View.VISIBLE);
-                if(CommonMethods.isTextAvailable(pollOptionbean.getEachOptionPerecentage()))
-                {
-                    ((PollsOptionsViewHolder) holder).textview_each_options_results_and_option_votes_if_admin.setText(pollOptionbean.getEachOptionPerecentage());
-                }
+            if (CommonMethods.isTextAvailable(pollOptionbean.getEachOptionPerecentage())) {
+                ((PollsOptionsViewHolder) holder).textview_each_options_results_if_admin.setText(pollOptionbean.getEachOptionVotes());
             }
 
 
+        } //this is user submitted result then need to call this
+        else if (indexFromWhichScreen == ScreensEnums.SUBMITTED_POLL.getScrenIndex()) {
+
+
+            ((PollsOptionsViewHolder) holder).imageView_circle.setVisibility(View.GONE);
+            ((PollsOptionsViewHolder) holder).textview_each_options_results_if_admin.setVisibility(View.GONE);
+
+            ((PollsOptionsViewHolder) holder).textview_each_option_result_for_user_and_percentage_for_admin.setVisibility(View.VISIBLE);
+            if (CommonMethods.isTextAvailable(pollOptionbean.getEachOptionPerecentage())) {
+                ((PollsOptionsViewHolder) holder).textview_each_option_result_for_user_and_percentage_for_admin.setText(pollOptionbean.getEachOptionPerecentage());
+            }
 
 
         }
@@ -162,9 +145,8 @@ this.indexFromWhichScreen=indexFromWhichScreen;
 
         ImageView imageView_circle = null;
         View view_line = null;
-        BaseTextview baseTextview_empty_marker = null;
         BaseTextview textview_options = null;
-        BaseTextview textview_each_options_results_and_option_votes_if_admin = null;
+        BaseTextview textview_each_option_result_for_user_and_percentage_for_admin = null;
         BaseTextview textview_each_options_results_if_admin = null;
 
         View view_click = null;
@@ -175,13 +157,12 @@ this.indexFromWhichScreen=indexFromWhichScreen;
 
 
             imageView_circle = (ImageView) v.findViewById(R.id.imageview_create_polls_circle_selected);
-            textview_each_options_results_and_option_votes_if_admin= (BaseTextview) v.findViewById(R.id.textview_each_option_result);
-            textview_each_options_results_if_admin= (BaseTextview) v.findViewById(R.id.basetextview_need_to_diplay_for_admin_results);
+            textview_each_option_result_for_user_and_percentage_for_admin = (BaseTextview) v.findViewById(R.id.textview_each_option_result_for_user_and_percentage_for_admin);
+            textview_each_options_results_if_admin = (BaseTextview) v.findViewById(R.id.basetextview_need_to_diplay_for_admin_results);
 
             textview_options = (BaseTextview) v.findViewById(R.id.textview_create_polls_question);
 
             view_line = v.findViewById(R.id.view_verticle_line_create_polls);
-            baseTextview_empty_marker = (BaseTextview) v.findViewById(R.id.basetextview_need_to_diplay_empty_marker);
             view_click = v;
 
         }

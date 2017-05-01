@@ -1,18 +1,18 @@
 package com.app.collow.adapters;
 
+import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import com.app.collow.R;
 import com.app.collow.baseviews.BaseTextview;
-import com.app.collow.beans.ACFollowersbean;
-import com.app.collow.beans.MgmtSelectTeambean;
+import com.app.collow.beans.MgmtCommuityAndAdminbean;
 import com.app.collow.collowinterfaces.OnLoadMoreListener;
+import com.app.collow.utils.CommonKeywords;
 import com.app.collow.utils.CommonMethods;
 
 import java.util.List;
@@ -22,21 +22,20 @@ import java.util.List;
  */
 
 public class MgmtSelectTeamAdapter extends RecyclerView.Adapter {
-    private final int VIEW_ITEM = 1;
-    private final int VIEW_PROG = 0;
 
-    private List<MgmtSelectTeambean> mgmtteamList;
+
+    private List<MgmtCommuityAndAdminbean> mgmtteamList;
 
     // The minimum amount of items to have below your current scroll position
     // before loading more.
-    private int visibleThreshold = 10;
     private int lastVisibleItem, totalItemCount;
     private boolean loading;
     private OnLoadMoreListener onLoadMoreListener;
 
 
-    public MgmtSelectTeamAdapter(List<MgmtSelectTeambean> teams, RecyclerView recyclerView) {
-        mgmtteamList = teams;
+    Activity activity=null;
+    public MgmtSelectTeamAdapter(Activity activity, RecyclerView recyclerView) {
+        this.activity=activity;
 
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
 
@@ -55,7 +54,7 @@ public class MgmtSelectTeamAdapter extends RecyclerView.Adapter {
                             lastVisibleItem = linearLayoutManager
                                     .findLastVisibleItemPosition();
                             if (!loading
-                                    && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
+                                    && totalItemCount <= (lastVisibleItem + CommonKeywords.VISIBLE_THRESHOLD)) {
                                 // End has been reached
                                 // Do something
                                 if (onLoadMoreListener != null) {
@@ -68,34 +67,23 @@ public class MgmtSelectTeamAdapter extends RecyclerView.Adapter {
         }
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return mgmtteamList.get(position) != null ? VIEW_ITEM : VIEW_PROG;
-    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                       int viewType) {
         RecyclerView.ViewHolder vh;
-        if (viewType == VIEW_ITEM) {
             View v = LayoutInflater.from(parent.getContext()).inflate(
-                    R.layout.acfollowers_single_item, parent, false);
+                    R.layout.mgmt_team_single_item, parent, false);
 
             vh = new mgmtManageTeamViewHolder(v);
-        } else {
-            View v = LayoutInflater.from(parent.getContext()).inflate(
-                    R.layout.progressbar_item, parent, false);
 
-            vh = new mgmtManageTeamProgressViewHolder(v);
-        }
         return vh;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof mgmtManageTeamViewHolder) {
 
-            MgmtSelectTeambean singleStudent = (MgmtSelectTeambean) mgmtteamList.get(position);
+            MgmtCommuityAndAdminbean singleStudent = (MgmtCommuityAndAdminbean) mgmtteamList.get(position);
             ((mgmtManageTeamViewHolder) holder).baseTextview_mgmtmanageteam_name.setText(String.valueOf("Position" + position
             ));
 
@@ -104,9 +92,7 @@ public class MgmtSelectTeamAdapter extends RecyclerView.Adapter {
             }
 
 
-        } else {
-            ((mgmtManageTeamProgressViewHolder) holder).progressBar.setIndeterminate(true);
-        }
+
     }
 
     public void setLoaded() {
@@ -136,10 +122,10 @@ public class MgmtSelectTeamAdapter extends RecyclerView.Adapter {
             super(v);
             // tvName = (TextView) v.findViewById(R.id.tvName);
 
-            baseTextview_mgmtmanageteam_name = (BaseTextview) v.findViewById(R.id.textview_mgmtmanageteam_teamname);
-            baseTextview_mgmtmanageteam_address = (BaseTextview) v.findViewById(R.id.textview_mgmtmanageteam_teamaddress);
+           // baseTextview_mgmtmanageteam_name = (BaseTextview) v.findViewById(R.id.textview_mgmtmanageteam_teamname);
+          //  baseTextview_mgmtmanageteam_address = (BaseTextview) v.findViewById(R.id.textview_mgmtmanageteam_teamaddress);
 
-            imageview_mgmtmanageteam_profilepic=(ImageView)v.findViewById(R.id.imageview_mgmtmanageteam_teamprofilepic);
+           // imageview_mgmtmanageteam_profilepic=(ImageView)v.findViewById(R.id.imageview_mgmtmanageteam_teamprofilepic);
          /*   v.setOnClickListener(new OnClickListener() {
 
                 @Override
@@ -155,12 +141,5 @@ public class MgmtSelectTeamAdapter extends RecyclerView.Adapter {
     }
 
 
-    public static class mgmtManageTeamProgressViewHolder extends RecyclerView.ViewHolder {
-        public ProgressBar progressBar;
 
-        public mgmtManageTeamProgressViewHolder(View v) {
-            super(v);
-            progressBar = (ProgressBar) v.findViewById(R.id.progressBar1);
-        }
-    }
 }

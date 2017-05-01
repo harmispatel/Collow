@@ -37,4 +37,14 @@ public class MgmtTeamListingbean extends Basebean implements Serializable {
     public void setMgmtmanagecommunity_teamprofilepic(String mgmtmanagecommunity_teamprofilepic) {
         this.mgmtmanagecommunity_teamprofilepic = mgmtmanagecommunity_teamprofilepic;
     }
+
+    public boolean isCommunity() {
+        return isCommunity;
+    }
+
+    public void setCommunity(boolean community) {
+        isCommunity = community;
+    }
+
+    boolean isCommunity=false;
 }

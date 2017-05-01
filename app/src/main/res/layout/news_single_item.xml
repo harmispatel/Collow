@@ -1,137 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:visibility="visible"
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        >
 
-            <ImageView
-                android:id="@+id/imageview_news_userprofilepic"
-                android:layout_width="35dp"
-                android:layout_height="40dp"
-                android:src="@mipmap/ic_launcher" />
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/imageview_news_userprofilepic"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/cicle_background"
+            android:paddingLeft="10dp"
+            android:src="@drawable/user_defualt_icon" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/imageview_news_userprofilepic"
+            android:orientation="vertical">
+
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/layout_news_details"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:gravity="center|left"
+
+
+                        android:orientation="horizontal">
+
+                        <com.app.collow.baseviews.BaseTextview
+                            android:id="@+id/textview_news_username"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="Jaffery Simpson"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textsize_medium" />
+
+                        <com.app.collow.baseviews.BaseTextview
+                            android:id="@+id/textview_news_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="1dp"
+                            android:gravity="center"
+                            android:text="3 Hours ago"
+
+                            android:textSize="@dimen/textsize_small" />
+
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+
+                <com.app.collow.baseviews.BaseTextview
+                    android:id="@+id/textview_news_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginTop="8dp"
+                    android:gravity="left|center"
+                    android:text="Personalized Family Canoe Art"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/common_text_size" />
+
+                <com.app.collow.baseviews.BaseTextview
+                    android:id="@+id/textview_news_community_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginTop="8dp"
+                    android:gravity="left|center"
+
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/common_text_size" />
+
+                <com.app.collow.baseviews.BaseTextview
+
+                    android:id="@+id/textview_communityactivity_text_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center"
+                    android:layout_marginTop="8dp"
+                    android:gravity="left|center"
+                    android:text="Text"
+                    android:textSize="@dimen/common_text_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
-                <com.app.collow.baseviews.BaseTextview
-                    android:id="@+id/textview_news_username"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="65dp"
-                    android:textStyle="bold"
-                    android:text="Decor"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/textsize_big" />
-
-                <com.app.collow.baseviews.BaseTextview
-                    android:id="@+id/textview_news_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="3 hours ago"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/textsize_medium" />
+                <include layout="@layout/view_social_options"></include>
 
 
             </LinearLayout>
 
-                        <com.app.collow.baseviews.BaseTextview
-                            android:id="@+id/textview_news_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="65dp"
-                            android:text="Personalized Family Canoe Art"
-                            android:textColor="@android:color/black"
-                            android:textStyle="bold"
-                            android:textSize="@dimen/common_text_size" />
 
-                        <com.app.collow.baseviews.BaseTextview
-                            android:id="@+id/textview_news_description"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="65dp"
-                            android:text="hff fgysfy fuw usywut"
-                            android:textColor="@android:color/black"
-                            android:textSize="@dimen/common_text_size" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp"
-                    android:paddingLeft="57dp">
-
-                    <ImageView
-                        android:id="@+id/imageview_eventdetail_likeicon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/facebook" />
-
-                    <com.app.collow.baseviews.BaseTextview
-                        android:id="@+id/textview_eventdetail_likes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="5dp"
-                        android:text="Likes"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/common_text_size"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/imageview_eventdetail_commenticon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="7dp"
-                        android:src="@drawable/facebook" />
-
-                    <com.app.collow.baseviews.BaseTextview
-                        android:id="@+id/textview_eventdetail_comments"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="5dp"
-                        android:text="Comments"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/common_text_size"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/imageview_eventdetail_viewicon"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="7dp"
-                        android:src="@drawable/facebook" />
-
-                    <com.app.collow.baseviews.BaseTextview
-                        android:id="@+id/textview_eventdetail_views"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="5dp"
-                        android:text="Views"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/common_text_size"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 
 
-        </RelativeLayout>
-    </LinearLayout>
 </LinearLayout>

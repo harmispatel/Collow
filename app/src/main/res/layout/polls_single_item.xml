@@ -1,46 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:orientation="vertical">
 
-        <com.app.collow.baseviews.BaseTextview
-            android:id="@+id/textview_polls_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="tincident magna ullamcuper"
-            android:textSize="@dimen/textsize_medium" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toLeftOf="@+id/imagevie_right_arrow_in_polls"
+            android:orientation="vertical">
 
             <com.app.collow.baseviews.BaseTextview
-                android:id="@+id/textview_polls_votes"
+                android:id="@+id/textview_polls_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="votes"
-                android:textSize="@dimen/common_text_size" />
+                android:text="tincident magna ullamcuper"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textsize_medium"
+                android:textStyle="bold" />
 
-            <com.app.collow.baseviews.BaseTextview
-                android:id="@+id/textview_polls_duration"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="Hours ago"
-                android:textSize="@dimen/common_text_size" />
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <com.app.collow.baseviews.BaseTextview
+                    android:id="@+id/textview_polls_votes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="votes"
+                    android:textSize="@dimen/common_text_size" />
+
+                <com.app.collow.baseviews.BaseTextview
+                    android:id="@+id/textview_polls_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="Hours ago"
+                    android:textSize="@dimen/common_text_size" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="right"
-        android:layout_marginLeft="50dp"
-        android:src="@drawable/rightarrow" />
+        <ImageView
+            android:id="@+id/imagevie_right_arrow_in_polls"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="right"
+            android:layout_marginLeft="50dp"
+            android:src="@drawable/right_gray_arrow" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/line_color_gray"
+        ></View>
 </LinearLayout>

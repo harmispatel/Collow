@@ -1,28 +1,72 @@
 package com.app.collow.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by harmis on 1/2/17.
  */
 
 public class Classifiedbean extends Basebean implements Serializable {
-    String classified_image=null;
     String classified_category=null;
     String classified_name=null;
     String clssified_price=null;
     String classified_date=null;
 
-    public Classifiedbean() {
+    public String getOwnerId() {
+        return ownerId;
     }
 
-    public String getClassified_image() {
-        return classified_image;
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
     }
 
-    public void setClassified_image(String classified_image) {
-        this.classified_image = classified_image;
+    String ownerId=null;
+    String classifiedID=null;
+
+    String status=null;
+    ArrayList<String> stringArrayList_images=new ArrayList<>();
+
+    public String getClassifiedDescription() {
+        return classifiedDescription;
     }
+
+    public void setClassifiedDescription(String classifiedDescription) {
+        this.classifiedDescription = classifiedDescription;
+    }
+
+    String classifiedDescription=null;
+
+
+    public String getClassifiedID() {
+        return classifiedID;
+    }
+
+    public void setClassifiedID(String classifiedID) {
+        this.classifiedID = classifiedID;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+
+
+    public ArrayList<String> getStringArrayList_images() {
+        return stringArrayList_images;
+    }
+
+    public void setStringArrayList_images(ArrayList<String> stringArrayList_images) {
+        this.stringArrayList_images = stringArrayList_images;
+    }
+
+
+
 
     public String getClassified_category() {
         return classified_category;

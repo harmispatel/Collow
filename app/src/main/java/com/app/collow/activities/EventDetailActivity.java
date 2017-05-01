@@ -14,18 +14,30 @@ import android.widget.LinearLayout;
 
 import com.app.collow.R;
 import com.app.collow.allenums.ScreensEnums;
+import com.app.collow.asyntasks.RequestToServer;
 import com.app.collow.baseviews.BaseTextview;
+import com.app.collow.beans.CommunityAccessbean;
 import com.app.collow.beans.Eventbean;
+import com.app.collow.beans.PassParameterbean;
 import com.app.collow.beans.RequestParametersbean;
+import com.app.collow.beans.Responcebean;
 import com.app.collow.beans.RetryParameterbean;
 import com.app.collow.beans.SocialOptionbean;
 import com.app.collow.collowinterfaces.MyOnClickListener;
+import com.app.collow.httprequests.GetPostParameterEachScreen;
+import com.app.collow.setupUI.SetupViewInterface;
 import com.app.collow.utils.BaseException;
 import com.app.collow.utils.BundleCommonKeywords;
 import com.app.collow.utils.CommonKeywords;
 import com.app.collow.utils.CommonMethods;
 import com.app.collow.utils.CommonSession;
+import com.app.collow.utils.JSONCommonKeywords;
 import com.app.collow.utils.MyUtils;
+import com.app.collow.utils.URLs;
+import com.google.android.gms.games.event.Event;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -47,11 +59,12 @@ public class EventDetailActivity extends BaseActivity {
     ImageView imageView_delete = null, imageView_view = null, imageView_edit = null, imageView_search = null;
     LinearLayout linearLayout_likes = null, linearLayout_comments = null, linearLayout_views = null;
     BaseTextview baseTextview_events_likes = null;
-    BaseTextview baseTextview_events_views = null;
+   public static BaseTextview baseTextview_events_views = null;
     BaseTextview baseTextview_events_comments = null;
-    Activity activity=null;
     ImageView imageView_like = null;
     BaseTextview baseTextview_left_side = null;
+    CommunityAccessbean communityAccessbean = null;
+    String communityID = null;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +76,11 @@ public class EventDetailActivity extends BaseActivity {
 
             Bundle bundle = getIntent().getExtras();
             if (bundle != null) {
-                eventbean = (Eventbean) bundle.getSerializable(BundleCommonKeywords.KEY_NEWS_BEAN);
+                eventbean = (Eventbean) bundle.getSerializable(BundleCommonKeywords.KEY_CUSTOM_CLASS_BEAN);
+                communityAccessbean = (CommunityAccessbean) bundle.getSerializable(BundleCommonKeywords.KEY_COMMUNITY_ACCESSBEAN);
+                communityID = bundle.getString(BundleCommonKeywords.KEY_COMMUNITY_ID);
+                MyUtils.markAsViewed(EventDetailActivity.this, eventbean.getEvent_id(),CommonKeywords.TYPE_FEED_EVENT, ScreensEnums.EVENTDETAIl.getScrenIndex(),eventbean.getPosition(),requestParametersbean,eventbean.getCommmunityID());
+
             }
 
             setupHeaderView();
@@ -81,10 +98,14 @@ public class EventDetailActivity extends BaseActivity {
         try {
 
             baseTextview_header_title = (BaseTextview) toolbar_header.findViewById(R.id.textview_header_title);
-            baseTextview_header_title.setText(getResources().getString(R.string.events));
+            if(eventbean!=null)
+            {
+                baseTextview_header_title.setText(eventbean.getEvent_title());
+
+            }
 
             imageView_left_menu = (ImageView) toolbar_header.findViewById(R.id.imageview_left_menu);
-            imageView_left_menu.setVisibility(View.VISIBLE);
+            imageView_left_menu.setVisibility(View.GONE);
             imageView_right_menu = (ImageView) toolbar_header.findViewById(R.id.imageview_right_menu);
             imageView_right_menu.setVisibility(View.GONE);
 
@@ -100,8 +121,20 @@ public class EventDetailActivity extends BaseActivity {
             imageview_right_foursquare.setVisibility(View.VISIBLE);
             //baseTextview_left_side.setCompoundDrawablesWithIntrinsicBounds(R.drawable.left_arrow, 0, 0, 0);
             baseTextview_left_side = (BaseTextview) toolbar_header.findViewById(R.id.textview_left_side_title);
+            imageview_right_foursquare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MyUtils.openCommunityMenu(EventDetailActivity.this,communityID,"",communityAccessbean);
 
+                }
+            });
             baseTextview_left_side.setCompoundDrawablesWithIntrinsicBounds(R.drawable.left_arrow, 0, 0, 0);
+            baseTextview_left_side.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
 
             DrawerLayout.DrawerListener drawerListener = new DrawerLayout.DrawerListener() {
                 @Override
@@ -132,6 +165,8 @@ public class EventDetailActivity extends BaseActivity {
 
                 }
             };
+            drawerLayout.setDrawerListener(drawerListener);
+
             imageView_left_menu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -198,7 +233,7 @@ public class EventDetailActivity extends BaseActivity {
                         try {
                             if (isAvailableInternet()) {
 
-                               // likeItemhandler();
+                              likeItemhandler();
 
 
                             } else {
@@ -276,7 +311,7 @@ public class EventDetailActivity extends BaseActivity {
                 }
                 else if(eventbean.getEvent_time_mode()== CommonKeywords.EVENT_TIME_MODE_ALL_DAYS)
                 {
-                    baseTextview_events_time.setText(activity.getResources().getString(R.string.all_days));
+                    baseTextview_events_time.setText(getResources().getString(R.string.all_days));
                 }
 
 
@@ -305,6 +340,78 @@ public class EventDetailActivity extends BaseActivity {
     }
 
 
+    private void likeItemhandler() {
 
+
+        try {
+            RequestParametersbean requestParametersbean = new RequestParametersbean();
+            requestParametersbean.setActivityId(eventbean.getActivityID());
+            requestParametersbean.setUserId(commonSession.getLoggedUserID());
+            requestParametersbean.setLiketype(CommonKeywords.TYPE_FEED_EVENT);
+            if(eventbean.isLiked())
+            {
+                requestParametersbean.setLike("0");
+
+            }
+            else
+            {
+                requestParametersbean.setLike("1");
+
+            }
+
+            JSONObject jsonObjectGetPostParameterEachScreen = GetPostParameterEachScreen.getPostParametersAccordingIndex(ScreensEnums.LIKES.getScrenIndex(), requestParametersbean);
+            PassParameterbean passParameterbean = new PassParameterbean(new SetupViewInterface() {
+                @Override
+                public void setupUI(Responcebean responcebean) {
+                    if (responcebean.isServiceSuccess()) {
+                        try {
+                            JSONObject jsonObject_main = new JSONObject(responcebean.getResponceContent());
+                            if (CommonMethods.checkSuccessResponceFromServer(jsonObject_main)) {
+                                String totallikes = jsonObject_main.getString(JSONCommonKeywords.TotalLike);
+                                if (totallikes == null || totallikes.equals("")) {
+                                } else {
+
+
+                                    if (eventbean.isLiked()) {
+                                        eventbean.setLiked(false);
+                                        imageView_like.setImageResource(R.drawable.unlike_blue);
+                                    } else {
+                                        imageView_like.setImageResource(R.drawable.like_blue);
+                                        eventbean.setLiked(true);
+
+
+                                    }
+
+                                    SocialOptionbean socialOptionbean = eventbean.getSocialOptionbean();
+                                    socialOptionbean.setLike(Integer.parseInt(totallikes));
+                                    MyUtils.handleSocialOption(EventDetailActivity.this, socialOptionbean, baseTextview_events_likes, baseTextview_events_comments, baseTextview_events_views);
+
+                                    UserEventMainActivity.eventbeanArrayList.set(eventbean.getPosition(), eventbean);
+                                    if (UserEventMainActivity.eventAdapter != null) {
+                                        UserEventMainActivity.eventAdapter.notifyItemChanged(eventbean.getPosition());
+                                    }
+                                }
+
+                            }
+                            else
+                            {
+
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
+            }, EventDetailActivity.this, EventDetailActivity.this, URLs.LIKEACTIVITY, jsonObjectGetPostParameterEachScreen, ScreensEnums.LIKES.getScrenIndex(), EventDetailActivity.class.getClass());
+            passParameterbean.setNoNeedToDisplayLoadingDialog(true);
+            new RequestToServer(passParameterbean, null).execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }

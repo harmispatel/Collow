@@ -85,15 +85,15 @@
         android:layout_marginBottom="25dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
 
         android:id="@+id/button_aclist_newadminsendrequest"
         android:background="@drawable/button_bluebackground"
         android:text="@string/sendrequest"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/textsize_medium"
-        android:layout_height="wrap_content"></Button>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"></Button>
 
 
 </RelativeLayout>

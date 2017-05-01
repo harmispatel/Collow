@@ -1,6 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
 
-</LinearLayout>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@android:color/transparent"
+        >
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_bg">
+
+            <com.app.collow.baseviews.BaseTextview
+                android:id="@+id/textview_im_interest_messssage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:padding="15dp"
+                android:textSize="@dimen/textsize_medium"
+                android:visibility="gone" />
+
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/contact_us_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:padding="5dp"
+
+
+                >
+
+                <com.app.collow.baseviews.BaseEdittext
+                    android:id="@+id/edittext_classfied_contact_message"
+                    style="@style/myEditextStyle_rounded_four_sides"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/edittext_background_four_sides_rounded"
+                    android:gravity="left"
+                    android:hint="@string/write_here"
+                    android:inputType="textMultiLine"
+                    android:lines="5"
+                    android:maxLines="5"
+                    android:textColor="@color/edittext_text_color"
+                    android:textColorHint="@color/edittext_hint_color"
+
+                    />
+
+                <com.app.collow.baseviews.MyButtonView
+                    android:id="@+id/mybuttonview_send_message"
+                    style="@style/mybuttonViewStyle_filter_apply_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/edittext_classfied_contact_message"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="28dp"
+                    android:gravity="center"
+                    android:text="@string/send" />
+
+
+            </RelativeLayout>
+
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/close_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:layout_marginTop="-10dp"
+        android:layout_marginRight="-5dp"
+
+
+        android:src="@android:drawable/ic_menu_close_clear_cancel" />
+</FrameLayout>

@@ -129,7 +129,7 @@ public class MgmtEditTeamDetail extends BaseActivity implements SetupViewInterfa
 
     private void findViewByIDs() {
         try {
-            view_home = getLayoutInflater().inflate(R.layout.recyleview_main, null);
+            view_home = getLayoutInflater().inflate(R.layout.mgmt_edit_team_detail, null);
 
 
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -179,8 +179,8 @@ public class MgmtEditTeamDetail extends BaseActivity implements SetupViewInterfa
 
 
 
-            JSONObject jsonObjectGetPostParameterEachScreen = GetPostParameterEachScreen.getPostParametersAccordingIndex(ScreensEnums. EDITTEAM.getScrenIndex(), requestParametersbean);
-            PassParameterbean passParameterbean = new PassParameterbean(this, MgmtEditTeamDetail.this, getApplicationContext(), URLs. EDITTEAM, jsonObjectGetPostParameterEachScreen, ScreensEnums. EDITTEAM.getScrenIndex(), MgmtEditTeamDetail.class.getClass());
+            JSONObject jsonObjectGetPostParameterEachScreen = GetPostParameterEachScreen.getPostParametersAccordingIndex(ScreensEnums.EDIT_MGMT_TEAM .getScrenIndex(), requestParametersbean);
+            PassParameterbean passParameterbean = new PassParameterbean(this, MgmtEditTeamDetail.this, getApplicationContext(), URLs.EDIT_MGMT_TEAM, jsonObjectGetPostParameterEachScreen, ScreensEnums.EDIT_MGMT_TEAM.getScrenIndex(), MgmtEditTeamDetail.class.getClass());
 
             passParameterbean.setNeedToFirstTakeFacebookProfilePic(false);
 

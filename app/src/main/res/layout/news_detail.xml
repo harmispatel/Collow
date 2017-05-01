@@ -1,113 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:orientation="vertical">
 
-    <LinearLayout
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="15dp">
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <com.app.collow.baseviews.BaseTextview
+                    android:id="@+id/textview_newsdetails_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textsize_medium"
+                    android:textStyle="bold" />
+
+                <com.app.collow.baseviews.BaseTextview
+                    android:id="@+id/textview_newsdetails_date_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:textColor="@color/line_color_gray"
+                    android:textSize="@dimen/textsize_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal">
+
+
+                <include
+                    layout="@layout/view_social_options_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></include>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@color/black"
+                android:layout_marginTop="10dp"
+
+                android:orientation="vertical">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+
+                    >
+
+                </android.support.v4.view.ViewPager>
+
+
+                <RelativeLayout
+                    android:id="@+id/button_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="visible">
+
+                    <ImageView
+                        android:id="@+id/left_nav"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+
+
+                        android:src="@drawable/left_arrow_tran" />
+
+                    <ImageView
+
+                        android:id="@+id/right_nav"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+
+                        android:src="@drawable/right_arrow_tran" />
+
+
+                </RelativeLayout>
+
+
+            </FrameLayout>
+
+
 
             <com.app.collow.baseviews.BaseTextview
-                android:id="@+id/textview_eventdetail_title"
-                android:layout_width="wrap_content"
+                android:id="@+id/textview_newsdetails_description"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="tincident magna ullamcuper..Einsten where's the"
-                android:textSize="@dimen/textsize_medium"
-                android:textStyle="bold" />
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
 
-            <com.app.collow.baseviews.BaseTextview
-                android:id="@+id/textview_eventdetail_date_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="20, June-2016"
                 android:textSize="@dimen/common_text_size" />
+
+
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="15dp">
-
-            <ImageView
-                android:id="@+id/imageview_eventdetail_likeicon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/facebook" />
-
-            <com.app.collow.baseviews.BaseTextview
-                android:id="@+id/textview_eventdetail_likes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:text="Likes"
-                android:textAlignment="center"
-                android:textSize="@dimen/common_text_size"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imageview_eventdetail_commenticon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="7dp"
-                android:src="@drawable/facebook" />
-
-            <com.app.collow.baseviews.BaseTextview
-                android:id="@+id/textview_eventdetail_comments"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:text="Comments"
-                android:textAlignment="center"
-                android:textSize="@dimen/common_text_size"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imageview_eventdetail_viewicon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="7dp"
-                android:src="@drawable/facebook" />
-
-            <com.app.collow.baseviews.BaseTextview
-                android:id="@+id/textview_eventdetail_views"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
-                android:text="Views"
-                android:textAlignment="center"
-                android:textSize="@dimen/common_text_size"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <com.app.collow.baseviews.BaseTextview
-            android:id="@+id/textview_eventdetail_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:text="Cuase george wants to go with you dance..My best friend is my best compani.My best friend sits beside me in my class and we study together daily.I prepare my exams with my best friend and we try to get first rank in every term.We go to our school in our bicycle; we enjoy riding the bicycle together. I love my best friend and we will stay together forever"
-            android:textSize="@dimen/common_text_size" />
-
-        <ImageView
-            android:id="@+id/imageview_annoncementheading"
-            android:layout_width="match_parent"
-            android:layout_height="190dp"
-            android:layout_marginTop="25dp"
-            android:paddingBottom="5dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/nature" />
-    </LinearLayout>
-
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

@@ -1,7 +1,8 @@
 package com.app.collow.adapters;
 
 import android.app.Activity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,16 +11,18 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.app.collow.R;
+import com.app.collow.activities.CommunitySearchByNameActivity;
+import com.app.collow.activities.CommunitySearchFilterOptionsActivity;
+import com.app.collow.allenums.CommunityInformationScreenEnum;
 import com.app.collow.baseviews.BaseTextview;
 import com.app.collow.beans.Searchbean;
-import com.app.collow.collowinterfaces.OnLoadMoreListener;
+import com.app.collow.collowinterfaces.MyOnClickListener;
 import com.app.collow.database.CollowDatabaseHandler;
+import com.app.collow.utils.BundleCommonKeywords;
 import com.app.collow.utils.CommonMethods;
 import com.app.collow.utils.CommonSession;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Harmis on 31/01/17.
@@ -32,52 +35,18 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter  {
 
     // The minimum amount of items to have below your current scroll position
     // before loading more.
-    private int visibleThreshold = 10;
-    private int lastVisibleItem, totalItemCount;
-    private boolean loading;
-    private OnLoadMoreListener onLoadMoreListener;
     Activity activity=null;
-    boolean isFromSearchScreen=false;
     CollowDatabaseHandler collowDatabaseHandler=null;
     CommonSession commonSession=null;
-    ArrayList<Searchbean> searchbeanArrayList=null;
+    List<Searchbean> searchbeanArrayList=null;
 
 
-    public SearchHistoryAdapter(Activity activity, RecyclerView recyclerView, boolean isFromSearchScreen, ArrayList<Searchbean> searchbeanArrayList) {
+    public SearchHistoryAdapter(Activity activity,  List<Searchbean> searchbeanArrayList) {
         this.activity=activity;
-        this.isFromSearchScreen=isFromSearchScreen;
         collowDatabaseHandler=new CollowDatabaseHandler(activity);
         commonSession=new CommonSession(activity);
         this.searchbeanArrayList=searchbeanArrayList;
-        if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
 
-            final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView
-                    .getLayoutManager();
-
-
-            recyclerView
-                    .addOnScrollListener(new RecyclerView.OnScrollListener() {
-                        @Override
-                        public void onScrolled(RecyclerView recyclerView,
-                                               int dx, int dy) {
-                            super.onScrolled(recyclerView, dx, dy);
-
-                            totalItemCount = linearLayoutManager.getItemCount();
-                            lastVisibleItem = linearLayoutManager
-                                    .findLastVisibleItemPosition();
-
-                            if (!loading
-                                    && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
-                                // End has been reached
-                                // Do something
-                                if (onLoadMoreListener != null) {
-                                    onLoadMoreListener.onLoadMore();
-                                }
-                                loading = true;
-                            }
-                        }
-                    });
-        }
     }
 
     @Override
@@ -127,14 +96,55 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter  {
                     public void onClick(View v) {
 
                         try {
+
                             Searchbean searchbean1= (Searchbean) v.getTag();
-                            collowDatabaseHandler.deleteSearchedHistory(searchbean1.getCommunityID());
+                            collowDatabaseHandler.deleteSearchedHistory(searchbean1.getCommunityName());
                             searchbeanArrayList.remove(searchbean1);
                             notifyDataSetChanged();
+
+                            if(searchbeanArrayList.size()==0)
+                            {
+                                if(CommunitySearchFilterOptionsActivity.recyclerView_recent_searches!=null)
+                                {
+                                    CommunitySearchFilterOptionsActivity.recyclerView_recent_searches.setVisibility(View.GONE);
+                                }
+                                if(CommunitySearchFilterOptionsActivity.baseTextview_empty_recent_searches!=null)
+                                {
+                                    CommunitySearchFilterOptionsActivity.baseTextview_empty_recent_searches.setVisibility(View.VISIBLE);
+                                }
+                            }
+
+
+                            CommonMethods.displayLog("Clicked","Clicked");
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
 
+                    }
+                });
+                ((SearchHistoryViewHolder) holder).baseTextview_community_name.setTag(searchbean.getCommunityName());
+
+                ((SearchHistoryViewHolder) holder).baseTextview_community_name.setOnClickListener(new MyOnClickListener(activity) {
+                    @Override
+                    public void onClick(View v) {
+                        if(isAvailableInternet())
+                        {
+                            //here passed already serched community text to search screen where search result comes based on that.
+                            if (CommunitySearchByNameActivity.communitySearchByNameActivity != null) {
+                                CommunitySearchByNameActivity.communitySearchByNameActivity.finish();
+                            }
+                            String text_need_search= (String) v.getTag();
+                            Intent intent=new Intent(activity, CommunitySearchByNameActivity.class);
+                            Bundle bundle=new Bundle();
+                            bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_SEARCH_HISTORY_ITEM_NAME,text_need_search);
+                            bundle.putInt(BundleCommonKeywords.KEY_COMMUNITY_INNFORMATION_INDEX, CommunityInformationScreenEnum.FROM_COMMUNITY_SEARCH_HISTORY.getIndexFromWhereCalledCommunityInformation());
+                            intent.putExtras(bundle);
+                            activity.startActivity(intent);
+                        }
+                        else
+                        {
+                            showInternetNotfoundMessage();
+                        }
                     }
                 });
                 
@@ -150,18 +160,13 @@ public class SearchHistoryAdapter extends RecyclerView.Adapter  {
         }
     }
 
-    public void setLoaded() {
-        loading = false;
-    }
+
 
     @Override
     public int getItemCount() {
         return searchbeanArrayList.size();
     }
 
-    public void setOnLoadMoreListener(OnLoadMoreListener onLoadMoreListener) {
-        this.onLoadMoreListener = onLoadMoreListener;
-    }
 
 
 

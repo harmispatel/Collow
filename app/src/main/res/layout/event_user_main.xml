@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:weightSum="2.5"
+    android:background="@color/white"
     android:layout_height="match_parent">
+
+    <com.stacktips.view.CustomCalendarView
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:background="@drawable/background"
+
+        android:layout_alignParentTop="true"
+        app:calendarBackgroundColor="@android:color/transparent"
+        app:calendarTitleTextColor="@color/white"
+        app:currentDayOfMonthColor="@color/holo_red_dark"
+        app:dayOfMonthTextColor="@color/white"
+        app:dayOfWeekTextColor="@color/white"
+        app:selectedDayTextColor="@color/left_Menu_text_color_gray"
+        app:disabledDayBackgroundColor="@android:color/transparent"
+        app:disabledDayTextColor="@color/line_color_gray"
+        app:titleLayoutBackgroundColor="@android:color/transparent"
+        app:weekLayoutBackgroundColor="@android:color/transparent"/>
+    <include layout="@layout/horizontal_seperator_line"></include>
+    <LinearLayout
+        android:layout_below="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+
+
+        android:background="@color/white"
+        android:orientation="vertical">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+
+            android:scrollbars="vertical" />
+
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="No Records"
+            android:visibility="gone" />
+    </LinearLayout>
+
 
 </LinearLayout>

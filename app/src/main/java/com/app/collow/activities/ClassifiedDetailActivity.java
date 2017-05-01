@@ -37,6 +37,7 @@ import com.app.collow.httprequests.GetPostParameterEachScreen;
 import com.app.collow.setupUI.SetupViewInterface;
 import com.app.collow.utils.BaseException;
 import com.app.collow.utils.BundleCommonKeywords;
+import com.app.collow.utils.CommonKeywords;
 import com.app.collow.utils.CommonMethods;
 import com.app.collow.utils.CommonSession;
 import com.app.collow.utils.JSONCommonKeywords;
@@ -84,6 +85,8 @@ public class ClassifiedDetailActivity extends BaseActivity {
             if (bundle != null) {
                 classifiedbean = (Classifiedbean) bundle.getSerializable(BundleCommonKeywords.KEY_CLASSIFIED_BEAN);
                 communityID = bundle.getString(BundleCommonKeywords.KEY_COMMUNITY_ID);
+                MyUtils.markAsViewed(ClassifiedDetailActivity.this, classifiedbean.getClassifiedID(), CommonKeywords.TYPE_FEED_GALLERY, ScreensEnums.CLASSIFIED.getScrenIndex(),classifiedbean.getPosition(),requestParametersbean,null);
+
             }
             setupHeaderView();
             findViewbyIds();

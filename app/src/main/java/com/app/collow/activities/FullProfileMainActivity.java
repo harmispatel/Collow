@@ -15,7 +15,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.app.collow.R;
 import com.app.collow.allenums.ModificationOptions;
@@ -37,10 +36,6 @@ import com.app.collow.utils.CommonMethods;
 import com.app.collow.utils.CommonSession;
 import com.app.collow.utils.JSONCommonKeywords;
 import com.app.collow.utils.URLs;
-import com.facebook.CallbackManager;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.linkedin.platform.LISessionManager;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -53,7 +48,7 @@ import java.util.ArrayList;
 import static com.app.collow.activities.CreateNewEventActivity.CAMERA_REQUEST;
 import static com.app.collow.activities.CreateNewEventActivity.GALLERY_PICTURE;
 
-public class ACViewCommunityInfoMainActivity extends BaseActivity implements SetupViewInterface {
+public class FullProfileMainActivity extends BaseActivity implements SetupViewInterface {
     private static final int RC_SIGN_IN = 9001;
     public static ArrayList<ACViewCommunityInfobean> communitybeanArrayList = new ArrayList<>();
     public static Bitmap bitmap;
@@ -76,25 +71,21 @@ public class ACViewCommunityInfoMainActivity extends BaseActivity implements Set
     ArrayList<Imagebean> bitmapArrayList_uploading = new ArrayList<>();
     BaseTextview baseTextview_left_side = null;
     BaseEdittext edittext_viewcommunityinfo_apartmentname;
-    RecyclerView recyclerView_grid_classfied_images = null;
     CommonSession commonSession = null;
     ACViewCommunityInfobean acviewCommunityInfobean = null;
-    RelativeLayout relativeLayout_upload_image_plus_view = null;
     //header iterms
     ImageView imageView_left_menu = null, imageView_right_menu = null, imageview_right_foursquare = null;
-    ImageView imageView_delete = null, imageView_view = null, imageView_edit = null, imageView_search = null;
+    ImageView imageView_delete = null, imageView_view = null, imageView_edit = null;
     RequestParametersbean requestParametersbean = new RequestParametersbean();
     RetryParameterbean retryParameterbean = null;
-    private CallbackManager callbackManager;
-    private BaseTextview baseTextview_error = null;
     private Intent pictureActionIntent = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
-            retryParameterbean = new RetryParameterbean(ACViewCommunityInfoMainActivity.this, getApplicationContext(), getIntent().getExtras(), ACViewCommunityInfoMainActivity.class.getClass());
-            commonSession = new CommonSession(ACViewCommunityInfoMainActivity.this);
+            retryParameterbean = new RetryParameterbean(FullProfileMainActivity.this, getApplicationContext(), getIntent().getExtras(), FullProfileMainActivity.class.getClass());
+            commonSession = new CommonSession(FullProfileMainActivity.this);
             if (modifiy_format_index == ModificationOptions.VIEW.getOperationIndex()) {
                 isComeForeditinfo = false;
             } else {
@@ -151,8 +142,6 @@ public class ACViewCommunityInfoMainActivity extends BaseActivity implements Set
             imageview_right_foursquare = (ImageView) toolbar_header.findViewById(R.id.imageview_community_menu);
             imageview_right_foursquare.setVisibility(View.GONE);
 
-            imageView_search = (ImageView) toolbar_header.findViewById(R.id.imageview_community_search);
-            imageView_search.setVisibility(View.GONE);
 
             imageView_left_menu.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -182,7 +171,7 @@ public class ACViewCommunityInfoMainActivity extends BaseActivity implements Set
 
     private void findViewByIDs() {
         try {
-            view_home = getLayoutInflater().inflate(R.layout.activity_acview_community_info_main, null);
+            view_home = getLayoutInflater().inflate(R.layout.full_profile_view, null);
 
             imageview_viewcommunityinfo_profilepic = (ImageView) view_home.findViewById(R.id.imageview_viewcommunityinfo_profilepic);
             edittext_viewcommunityinfo_email = (BaseEdittext) view_home.findViewById(R.id.edittext_viewcommunityinfo_email);
@@ -200,7 +189,7 @@ public class ACViewCommunityInfoMainActivity extends BaseActivity implements Set
 
                 @Override
                 public void onClick(View v1) {
-                    Intent launchActivity1 = new Intent(ACViewCommunityInfoMainActivity.this, ACViewCommunityInfoMainActivity.class);
+                    Intent launchActivity1 = new Intent(FullProfileMainActivity.this, FullProfileMainActivity.class);
                     startActivity(launchActivity1);
 
                 }
@@ -220,16 +209,6 @@ public class ACViewCommunityInfoMainActivity extends BaseActivity implements Set
 
 
                     try {
-                        requestParametersbean.setEmail(edittext_viewcommunityinfo_email.getText().toString());
-                        requestParametersbean.setApartment(edittext_viewcommunityinfo_apartmentname.getText().toString());
-                        requestParametersbean.setHomeno(edittext_viewcommunityinfo_flatno.getText().toString());
-                        requestParametersbean.setAddress(edittext_viewcommunityinfo_address.getText().toString());
-                        requestParametersbean.setFax(edittext_viewcommunityinfo_fax.getText().toString());
-                        requestParametersbean.setDescripton(edittext_viewcommunityinfo_description.getText().toString());
-                        requestParametersbean.setType(edittext_viewcommunityinfo_flattype.getText().toString());
-                        requestParametersbean.setYearsbuilt(edittext_viewcommunityinfo_yearbuilt.getText().toString());
-                        requestParametersbean.setPhone(edittext_viewcommunityinfo_contactno.getText().toString());
-
 
                         requestParametersbean.setUserId(commonSession.getLoggedUserID());
                         if (bitmapArrayList_uploading.size() == 0) {
@@ -362,8 +341,8 @@ public class ACViewCommunityInfoMainActivity extends BaseActivity implements Set
         try {
 
 
-            JSONObject jsonObjectGetPostParameterEachScreen = GetPostParameterEachScreen.getPostParametersAccordingIndex(ScreensEnums.ACVIEWCOMMUNITYINFO.getScrenIndex(), requestParametersbean);
-            PassParameterbean passParameterbean = new PassParameterbean(this, ACViewCommunityInfoMainActivity.this, getApplicationContext(), URLs.ACVIEWCOMMUNITYINFO, jsonObjectGetPostParameterEachScreen, ScreensEnums.ACVIEWCOMMUNITYINFO.getScrenIndex(), ACViewCommunityInfoMainActivity.class.getClass());
+            JSONObject jsonObjectGetPostParameterEachScreen = GetPostParameterEachScreen.getPostParametersAccordingIndex(ScreensEnums.USER_FULL_PROFILE_VIEW.getScrenIndex(), requestParametersbean);
+            PassParameterbean passParameterbean = new PassParameterbean(this, FullProfileMainActivity.this, getApplicationContext(), URLs.GET_FULL_PROFILE, jsonObjectGetPostParameterEachScreen, ScreensEnums.USER_FULL_PROFILE_VIEW.getScrenIndex(), FullProfileMainActivity.class.getClass());
 
             passParameterbean.setNeedToFirstTakeFacebookProfilePic(false);
 
@@ -392,10 +371,10 @@ public class ACViewCommunityInfoMainActivity extends BaseActivity implements Set
 
 
                     if (responcebean.getErrorMessage() == null) {
-                        CommonMethods.customToastMessage(getResources().getString(R.string.create_classfied_done), ACViewCommunityInfoMainActivity.this);
+                        CommonMethods.customToastMessage(getResources().getString(R.string.create_classfied_done), FullProfileMainActivity.this);
 
                     } else {
-                        CommonMethods.customToastMessage(responcebean.getErrorMessage(), ACViewCommunityInfoMainActivity.this);
+                        CommonMethods.customToastMessage(responcebean.getErrorMessage(), FullProfileMainActivity.this);
 
                     }
                     ACViewCommunityInfobean communityinfobean = new ACViewCommunityInfobean();
@@ -465,10 +444,10 @@ public class ACViewCommunityInfoMainActivity extends BaseActivity implements Set
                         }
 
 
-                        if ((ACViewCommunityInfoMainActivity.communitybeanArrayList != null)) {
-                            ACViewCommunityInfoMainActivity.communitybeanArrayList.add(0, communityinfobean);
+                        if ((FullProfileMainActivity.communitybeanArrayList != null)) {
+                            FullProfileMainActivity.communitybeanArrayList.add(0, communityinfobean);
 
-                            ACViewCommunityInfoMainActivity.mRecyclerView.smoothScrollToPosition(0);
+                            FullProfileMainActivity.mRecyclerView.smoothScrollToPosition(0);
                             finish();
 
                         }
@@ -486,9 +465,9 @@ public class ACViewCommunityInfoMainActivity extends BaseActivity implements Set
 
 
                     if (responcebean.getErrorMessage() == null) {
-                        CommonMethods.customToastMessage(getResources().getString(R.string.create_classfied_failed), ACViewCommunityInfoMainActivity.this);
+                        CommonMethods.customToastMessage(getResources().getString(R.string.create_classfied_failed), FullProfileMainActivity.this);
                     } else {
-                        CommonMethods.customToastMessage(responcebean.getErrorMessage(), ACViewCommunityInfoMainActivity.this);
+                        CommonMethods.customToastMessage(responcebean.getErrorMessage(), FullProfileMainActivity.this);
 
                     }
 
@@ -496,15 +475,15 @@ public class ACViewCommunityInfoMainActivity extends BaseActivity implements Set
 
 
             } catch (Exception e) {
-                CommonMethods.customToastMessage(e.getMessage(), ACViewCommunityInfoMainActivity.this);
+                CommonMethods.customToastMessage(e.getMessage(), FullProfileMainActivity.this);
 
             }
 
         } else {
             if (responcebean.getErrorMessage() == null) {
-                CommonMethods.customToastMessage(getResources().getString(R.string.create_classfied_failed), ACViewCommunityInfoMainActivity.this);
+                CommonMethods.customToastMessage(getResources().getString(R.string.create_classfied_failed), FullProfileMainActivity.this);
             } else {
-                CommonMethods.customToastMessage(responcebean.getErrorMessage(), ACViewCommunityInfoMainActivity.this);
+                CommonMethods.customToastMessage(responcebean.getErrorMessage(), FullProfileMainActivity.this);
 
             }
         }
@@ -557,10 +536,10 @@ public class ACViewCommunityInfoMainActivity extends BaseActivity implements Set
                     }
 
                 } else {
-                    CommonMethods.customToastMessage(getResources().getString(R.string.cancelled), ACViewCommunityInfoMainActivity.this);
+                    CommonMethods.customToastMessage(getResources().getString(R.string.cancelled), FullProfileMainActivity.this);
                 }
             } else if (resultCode == RESULT_CANCELED) {
-                CommonMethods.customToastMessage(getResources().getString(R.string.cancelled), ACViewCommunityInfoMainActivity.this);
+                CommonMethods.customToastMessage(getResources().getString(R.string.cancelled), FullProfileMainActivity.this);
 
             }
         } else if (requestCode == CAMERA_REQUEST) {
@@ -586,21 +565,12 @@ public class ACViewCommunityInfoMainActivity extends BaseActivity implements Set
                 }
 
             } else if (resultCode == RESULT_CANCELED) {
-                CommonMethods.customToastMessage(getResources().getString(R.string.cancelled), ACViewCommunityInfoMainActivity.this);
+                CommonMethods.customToastMessage(getResources().getString(R.string.cancelled), FullProfileMainActivity.this);
 
             }
         } else {
-            callbackManager.onActivityResult(requestCode, resultCode, data);
 
-            LISessionManager.getInstance(getApplicationContext())
-                    .onActivityResult(this,
-                            requestCode, resultCode, data);
 
-            // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-            if (requestCode == RC_SIGN_IN) {
-                GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-                saveInfo();
-            }
         }
 
     }
@@ -637,99 +607,4 @@ public class ACViewCommunityInfoMainActivity extends BaseActivity implements Set
     }
 
 
-    public void saveInfo() {
-    }
-
-
-   /* public class UploadImageAdapter extends RecyclerView.Adapter<ACViewCommunityInfoMainActivity.UploadImageViewHolder> {
-
-        private Context context;
-
-        public UploadImageAdapter(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        public ACViewCommunityInfoMainActivity.UploadImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-            View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.only_imageview_with_close_icon, null);
-            ACViewCommunityInfoMainActivity.UploadImageViewHolder rcv = new ACViewCommunityInfoMainActivity.UploadImageViewHolder(layoutView);
-            return rcv;
-        }
-
-        @Override
-        public void onBindViewHolder(ACViewCommunityInfoMainActivity.UploadImageViewHolder holder, int position) {
-
-
-            try {
-                final Imagebean imagebean = bitmapArrayList_uploading.get(position);
-
-                holder.imageview_delete_icon.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Imagebean imagebean1 = (Imagebean) v.getTag();
-                        bitmapArrayList_uploading.remove(imagebean1.getBitmap());
-                        if (bitmapArrayList_uploading.size() == 0) {
-                            recyclerView_grid_classfied_images.setVisibility(View.GONE);
-                            relativeLayout_upload_image_plus_view.setVisibility(View.VISIBLE);
-                        }
-                        uploadImageAdapter = new ACViewCommunityInfoMainActivity.UploadImageAdapter(ACViewCommunityInfoMainActivity.this);
-                        recyclerView_grid_classfied_images.setAdapter(uploadImageAdapter);
-
-                    }
-                });
-
-                if (imagebean.isPlusIconNeedToEnable()) {
-
-                    holder.view_main.setTag(imagebean);
-                    holder.imageview_delete_icon.setVisibility(View.GONE);
-                    holder.imageview_singe_only.setImageResource(R.drawable.plus_icon);
-
-                } else {
-                    holder.imageview_singe_only.setImageBitmap(imagebean.getBitmap());
-
-                }
-                holder.imageview_delete_icon.setTag(imagebean);
-
-
-            } catch (Resources.NotFoundException e) {
-                CommonMethods.displayLog("error", e.getMessage());
-
-            }
-
-        }
-
-        @Override
-        public int getItemCount() {
-            return bitmapArrayList_uploading.size();
-        }
-    }
-
-    public class UploadImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        ImageView imageview_singe_only = null, imageview_delete_icon = null;
-        View view_main = null;
-
-        public UploadImageViewHolder(View itemView) {
-            super(itemView);
-            itemView.setOnClickListener(this);
-            view_main = itemView;
-            imageview_singe_only = (ImageView) itemView.findViewById(R.id.imageview_single_only);
-            imageview_delete_icon = (ImageView) itemView.findViewById(R.id.close_dialog);
-        }
-
-        @Override
-        public void onClick(View view) {
-            if (bitmapArrayList_uploading.size() >= 12) {
-                CommonMethods.customToastMessage(getResources().getString(R.string.image_upload_limit_corss_message), ACViewCommunityInfoMainActivity.this);
-            } else {
-                Imagebean imagebean = (Imagebean) view.getTag();
-                if (imagebean.isPlusIconNeedToEnable()) {
-                    startDialog();
-                }
-            }
-
-        }
-    }
-*/
 }

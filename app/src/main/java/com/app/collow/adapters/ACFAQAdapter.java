@@ -12,25 +12,16 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.app.collow.R;
-import com.app.collow.activities.ACEditEventMainActivity;
-import com.app.collow.activities.ACFollowerAwaitingManageActivity;
 import com.app.collow.activities.ACListFAQsMainActivity;
 import com.app.collow.activities.ACViewFaq;
-import com.app.collow.activities.AClistEvent_ViewEvents;
 import com.app.collow.baseviews.BaseTextview;
 import com.app.collow.beans.ACFAQbean;
-import com.app.collow.beans.ACFollowersbean;
-import com.app.collow.beans.ACListEventBean;
 import com.app.collow.beans.RequestParametersbean;
 import com.app.collow.collowinterfaces.MyOnClickListener;
 import com.app.collow.collowinterfaces.OnLoadMoreListener;
 import com.app.collow.utils.BundleCommonKeywords;
 import com.app.collow.utils.CommonKeywords;
 import com.app.collow.utils.CommonMethods;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 /**
  * Created by harmis on 8/2/17.
@@ -41,12 +32,12 @@ public class ACFAQAdapter extends RecyclerView.Adapter {
 
     Activity activity = null;
     RequestParametersbean requestParametersbean = new RequestParametersbean();
+    String communityID = null;
     // The minimum amount of items to have below your current scroll position
     // before loading more.
     private int lastVisibleItem, totalItemCount;
     private boolean loading;
     private OnLoadMoreListener onLoadMoreListener;
-    String communityID=null;
 
     public ACFAQAdapter(Activity mactivity, RecyclerView recyclerView) {
         activity = mactivity;
@@ -104,7 +95,6 @@ public class ACFAQAdapter extends RecyclerView.Adapter {
         }
 
 
-
         if (CommonMethods.isTextAvailable(faqbean.getAcfaq_faqdate())) {
             ((ACFaqViewHolder) holder).baseTextview_acfaq_date.setText(faqbean.getAcfaq_faqdate());
 
@@ -113,8 +103,6 @@ public class ACFAQAdapter extends RecyclerView.Adapter {
             ((ACFaqViewHolder) holder).baseTextview_acfaq_time.setText(faqbean.getAcfaq_faqtime());
 
         }
-
-
 
 
         ((ACFaqViewHolder) holder).view.setTag(faqbean);
@@ -126,7 +114,7 @@ public class ACFAQAdapter extends RecyclerView.Adapter {
                     ACFAQbean faqbean1_local = (ACFAQbean) v.getTag();
 
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable(BundleCommonKeywords.KEY_ACEVENT_BEAN, faqbean1_local);
+                    bundle.putSerializable(BundleCommonKeywords.KEY_CUSTOM_CLASS_BEAN, faqbean1_local);
                     Intent intent = new Intent(activity, ACViewFaq.class);
                     bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, communityID);
                        /* bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, eventbean1_local.getAclist_eventdate());
@@ -138,8 +126,6 @@ public class ACFAQAdapter extends RecyclerView.Adapter {
             }
         });
     }
-
-
 
 
     public void setLoaded() {
@@ -156,12 +142,10 @@ public class ACFAQAdapter extends RecyclerView.Adapter {
     }
 
 
-
-
     //
     public static class ACFaqViewHolder extends RecyclerView.ViewHolder {
         BaseTextview baseTextview_acfaq_title = null;
-        BaseTextview baseTextview_acfaq_date= null;
+        BaseTextview baseTextview_acfaq_date = null;
         BaseTextview baseTextview_acfaq_time = null;
 
         ImageView imageview_acfaq = null;
@@ -176,7 +160,7 @@ public class ACFAQAdapter extends RecyclerView.Adapter {
             baseTextview_acfaq_time = (BaseTextview) v.findViewById(R.id.textview_acfaqt_faqtime);
 
             imageview_acfaq = (ImageView) v.findViewById(R.id.imageview_acfaq_image);
-             view=v;
+            view = v;
 
          /*   v.setOnClickListener(new OnClickListener() {
 

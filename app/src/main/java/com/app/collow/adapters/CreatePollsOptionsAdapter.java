@@ -49,6 +49,13 @@ public class CreatePollsOptionsAdapter extends RecyclerView.Adapter {
             ((PollsOptionsViewHolder) holder).baseEdittext_options.setHint(pollOptionbean.getHint_title());
         }
 
+        if (pollOptionbean.isSelectedOptions()) {
+            ((PollsOptionsViewHolder) holder).imageView_circle.setImageResource(R.drawable.poll_selected);
+
+        } else {
+            ((PollsOptionsViewHolder) holder).imageView_circle.setImageResource(R.drawable.poll_unselected);
+
+        }
         int colorRandom= SplashActvitiy.integerArrayList_colors.get(CommonMethods.randInt(0,SplashActvitiy.integerArrayList_colors.size()-1));
         ((PollsOptionsViewHolder) holder).view_line.setBackgroundColor(colorRandom);
 

@@ -35,6 +35,6 @@
     </LinearLayout>
 
 
-    <include layout="@layout/accommunity_container" />
+    <include layout="@layout/recyleview_main" />
 
 </android.support.design.widget.CoordinatorLayout>

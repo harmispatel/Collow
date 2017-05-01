@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
-</LinearLayout>
+    <ImageView
+    android:id="@+id/imageview_menu_dot"
+    android:layout_width="15dp"
+    android:layout_height="15dp"
+    android:layout_centerInParent="true"
+    android:layout_gravity="center"
+    android:layout_marginLeft="3dp"
+    android:src="@drawable/menu_dot_bg" />
+
+    <LinearLayout
+    android:id="@+id/linearlayout_community_feed"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_centerInParent="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:padding="10dp">
+
+    <com.app.collow.baseviews.BaseTextview
+    android:id="@+id/textview_community_menu_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_centerInParent="true"
+    android:layout_gravity="center|left"
+    android:gravity="center|left"
+    android:text="@string/feed"
+
+    android:textSize="@dimen/common_text_size" />
+
+    <com.app.collow.baseviews.BaseTextview
+    android:id="@+id/textview_community_menu_counter"
+    android:layout_width="10dp"
+    android:layout_height="10dp"
+    android:layout_alignParentRight="true"
+    android:layout_centerInParent="true"
+    android:layout_gravity="center"
+    android:layout_marginRight="10dp"
+    android:drawableRight="@drawable/right_gray_arrow"
+    android:gravity="center"
+
+    android:textSize="@dimen/textsize_medium" />
+    </RelativeLayout>
+
+    <View
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/line_color_gray"
+    android:layout_marginLeft="10dp"
+    android:layout_height="0.1dp">
+
+    </View>
+
+    </LinearLayout>
+
+
+    </LinearLayout>

@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/app_search_icon"
+        android:title="@string/search_event"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+    <item
+
+        android:id="@+id/my_event_filter_icon"
+        android:icon="@drawable/right_menu_icon"
+        android:title="@string/search"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/my_event_community_menu"
+
+        android:icon="@drawable/community_main_menu"
+        android:title="@string/search"
+        app:showAsAction="always" />
 </menu>

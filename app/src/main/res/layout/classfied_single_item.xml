@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         card_view:cardCornerRadius="17dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <com.app.collow.utils.SelectableRoundedImageView
                 android:id="@+id/imageview_classfied_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
@@ -23,16 +23,18 @@
                 android:src="@drawable/nature" />
 
             <com.app.collow.baseviews.BaseTextview
-                android:id="@+id/textview_classified_category"
+                android:id="@+id/textview_classified_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/imageview_classfied_image"
                 android:layout_alignTop="@id/imageview_classfied_image"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
-                android:background="@android:color/holo_blue_light"
-                android:paddingTop="10dp"
-                android:text="LOREM" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:background="@drawable/sale_bg"
+                android:padding="8dp"
+                android:text="SALE" />
 
             <com.app.collow.baseviews.BaseTextview
                 android:id="@+id/textview_classified_name"
@@ -41,35 +43,45 @@
                 android:layout_below="@id/imageview_classfied_image"
                 android:padding="10dp"
                 android:paddingLeft="20dp"
+                android:textStyle="bold"
                 android:text="Bell Air Crest"
                 android:textSize="@dimen/textsize_medium" />
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.1dp"
                 android:layout_below="@id/textview_classified_name"
-                android:background="@android:color/darker_gray" />
+                android:background="@color/line_color_gray" />
 
-            <com.app.collow.baseviews.BaseTextview
-                android:id="@+id/textview_classified_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_below="@id/textview_classified_name"
-                android:padding="10dp"
-                android:paddingLeft="20dp"
-                android:text="$350"
-                android:textSize="@dimen/common_text_size" />
 
-            <com.app.collow.baseviews.BaseTextview
-                android:id="@+id/textview_classified_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/textview_classified_name"
-                android:layout_toRightOf="@id/textview_classified_price"
-                android:padding="10dp"
-                android:paddingLeft="20dp"
-                android:text="17 june2016"
-                android:textSize="@dimen/common_text_size" />
+                android:layout_height="wrap_content">
+                <com.app.collow.baseviews.BaseTextview
+                    android:id="@+id/textview_classified_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:paddingLeft="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:text="$350"
+                    android:textSize="@dimen/common_text_size" />
+
+                <com.app.collow.baseviews.BaseTextview
+                    android:id="@+id/textview_classified_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:padding="10dp"
+                    android:paddingLeft="20dp"
+                    android:text="17 june2016"
+                    android:textSize="@dimen/common_text_size" />
+            </RelativeLayout>
+
+
 
 
         </RelativeLayout>

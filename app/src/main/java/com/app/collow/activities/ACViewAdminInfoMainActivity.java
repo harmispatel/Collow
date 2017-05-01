@@ -87,12 +87,12 @@ public class ACViewAdminInfoMainActivity extends BaseActivity implements SetupVi
             imageView_right_menu.setVisibility(View.GONE);
 
 
-            imageView_delete = (ImageView) headerview.findViewById(R.id.imageview_delete);
-            imageView_delete.setVisibility(View.GONE);
-            imageView_view = (ImageView) headerview.findViewById(R.id.imageview_view);
-            imageView_view.setVisibility(View.GONE);
-            imageView_edit = (ImageView) headerview.findViewById(R.id.imageview_edit);
-            imageView_edit.setVisibility(View.VISIBLE);
+         //   imageView_delete = (ImageView) headerview.findViewById(R.id.imageview_delete);
+         //   imageView_delete.setVisibility(View.GONE);
+         //   imageView_view = (ImageView) headerview.findViewById(R.id.imageview_view);
+          //  imageView_view.setVisibility(View.GONE);
+          //  imageView_edit = (ImageView) headerview.findViewById(R.id.imageview_edit);
+          //  imageView_edit.setVisibility(View.VISIBLE);
             imageview_right_foursquare= (ImageView) headerview.findViewById(R.id.imageview_community_menu);
             imageview_right_foursquare.setVisibility(View.GONE);
             baseTextview_left_side = (BaseTextview) headerview.findViewById(R.id.textview_left_side_title);
@@ -117,6 +117,9 @@ public class ACViewAdminInfoMainActivity extends BaseActivity implements SetupVi
             });
             setSupportActionBar(toolbar_header);
             toolbar_header.addView(headerview);
+
+
+
         } catch (Resources.NotFoundException e) {
             new BaseException(e, false, retryParameterbean);
 
@@ -128,7 +131,7 @@ public class ACViewAdminInfoMainActivity extends BaseActivity implements SetupVi
 
     private void findViewByIDs() {
         try {
-            view_home = getLayoutInflater().inflate(R.layout.recyleview_main, null);
+            view_home = getLayoutInflater().inflate(R.layout.activity_acview_admin_info_main, null);
 
 
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());

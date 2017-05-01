@@ -1,43 +1,60 @@
 package com.app.collow.adapters;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import com.app.collow.R;
+import com.app.collow.activities.ACFollowerAwaitingManageActivity;
+import com.app.collow.activities.CommunityActivitiesFeedActivitiy;
+import com.app.collow.activities.SignInActivity;
+import com.app.collow.allenums.ScreensEnums;
+import com.app.collow.asyntasks.RequestToServer;
 import com.app.collow.baseviews.BaseTextview;
+import com.app.collow.baseviews.MyButtonView;
 import com.app.collow.beans.ACFollowersbean;
-import com.app.collow.beans.Eventbean;
+import com.app.collow.beans.PassParameterbean;
+import com.app.collow.beans.RequestParametersbean;
+import com.app.collow.beans.Responcebean;
+import com.app.collow.collowinterfaces.MyOnClickListener;
 import com.app.collow.collowinterfaces.OnLoadMoreListener;
+import com.app.collow.httprequests.GetPostParameterEachScreen;
+import com.app.collow.setupUI.SetupViewInterface;
+import com.app.collow.utils.CommonKeywords;
 import com.app.collow.utils.CommonMethods;
+import com.app.collow.utils.JSONCommonKeywords;
+import com.app.collow.utils.URLs;
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import org.json.JSONObject;
 
 /**
  * Created by harmis on 8/2/17.
  */
 
 public class ACFollowersAdapter extends RecyclerView.Adapter {
-    private final int VIEW_ITEM = 1;
-    private final int VIEW_PROG = 0;
 
-    private List<ACFollowersbean> followersList;
 
+    Activity activity = null;
+    RequestParametersbean requestParametersbean = new RequestParametersbean();
     // The minimum amount of items to have below your current scroll position
     // before loading more.
-    private int visibleThreshold = 10;
     private int lastVisibleItem, totalItemCount;
     private boolean loading;
     private OnLoadMoreListener onLoadMoreListener;
 
 
-    public ACFollowersAdapter(List<ACFollowersbean> followers, RecyclerView recyclerView) {
-        followersList = followers;
-
+    public ACFollowersAdapter(Activity mactivity, RecyclerView recyclerView) {
+        activity = mactivity;
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
 
             final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView
@@ -55,7 +72,7 @@ public class ACFollowersAdapter extends RecyclerView.Adapter {
                             lastVisibleItem = linearLayoutManager
                                     .findLastVisibleItemPosition();
                             if (!loading
-                                    && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
+                                    && totalItemCount <= (lastVisibleItem + CommonKeywords.VISIBLE_THRESHOLD)) {
                                 // End has been reached
                                 // Do something
                                 if (onLoadMoreListener != null) {
@@ -68,46 +85,59 @@ public class ACFollowersAdapter extends RecyclerView.Adapter {
         }
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return followersList.get(position) != null ? VIEW_ITEM : VIEW_PROG;
-    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                       int viewType) {
         RecyclerView.ViewHolder vh;
-        if (viewType == VIEW_ITEM) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(
-                    R.layout.acfollowers_single_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(
+                R.layout.acfollowers_single_item, parent, false);
 
-            vh = new ACFollowersViewHolder(v);
-        } else {
-            View v = LayoutInflater.from(parent.getContext()).inflate(
-                    R.layout.progressbar_item, parent, false);
-
-            vh = new ACFollowersProgressViewHolder(v);
-        }
+        vh = new ACFollowersViewHolder(v);
         return vh;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof EventAdapter.EventViewHolder) {
-
-            ACFollowersbean singleStudent = (ACFollowersbean) followersList.get(position);
-            ((ACFollowersViewHolder) holder).baseTextview_followers_name.setText(String.valueOf("Position" + position
-            ));
-
-            if (CommonMethods.isTextAvailable(singleStudent.getMessage())) {
-                ((ACFollowersViewHolder) holder).baseTextview_followers_name.setText(singleStudent.getMessage());
-            }
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
 
 
-        } else {
-            ((ACFollowersProgressViewHolder) holder).progressBar.setIndeterminate(true);
+        ACFollowersbean acFollowersbean = ACFollowerAwaitingManageActivity.acfollowersbeanArrayList_filtered.get(position);
+
+        if (CommonMethods.isTextAvailable(acFollowersbean.getFollowers_name())) {
+            ((ACFollowersViewHolder) holder).baseTextview_followers_name.setText(acFollowersbean.getFollowers_name());
+
         }
+
+
+        if (CommonMethods.isTextAvailable(acFollowersbean.getFollowers_address())) {
+            ((ACFollowersViewHolder) holder).baseTextview_followers_address.setText(acFollowersbean.getFollowers_address());
+
+        }
+
+
+        if (CommonMethods.isImageUrlValid(acFollowersbean.getFoloowers_profilepic())) {
+            Picasso.with(activity)
+                    .load(acFollowersbean.getFoloowers_profilepic())
+                    .into((((ACFollowersViewHolder) holder).imageview_followers_profilepic), new Callback() {
+                        @Override
+                        public void onSuccess() {
+                        }
+
+                        @Override
+                        public void onError() {
+                            ((ACFollowersViewHolder) holder).imageview_followers_profilepic.setImageResource(R.drawable.defualt_square);
+                        }
+                    });
+        } else {
+            ((ACFollowersViewHolder) holder).imageview_followers_profilepic.setImageResource(R.drawable.defualt_square);
+        }
+
+        ((ACFollowersViewHolder) holder).view.setTag(acFollowersbean);
+
     }
+
+
+
 
     public void setLoaded() {
         loading = false;
@@ -115,7 +145,7 @@ public class ACFollowersAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return followersList.size();
+        return ACFollowerAwaitingManageActivity.acfollowersbeanArrayList_filtered.size();
     }
 
     public void setOnLoadMoreListener(OnLoadMoreListener onLoadMoreListener) {
@@ -129,7 +159,8 @@ public class ACFollowersAdapter extends RecyclerView.Adapter {
         BaseTextview baseTextview_followers_address = null;
         BaseTextview baseTextview_followers_type = null;
 
-        ImageView imageview_followers_profilepic=null;
+        CircularImageView imageview_followers_profilepic = null;
+        View view = null;
 
 
         public ACFollowersViewHolder(View v) {
@@ -139,28 +170,11 @@ public class ACFollowersAdapter extends RecyclerView.Adapter {
             baseTextview_followers_name = (BaseTextview) v.findViewById(R.id.textview_acfollowers_name);
             baseTextview_followers_address = (BaseTextview) v.findViewById(R.id.textview_acfollowers_address);
             baseTextview_followers_type = (BaseTextview) v.findViewById(R.id.textview_acfollowers_type);
-            imageview_followers_profilepic=(ImageView)v.findViewById(R.id.imageview_acfollowers_profilepic);
-         /*   v.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(v.getContext(),
-                            "OnClick :" + student.getName() + " \n " + student.getEmailId(),
-                            Toast.LENGTH_SHORT).show();
-
-                }
-            });*/
+            imageview_followers_profilepic = (CircularImageView) v.findViewById(R.id.imageview_acfollowers_profilepic);
+            view = v;
 
         }
     }
 
 
-    public static class ACFollowersProgressViewHolder extends RecyclerView.ViewHolder {
-        public ProgressBar progressBar;
-
-        public ACFollowersProgressViewHolder(View v) {
-            super(v);
-            progressBar = (ProgressBar) v.findViewById(R.id.progressBar1);
-        }
-    }
 }

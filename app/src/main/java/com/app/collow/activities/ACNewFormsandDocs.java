@@ -125,12 +125,12 @@ public class ACNewFormsandDocs extends BaseActivity implements SetupViewInterfac
             baseTextview_error = (BaseTextview) view_home.findViewById(R.id.empty_view);
             mRecyclerView = (RecyclerView) view_home.findViewById(R.id.my_recycler_view);*/
 
-            edittext_acnewforms_title=(BaseEdittext) view_home.findViewById(R.id.edittext_accreateform_title);
+            /*edittext_acnewforms_title=(BaseEdittext) view_home.findViewById(R.id.edittext_accreateform_title);
             edittext_acnewforms_description=(BaseEdittext) view_home.findViewById(R.id.edittext_accreateform_description);
             imageview_acnewforms_viewers=(ImageView) view_home.findViewById(R.id.imageview_acnewforms_viewerstype);
             button_acnewforms_upload=(MyButtonView)view_home.findViewById(R.id.button_accreateform_upload);
             button_acnewforms_browse=(MyButtonView)view_home.findViewById(R.id.button_accreateform_browse);
-            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(25);
+            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(25);*/
 
 
 

@@ -50,7 +50,7 @@ public class ACViewFaq extends BaseActivity implements SetupViewInterface {
     BaseTextview baseTextview_left_side=null;
     //header iterms
     ImageView imageView_left_menu = null, imageView_right_menu = null,imageview_right_foursquare=null;
-    ImageView imageView_delete = null,imageView_view=null,imageView_edit=null,imageView_search=null;
+    ImageView imageView_delete = null,imageView_view=null,imageView_edit=null;
     RequestParametersbean requestParametersbean = new RequestParametersbean();
     RetryParameterbean retryParameterbean = null;
 
@@ -76,9 +76,7 @@ public class ACViewFaq extends BaseActivity implements SetupViewInterface {
 
     public void setupHeaderView() {
         try {
-           /* View headerview = getLayoutInflater().inflate(R.layout.header, null);
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            headerview.setLayoutParams(layoutParams);*/
+
             baseTextview_header_title= (BaseTextview) toolbar_header.findViewById(R.id.textview_header_title);
             baseTextview_header_title.setText(getResources().getString(R.string.view_faq));
 
@@ -95,11 +93,9 @@ public class ACViewFaq extends BaseActivity implements SetupViewInterface {
             imageview_right_foursquare= (ImageView) toolbar_header.findViewById(R.id.imageview_community_menu);
             imageview_right_foursquare.setVisibility(View.GONE);
 
-            imageView_search= (ImageView) toolbar_header.findViewById(R.id.imageview_community_search);
-            imageView_search.setVisibility(View.GONE);
+
             baseTextview_left_side = (BaseTextview) toolbar_header.findViewById(R.id.textview_left_side_title);
 
-            // baseTextview_left_side.setText(getResources().getString(R.string.cancel));
             baseTextview_left_side.setCompoundDrawablesWithIntrinsicBounds(R.drawable.left_arrow, 0, 0, 0);
 
 

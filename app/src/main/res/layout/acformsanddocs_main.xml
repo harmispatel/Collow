@@ -21,6 +21,6 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/plus_icon" />
 
-    <include layout="@layout/event_main_container" />
+    <include layout="@layout/formanddocx_main_container" />
 
 </android.support.design.widget.CoordinatorLayout>

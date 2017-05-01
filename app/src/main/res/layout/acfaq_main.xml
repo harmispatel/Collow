@@ -17,7 +17,7 @@
         app:elevation="6dp"
 
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/example" />
+        android:src="@drawable/only_plus_icon" />
 
     <include layout="@layout/acfaq_container" />
 

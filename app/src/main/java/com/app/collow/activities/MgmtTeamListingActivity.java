@@ -4,20 +4,20 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Handler;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.app.collow.R;
-import com.app.collow.adapters.MgmtSelectCommunityAdapter;
+import com.app.collow.adapters.MgmtTeamListingAdapter;
 import com.app.collow.allenums.ScreensEnums;
 import com.app.collow.asyntasks.RequestToServer;
 import com.app.collow.baseviews.BaseTextview;
-import com.app.collow.beans.MgmtSelectCommunitybean;
+import com.app.collow.beans.ClaimCommunitybean;
+import com.app.collow.beans.MgmtTeamListingbean;
 import com.app.collow.beans.PassParameterbean;
 import com.app.collow.beans.RequestParametersbean;
 import com.app.collow.beans.Responcebean;
@@ -29,8 +29,10 @@ import com.app.collow.setupUI.SetupViewInterface;
 import com.app.collow.utils.BaseException;
 import com.app.collow.utils.CommonMethods;
 import com.app.collow.utils.CommonSession;
+import com.app.collow.utils.JSONCommonKeywords;
 import com.app.collow.utils.URLs;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -38,8 +40,9 @@ import java.util.ArrayList;
 public class MgmtTeamListingActivity extends BaseActivity implements SetupViewInterface {
 
     View view_home = null;
-    MgmtSelectCommunityAdapter mgmtCommunityAdapter = null;
-    public static ArrayList<MgmtSelectCommunitybean> mgmtcommunitybeanArrayList = new ArrayList<>();
+    MgmtTeamListingAdapter mgmtTeamListingAdapter = null;
+    public static MgmtTeamListingActivity mgmtTeamListingActivity=null;
+    public static ArrayList<MgmtTeamListingbean> mgmtcommunitybeanArrayList = new ArrayList<>();
     private BaseTextview baseTextview_error = null;
     private RecyclerView mRecyclerView;
     BaseTextview baseTextview_header_title=null;
@@ -51,6 +54,7 @@ public class MgmtTeamListingActivity extends BaseActivity implements SetupViewIn
     ImageView imageView_delete = null,imageView_view=null,imageView_edit=null,imageView_search=null;
     RequestParametersbean requestParametersbean = new RequestParametersbean();
     RetryParameterbean retryParameterbean = null;
+    int current_start=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,22 +62,14 @@ public class MgmtTeamListingActivity extends BaseActivity implements SetupViewIn
         try {
             retryParameterbean = new RetryParameterbean(MgmtTeamListingActivity.this, getApplicationContext(), getIntent().getExtras(), MgmtTeamListingActivity.class.getClass());
             commonSession = new CommonSession(MgmtTeamListingActivity.this);
-
+            mgmtTeamListingActivity=this;
             handler = new Handler();
             setupHeaderView();
             findViewByIDs();
             setupEvents();
 
-            BaseTextview baseTextview_mgmtmanagecommunity_name=(BaseTextview)findViewById(R.id.textview_mgmtcommunity_communityname);
-            baseTextview_mgmtmanagecommunity_name.setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View v1) {
-                    Intent launchActivity1= new Intent(MgmtTeamListingActivity.this,MgmtEditTeamDetail.class);
-                    startActivity(launchActivity1);
-
-                }
-            });
+           // getTeamListing();
         } catch (Exception e) {
             new BaseException(e, false, retryParameterbean);
 
@@ -84,15 +80,13 @@ public class MgmtTeamListingActivity extends BaseActivity implements SetupViewIn
 
     public void setupHeaderView() {
         try {
-            View headerview = getLayoutInflater().inflate(R.layout.header, null);
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            headerview.setLayoutParams(layoutParams);
-            baseTextview_header_title= (BaseTextview) headerview.findViewById(R.id.textview_header_title);
-            baseTextview_header_title.setText(getResources().getString(R.string.news));
 
-            imageView_left_menu = (ImageView) headerview.findViewById(R.id.imageview_left_menu);
+            baseTextview_header_title= (BaseTextview) toolbar_header.findViewById(R.id.textview_header_title);
+            baseTextview_header_title.setText(getResources().getString(R.string.select_team));
+
+            imageView_left_menu = (ImageView) toolbar_header.findViewById(R.id.imageview_left_menu);
             imageView_left_menu.setVisibility(View.VISIBLE);
-            imageView_right_menu = (ImageView) headerview.findViewById(R.id.imageview_right_menu);
+            imageView_right_menu = (ImageView) toolbar_header.findViewById(R.id.imageview_right_menu);
             imageView_right_menu.setVisibility(View.GONE);
 
            /* imageView_delete = (ImageView) headerview.findViewById(R.id.imageview_delete);
@@ -127,8 +121,34 @@ public class MgmtTeamListingActivity extends BaseActivity implements SetupViewIn
 
                 }
             });
-            setSupportActionBar(toolbar_header);
-            toolbar_header.addView(headerview);
+
+            DrawerLayout.DrawerListener drawerListener = new DrawerLayout.DrawerListener() {
+                @Override
+                public void onDrawerSlide(View drawerView, float slideOffset) {
+
+                    drawerLayout.closeDrawer(Gravity.RIGHT);
+                }
+
+                @Override
+                public void onDrawerOpened(View drawerView) {
+                    drawerLayout.closeDrawer(Gravity.RIGHT);
+
+                }
+
+                @Override
+                public void onDrawerClosed(View drawerView) {
+                    drawerLayout.closeDrawer(Gravity.RIGHT);
+
+                }
+
+                @Override
+                public void onDrawerStateChanged(int newState) {
+                    drawerLayout.closeDrawer(Gravity.RIGHT);
+
+                }
+            };
+            drawerLayout.setDrawerListener(drawerListener);
+
         } catch (Resources.NotFoundException e) {
             new BaseException(e, false, retryParameterbean);
 
@@ -145,7 +165,7 @@ public class MgmtTeamListingActivity extends BaseActivity implements SetupViewIn
 
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
             baseTextview_error = (BaseTextview) view_home.findViewById(R.id.empty_view);
-            MgmtSelectCommunitybean communitybean = new MgmtSelectCommunitybean();
+            MgmtTeamListingbean communitybean = new MgmtTeamListingbean();
             mgmtcommunitybeanArrayList.add(communitybean);
             mgmtcommunitybeanArrayList.add(communitybean);
             mgmtcommunitybeanArrayList.add(communitybean);
@@ -164,40 +184,26 @@ public class MgmtTeamListingActivity extends BaseActivity implements SetupViewIn
             mRecyclerView.setLayoutManager(mLayoutManager);
             mRecyclerView.addItemDecoration(dividerItemDecoration);
 
-            mgmtCommunityAdapter = new MgmtSelectCommunityAdapter(mgmtcommunitybeanArrayList, mRecyclerView);
-            mRecyclerView.setAdapter(mgmtCommunityAdapter);
+            mgmtTeamListingAdapter = new MgmtTeamListingAdapter(MgmtTeamListingActivity.this, mRecyclerView);
+            mRecyclerView.setAdapter(mgmtTeamListingAdapter);
             frameLayout_container.addView(view_home);
 
-            getCommunityList(0);
 
 
-            mgmtCommunityAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
+            mgmtTeamListingAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {
                 @Override
                 public void onLoadMore() {
-                    //add null , so the adapter will check view_type and show progress bar at bottom
-                    mgmtcommunitybeanArrayList.add(null);
-                    mRecyclerView.post(new Runnable() {
-                        public void run() {
-                            mgmtCommunityAdapter.notifyItemInserted(mgmtcommunitybeanArrayList.size() - 1);
-                        }
-                    });
+
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            //   remove progress item
-                            mgmtcommunitybeanArrayList.remove(mgmtcommunitybeanArrayList.size() - 1);
-                            mgmtCommunityAdapter.notifyItemRemoved(mgmtcommunitybeanArrayList.size());
-                            //add items one by one
-                            int start = mgmtcommunitybeanArrayList.size();
-                            int end = start + 20;
-                            getCommunityList(20);
+                            current_start += 10;
 
-                            for (int i = start + 1; i <= end; i++) {
-                                mgmtcommunitybeanArrayList.add(new MgmtSelectCommunitybean());
-                                mgmtCommunityAdapter.notifyItemInserted(mgmtcommunitybeanArrayList.size());
-                            }
-                            mgmtCommunityAdapter.setLoaded();
-                            //or you can add all at once but do not forget to call mAdapter.notifyDataSetChanged();
+                            //   searchbean_post_data.getStart_limit()+=10;
+
+                            requestParametersbean.setStart_limit(current_start);
+                            getTeamListing();
+
                         }
                     }, 2000);
 
@@ -217,10 +223,11 @@ public class MgmtTeamListingActivity extends BaseActivity implements SetupViewIn
 
 
     // this method is used for login user
-    public void getCommunityList(int startLimit) {
+    public void getTeamListing() {
         try {
 
-            requestParametersbean.setStart_limit(startLimit);
+            requestParametersbean.setStart_limit(current_start);
+            requestParametersbean.setUserId(commonSession.getLoggedUserID());
 
             JSONObject jsonObjectGetPostParameterEachScreen = GetPostParameterEachScreen.getPostParametersAccordingIndex(ScreensEnums.MGMT_TEAM_LISTING.getScrenIndex(), requestParametersbean);
             PassParameterbean passParameterbean = new PassParameterbean(this, MgmtTeamListingActivity.this, getApplicationContext(), URLs.GET_TEAM_LISTING, jsonObjectGetPostParameterEachScreen, ScreensEnums.MGMT_TEAM_LISTING.getScrenIndex(), MgmtTeamListingActivity.class.getClass());
@@ -245,6 +252,66 @@ public class MgmtTeamListingActivity extends BaseActivity implements SetupViewIn
                 if (CommonMethods.checkSuccessResponceFromServer(jsonObject_main)) {
                     //parse here data of following
 
+                    if(CommonMethods.checkJSONArrayHasData(jsonObject_main, JSONCommonKeywords.teamsList))
+                    {
+
+                        JSONArray jsonArray = jsonObject_main.getJSONArray(JSONCommonKeywords.teamsList);
+                        ArrayList<MgmtTeamListingbean> mgmtTeamListingbeanArrayList_local = new ArrayList<>();
+                        for (int i = 0; i < jsonArray.length(); i++) {
+
+                            JSONObject jsonObject_single_claime = jsonArray.getJSONObject(i);
+                            MgmtTeamListingbean mgmtTeamListingbean = new MgmtTeamListingbean();
+
+                            if (jsonObject_single_claime.has(JSONCommonKeywords.teamid)) {
+                                mgmtTeamListingbean.setMgmtmanagecommunity_name(jsonObject_single_claime.getString(JSONCommonKeywords.teamid));
+                            }
+
+
+                            if (jsonObject_single_claime.has(JSONCommonKeywords.teamname)) {
+                                mgmtTeamListingbean.setMgmtmanagecommunity_name(jsonObject_single_claime.getString(JSONCommonKeywords.teamname));
+                            }
+
+
+                            mgmtTeamListingbean.setPosition(i);
+
+                            mgmtTeamListingbeanArrayList_local.add(mgmtTeamListingbean);
+
+
+                        }
+
+                        if (current_start == 0) {
+                            mgmtcommunitybeanArrayList = mgmtTeamListingbeanArrayList_local;
+                            mgmtTeamListingAdapter.notifyDataSetChanged();
+
+                        } else {
+
+                            int start = mgmtcommunitybeanArrayList.size();
+
+                            for (int i = 0; i < mgmtTeamListingbeanArrayList_local.size(); i++) {
+
+                                mgmtcommunitybeanArrayList.add(start, mgmtTeamListingbeanArrayList_local.get(i));
+                                mgmtTeamListingAdapter.notifyItemInserted(mgmtcommunitybeanArrayList.size());
+                                start++;
+
+                            }
+                            mgmtTeamListingAdapter.setLoaded();
+
+                        }
+
+                    }
+                    else
+                    {
+                        handlerError(responcebean);
+
+                    }
+
+
+
+
+
+
+
+
 
                 } else {
                     handlerError(responcebean);
@@ -263,33 +330,24 @@ public class MgmtTeamListingActivity extends BaseActivity implements SetupViewIn
 
     }
 
-    public void handlerError(Responcebean responcebean)
-    {
-        if (responcebean.getErrorMessage() == null || responcebean.getErrorMessage().equals(""))
-        {
-            if(requestParametersbean.getStart_limit()==0)
-            {
-                baseTextview_error.setText(getResources().getString(R.string.no_data_founds));
+    public void handlerError(Responcebean responcebean) {
+        if (responcebean.getErrorMessage() == null || responcebean.getErrorMessage().equals("")) {
+            if (current_start == 0) {
+                baseTextview_error.setText(getResources().getString(R.string.no_teams_record_found));
                 mRecyclerView.setVisibility(View.GONE);
                 baseTextview_error.setVisibility(View.VISIBLE);
 
-            }
-            else
-            {
+            } else {
+
 
             }
-        }
-        else
-        {
-            if(requestParametersbean.getStart_limit()==0)
-            {
+        } else {
+            if (current_start == 0) {
                 baseTextview_error.setText(responcebean.getErrorMessage());
                 mRecyclerView.setVisibility(View.GONE);
                 baseTextview_error.setVisibility(View.VISIBLE);
 
-            }
-            else
-            {
+            } else {
 
             }
         }

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,13 +13,10 @@ import android.widget.ImageView;
 
 import com.app.collow.R;
 import com.app.collow.adapters.ACFormsandDocsAdapter;
-import com.app.collow.adapters.ACListEventAdapter;
 import com.app.collow.allenums.ScreensEnums;
 import com.app.collow.asyntasks.RequestToServer;
 import com.app.collow.baseviews.BaseTextview;
 import com.app.collow.beans.ACFormsandDocsbean;
-import com.app.collow.beans.ACListEventBean;
-import com.app.collow.beans.FormsAndDocsbean;
 import com.app.collow.beans.PassParameterbean;
 import com.app.collow.beans.RequestParametersbean;
 import com.app.collow.beans.Responcebean;
@@ -83,9 +79,7 @@ public class ACFormsandDocsMainActivity extends BaseActivity implements SetupVie
 
     public void setupHeaderView() {
         try {
-            /*View headerview = getLayoutInflater().inflate(R.layout.header, null);
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            headerview.setLayoutParams(layoutParams);*/
+
             baseTextview_header_title = (BaseTextview) toolbar_header.findViewById(R.id.textview_header_title);
             baseTextview_header_title.setText(getResources().getString(R.string.address));
 
@@ -100,7 +94,7 @@ public class ACFormsandDocsMainActivity extends BaseActivity implements SetupVie
             imageView_view.setVisibility(View.GONE);
             imageView_edit = (ImageView) toolbar_header.findViewById(R.id.imageview_edit);
             imageView_edit.setVisibility(View.GONE);
-            imageView_search = (ImageView) toolbar_header.findViewById(R.id.imageview_community_search);
+            imageView_search = (ImageView) toolbar_header.findViewById(R.id.imageview_search_items);
             imageView_search.setVisibility(View.VISIBLE);
             imageview_right_foursquare = (ImageView) toolbar_header.findViewById(R.id.imageview_community_menu);
             imageview_right_foursquare.setVisibility(View.VISIBLE);
@@ -226,11 +220,11 @@ public class ACFormsandDocsMainActivity extends BaseActivity implements SetupVie
         try {
 
 
-            JSONObject jsonObjectGetPostParameterEachScreen = GetPostParameterEachScreen.getPostParametersAccordingIndex(ScreensEnums.ACDOCUMENTS.getScrenIndex(), requestParametersbean);
-            PassParameterbean passParameterbean = new PassParameterbean(this, ACFormsandDocsMainActivity.this, getApplicationContext(), URLs.ACDOCUMENTS, jsonObjectGetPostParameterEachScreen, ScreensEnums.ACDOCUMENTS.getScrenIndex(), ACFormsandDocsMainActivity.class.getClass());
+          //  JSONObject jsonObjectGetPostParameterEachScreen = GetPostParameterEachScreen.getPostParametersAccordingIndex(ScreensEnums.ACDOCUMENTS.getScrenIndex(), requestParametersbean);
+         //   PassParameterbean passParameterbean = new PassParameterbean(this, ACFormsandDocsMainActivity.this, getApplicationContext(), URLs.ACDOCUMENTS, jsonObjectGetPostParameterEachScreen, ScreensEnums.ACDOCUMENTS.getScrenIndex(), ACFormsandDocsMainActivity.class.getClass());
 
 
-            new RequestToServer(passParameterbean, retryParameterbean).execute();
+          //  new RequestToServer(passParameterbean, retryParameterbean).execute();
 
 
         } catch (Exception e) {
@@ -265,7 +259,6 @@ public class ACFormsandDocsMainActivity extends BaseActivity implements SetupVie
 
                             }
                             if (CommonMethods.handleKeyInJSON(jsonObject_single, JSONCommonKeywords.Description)) {
-                                docsbean.setAclist_documenttime(jsonObject_single.getString(JSONCommonKeywords.Description));
 
                             }
 

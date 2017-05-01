@@ -120,7 +120,7 @@ public class ACNewAdmin extends BaseActivity implements SetupViewInterface {
 
     private void findViewByIDs() {
         try {
-            view_home = getLayoutInflater().inflate(R.layout.recyleview_main, null);
+            view_home = getLayoutInflater().inflate(R.layout.ac_community_newadmin, null);
 
 
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -137,8 +137,8 @@ public class ACNewAdmin extends BaseActivity implements SetupViewInterface {
 
                 @Override
                 public void onClick(View v1) {
-                    Intent launchActivity1= new Intent(ACNewAdmin.this,MgmtSelectTeamtoManage.class);
-                    startActivity(launchActivity1);
+
+
 
                 }
             });

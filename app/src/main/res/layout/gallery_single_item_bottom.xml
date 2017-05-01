@@ -1,6 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+   >
+
+    <LinearLayout
+        android:id="@+id/layout_main_like_dislike_gallery_listing"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center|left"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageview_gallery_likeicon"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:src="@drawable/gallery_unlike_listing" />
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_gallery_likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+
+            android:text="Likes"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_moresmall" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_main_comment_gallery_listing"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="15dp"
+        android:gravity="center|left"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageview_gallery_commenticon"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+
+            android:src="@drawable/gallery_comment_listing" />
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_gallery_comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="Comments"
+
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_moresmall" />
+    </LinearLayout>
+
 
 </LinearLayout>
+

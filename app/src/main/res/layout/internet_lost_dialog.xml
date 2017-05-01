@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:orientation="vertical">
+
+
+    <com.app.collow.baseviews.BaseTextview
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/textsize_big"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:text="@string/interent_lost"/>
+
+    <include layout="@layout/horizontal_seperator_line"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        ></include>
+
+    <com.app.collow.baseviews.BaseTextview
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+
+        android:textSize="@dimen/textsize_medium"
+        android:text="@string/internet_connection_slow"/>
+
+
+    <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/mybuttonview_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+        android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:shadowColor="@color/colorPrimary"
+            android:background="@drawable/retry_button_bg"
+            android:text="@string/retry" />
+
 
 </LinearLayout>

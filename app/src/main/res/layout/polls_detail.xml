@@ -1,48 +1,238 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_community_polls_detail"
-    android:orientation="vertical"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_acnew_poll_main"
     android:layout_width="match_parent"
-    android:layout_weight="3"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/background"
-    tools:context="com.app.collow.activities.CommunityPollsDetail">
+    android:fillViewport="true">
 
-    <com.app.collow.baseviews.BaseTextview
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:padding="8dp"
-        android:layout_weight="1.5"
-        android:id="@+id/textview_pollsdetail_question"
-        android:textSize="@dimen/common_text_size"
-        android:text="Cras ut vehicula tortorhf jfhuh hhu hjh"
-        android:background="@drawable/edittext_background"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:id="@+id/layout_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+
+            android:orientation="vertical">
 
 
+            <include layout="@layout/horizontal_seperator_line"></include>
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:id="@+id/listview_pollsdetail"
-        android:layout_weight="0.5"
-        android:layout_height="wrap_content"></ListView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+
+                android:orientation="horizontal">
+
+                <com.app.collow.baseviews.BaseTextview
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:inputType="text"
+                    android:text="@string/total_number_of_votes"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textsize_medium" />
+
+                <com.app.collow.baseviews.BaseTextview
+
+                    android:id="@+id/textview_total_number_votes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:inputType="text"
+                    android:text="17 Votes"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textsize_medium" />
+            </LinearLayout>
 
 
+        </LinearLayout>
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="25dp"
-        android:id="@+id/button_pollssubmit"
-        android:background="@drawable/buttonwhitebg_whiteborder"
-        android:text="@string/submit"
-        android:layout_weight="1"
-        android:layout_height="wrap_content" />
+        <android.support.v7.widget.CardView
+            android:id="@+id/topview_create_polls"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_top"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="25dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <com.app.collow.baseviews.BaseTextview
+
+                    android:id="@+id/textview_enter_poll_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:gravity="left|top"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:text="Tincident Magna?"
+                    android:textColor="@color/edittext_text_color"
+                    android:textColorHint="@color/edittext_hint_color"
+                    android:textSize="@dimen/textsize_medium" />
+            </LinearLayout>
 
 
-</LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_recycler_view_polls_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/topview_create_polls"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:alwaysDrawnWithCache="false"
+            android:persistentDrawingCache="none"
+            android:scrollbars="vertical"
+            android:visibility="visible" />
+
+
+        <!--<RelativeLayout
+            android:id="@+id/relativelayout_upload_create_polls_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/my_recycler_view_polls_options"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edittext_background"
+            android:visibility="visible">
+
+            <com.app.collow.baseviews.BaseTextview
+                style="@style/myEditextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_toLeftOf="@+id/layout_get_interesets"
+                android:gravity="left"
+                android:padding="5dp"
+                android:text="@string/addanothroption"
+                android:textColor="@color/left_Menu_text_color_gray"
+
+                />
+
+
+            <ImageView
+                android:id="@+id/imageview_create_polls_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="5dp"
+                android:padding="5dp"
+                android:src="@drawable/plus_icon" />
+
+
+        </RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_grid_create_polls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnWidth="90dp"
+            android:gravity="center"
+            android:horizontalSpacing="10dp"
+            android:layout_marginTop="10dp"
+
+            android:numColumns="auto_fit"
+            android:padding="10dp"
+            android:background="@color/white"
+            android:layout_below="@+id/relativelayout_upload_create_polls_options"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="10dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recycler_view_grid_create_polls"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/relativelayout_upload_create_polls_images"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background"
+                android:visibility="visible">
+
+                <com.app.collow.baseviews.BaseTextview
+                    android:id="@+id/basetextview_upload_image"
+                    style="@style/myEditextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_toLeftOf="@+id/layout_get_interesets"
+                    android:gravity="left"
+                    android:hint="@string/uploadimages"
+                    android:textColor="@color/left_Menu_text_color_gray"
+
+                    />
+
+
+                <ImageView
+                    android:id="@+id/imageview_upload_image_plus_icon_image"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="5dp"
+                    android:padding="5dp"
+                    android:src="@drawable/plus_icon" />
+
+
+            </RelativeLayout>
+        </LinearLayout>-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/my_recycler_view_polls_options"
+            android:layout_centerHorizontal="true"
+            android:gravity="center">
+
+            <com.app.collow.baseviews.MyButtonView
+                android:id="@+id/button_polls_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/buttonwhitebg_whiteborder"
+                android:paddingBottom="10dp"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:paddingTop="10dp"
+                android:text="@string/submit"
+                android:textSize="@dimen/textsize_medium" />
+        </RelativeLayout>
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>

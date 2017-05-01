@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/outerRectangle">
+        <shape android:shape="oval" >
+            <solid android:color="@android:color/transparent" />
 
-</selector>
+            <stroke
+                android:width="3dp"
+                android:color="@color/menu_feed" />
+        </shape>
+    </item></layer-list>
