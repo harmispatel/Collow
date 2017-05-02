@@ -206,8 +206,11 @@ public class CommunityMenuActivity extends BaseActivity implements SetupViewInte
             if (communityAccessbean.isCommunityFollowed()) {
                 enableButton();
                 imageview_community_favouriteunfavourite.setVisibility(View.GONE);
+
+                commonSession.storeUserFollow(true);
             } else {
                 disableButton();
+                commonSession.storeUserFollow(false);
                 imageview_community_favouriteunfavourite.setVisibility(View.VISIBLE);
 
             }
@@ -256,6 +259,7 @@ public class CommunityMenuActivity extends BaseActivity implements SetupViewInte
                 @Override
                 public void onClick(View v) {
                     if (isAvailableInternet()) {
+                        commonSession.storeUserFollow(true);
                         followCommunity();
                     } else {
                         showInternetNotfoundMessage();
