@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -83,6 +84,7 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
                     String communityID = bundle.getString(BundleCommonKeywords.KEY_COMMUNITY_ID);
                     String communityText = bundle.getString(BundleCommonKeywords.KEY_COMMUNITY_NAME_TEXT);
 
+                    Log.e("ad","communityID="+communityID);
                     if (communityID != null) {
                         requestParametersbean.setCommunityID(communityID);
                         requestParametersbean.setCommunityText(communityText);

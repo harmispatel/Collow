@@ -165,18 +165,20 @@ public class MyUtils {
 
 
         } else if (title.equals(activity.getResources().getString(R.string.info))) {
-            if (CommunityInformationActivity.CommunityInformationActivity != null) {
-                CommunityInformationActivity.CommunityInformationActivity.finish();
-            }
+//            if (CommunityInformationActivity.CommunityInformationActivity != null) {
+//                CommunityInformationActivity.CommunityInformationActivity.finish();
+//            }
+            activity.finish();
 
-
-            Intent intent = new Intent(activity, CommunityInformationActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putInt(BundleCommonKeywords.KEY_COMMUNITY_INNFORMATION_INDEX, CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
-            bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
-
-            intent.putExtras(bundle);
-            activity.startActivity(intent);
+//            Intent intent = new Intent(activity, CommunityInformationActivity.class);
+//            Bundle bundle = new Bundle();
+//            Log.e("ad","KEY_COMMUNITY_INNFORMATION_INDEX "+CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
+//            Log.e("ad","KEY_COMMUNITY_ID "+requestParametersbean.getCommunityID());
+//            bundle.putInt(BundleCommonKeywords.KEY_COMMUNITY_INNFORMATION_INDEX, CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
+//            bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+//
+//            intent.putExtras(bundle);
+//            activity.startActivity(intent);
 
 
         } else if (title.equals(activity.getResources().getString(R.string.followers))) {
@@ -203,6 +205,8 @@ public class MyUtils {
             if (ClassifiedMainActivity.classifiedMainActivity != null) {
                 ClassifiedMainActivity.classifiedMainActivity.finish();
             }
+             Log.e("ad","KEY_COMMUNITY_ID g"+requestParametersbean.getCommunityID());
+
             Intent intent = new Intent(activity, ClassifiedMainActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
