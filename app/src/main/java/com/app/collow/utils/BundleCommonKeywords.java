@@ -17,6 +17,7 @@ public class BundleCommonKeywords {
     public static String KEY_COMMUNITY_ID="community_id";
     public static String KEY_COMMUNITY_NAME_TEXT="community_name_text";
     public static String KEY_COMMUNITY_CLAIMED="community_claimed";
+    public static String KEY_IS_ACTIVITY="isFromActivity";
     public static String KEY_ID="id";
 
 

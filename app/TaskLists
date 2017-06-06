@@ -1,0 +1,195 @@
+
+Forms and documents
+
+(1) Creating forms and document screen
+    (a) In this only two fields comes (1) title (2) Viewer type.
+    (b) Upload button what do you need to upload it ?
+(2) Form and document details screen
+    (a) bottom-right icon will always display for sending downloadble link to users right ?
+    (b) In screen display description but we dont have description field in create form and document screen?
+
+
+
+
+
+
+
+
+
+(3) get temas and based on team get commuities and admins
+(3) edit admints
+(4) Form and docs (create,edit,listing,delete)
+
+
+//My issues
+(2) Comment item image clicked large screen should open
+
+(1)Profile pic not coming in create comment
+
+http://collow-test.cygnasoftware.net/index.php/Webservice/commentActivity
+{"userId":"435","ActivityId":"51","commentType":"news","commentText":"test5"}
+SuccessResponce: {"success":1,"Comment":{"commentid":"7","CommentText":"test5","CommentDate":"2017.02.21 05:55:59","UserName":"vijay patel","ProfilePic":null,"TotalLike":0,"timeStamp":1487656559,"UploadedImage":"http:\/\/collow-test.cygnasoftware.net\/uploads\/commentimage\/1487656559collow_user_profile_pic.jpg","userId":"435","isOnlyTextPosted":2}}
+
+
+
+
+check before give apk
+
+(1) Comment listing user id comes same for all done
+(2) Like dislike point in community feed done
+(3) View done
+
+
+Gallery
+Event
+
+
+
+
+(1) Event details image not coming done
+(2) Date need to change done
+(3) edit event date need to change done
+(4) Buttton margin left right need to give done
+(5) Delete event not working
+(6) Fileter event remain
+
+(1) Creare galler left arrow not displaying  done
+(2)Gallery listing like counter and comment conter
+(3) View function
+(4) Download function
+(5) Flag as inappropriate
+(6) In Gallery detail oage like and comment and user information and date
+
+
+
+
+
+
+
+Message
+In Edit profile gallery loader
+Comment listing load more point and for video handling remain and setting
+In my post multiple selection remain
+In following screen ring button notification counter remain
+In setting send feedback form remain
+Check Community main menu for user and admin
+Chat all parts remain
+Poll listing and detaisl remain with web service
+Event listing by selected date user
+Event filter
+Form and document with service
+Admin manage address
+Feature
+
+
+
+
+
+Gallery detais icon need to change
+
+
+
+
+(1) First app open if you haven't set any home community you will see "Search" Screen else you will see "Feed" Screen.
+(2) then Go to search screen and tap on search by name "Alaska USA" you will see communities so here you can make home community as by tapping on home icon.
+(3) then tap on community item after that you will see community information screen now click on 4 square menu.
+(4) if you haven't set still home community so if you will tap on heart icon that community automatic will become as your home community which you can change whenever you want.
+(5) now this following request will go at community'admin follower awating screen from where admin can approve or reject this request.
+(6) after following request sent you can claim this community and select multiple teams which you want to associate with them.
+(7) after sent claim request "please make admin to that user from backend "http://collow-test.cygnasoftware.net/Admin/Claimslisting" by this url.
+(8) now come again on this community where you can get all accesss as you are admin.
+(9) make new user that user should follow this community then that user can see  all post which are crated by community admin's.
+(10) admin now can create gallery,event,news&announcement,polls.
+
+
+(1) if i will click on following should i need to open dialog ?
+(2) From My post if user wants to delete multiple post so all feed also will be delete in related of post right ?
+(3)Gallery details like andcomment count not reflect to details
+
+
+
+(1) In event search not working
+(2) DELETE EVENT AFTER CREATING
+(3) IN GALLERY COMMENT LIKE DISLIKE NOT UPDATING IN MAIN SCREEN.
+
+
+
+
+
+News
+Classified
+Event
+Gallery
+Polls
+
+
+
+
+
+
+(1) My post deleting
+(2) Classifed filter
+(3) Event search
+(4) In inbox message loader
+
+
+(5)  Profile view with web service calling reamin
+(6) Setting screen for comment listing
+(7) Form and document reamin with web service calling
+(8) Address manage by admin reamin to discuss
+(9) Need FAQ disccuss where you want to put in app ?
+
+vijay@gmail.com
+123456
+
+testnew@gmail.com
+123456
+
+
+***************************
+For Adil
+
+(1) Message, display unread badge at message icon at left side menu ,need to call web service for remove message
+(2) My post deleteting remain
+(3) In classfied filter remain
+(4) In event search remain -done
+(5) Form and document remain
+(6) Normal user can post text - need to discuss where need to put
+(7) Chat listing and creating
+(8) Admins address
+(9) In comment listing what you want add for setting icon
+(10) In setting send feed back remain to call web service and about content
+(11) Personal profile view need to call web service
+(12) View Comnmunity information remain
+(13) Community feature layout done need to manage with web service
+
+
+
+
+>webservice= need community type in search community detail page >CommunityInformationActivity
+
+
+
+client query
+1>Various community types will have different content on this screen
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

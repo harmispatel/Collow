@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+
+    android:orientation="vertical">
+    <include
+        layout="@layout/header"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"></include>
+    <ImageView
+        android:id="@+id/imageview_done"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/trueicon" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageview_done"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="35dp"
+        android:orientation="vertical">
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_thanksforsigning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/thanks_for_signing"
+            android:textColor="@color/white" />
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_emailconfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text= "@string/email_confirm"
+            android:textColor="@color/white" />
+
+
+
+        <com.app.collow.baseviews.MyButtonView
+            android:id="@+id/mybutton_view_done_openmailapp"
+            style="@style/mybuttonViewStyle"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="@string/open_mailapp" />
+    </LinearLayout>
+
+</RelativeLayout>

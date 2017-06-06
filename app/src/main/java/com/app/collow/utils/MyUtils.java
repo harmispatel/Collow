@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Gravity;
@@ -37,6 +38,7 @@ import com.app.collow.activities.NewsDetailActivity;
 import com.app.collow.activities.NewsMainActivity;
 import com.app.collow.activities.PollsMainActivity;
 import com.app.collow.activities.UserEventMainActivity;
+import com.app.collow.adapters.FollowingAdapter;
 import com.app.collow.allenums.CommunityInformationScreenEnum;
 import com.app.collow.allenums.HTTPRequestMethodEnums;
 import com.app.collow.allenums.ScreensEnums;
@@ -96,6 +98,8 @@ public class MyUtils {
         if (CommunityMenuActivity.communityMenuActivity != null) {
             CommunityMenuActivity.communityMenuActivity.finish();
         }
+
+
         Intent intent = new Intent(activity, CommunityMenuActivity.class);
         Bundle bundle = new Bundle();
         if (communityAccessbean == null) {
@@ -104,6 +108,27 @@ public class MyUtils {
         bundle.putSerializable(BundleCommonKeywords.KEY_COMMUNITY_ACCESSBEAN, communityAccessbean);
         bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, communityID);
         bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_NAME_TEXT, communtiyText);
+
+        intent.putExtras(bundle);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up);
+
+
+    }
+    //////
+    public static void openCommunityMenu(Activity activity, String communityID, String communtiyText, CommunityAccessbean communityAccessbean,boolean isFromActivity) {
+        if (CommunityMenuActivity.communityMenuActivity != null) {
+            CommunityMenuActivity.communityMenuActivity.finish();
+        }
+        Intent intent = new Intent(activity, CommunityMenuActivity.class);
+        Bundle bundle = new Bundle();
+        if (communityAccessbean == null) {
+            communityAccessbean = new CommunityAccessbean();
+        }
+        bundle.putSerializable(BundleCommonKeywords.KEY_COMMUNITY_ACCESSBEAN, communityAccessbean);
+        bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, communityID);
+        bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_NAME_TEXT, communtiyText);
+        bundle.putBoolean(BundleCommonKeywords.KEY_IS_ACTIVITY,isFromActivity);
 
         intent.putExtras(bundle);
         activity.startActivity(intent);
@@ -121,7 +146,7 @@ public class MyUtils {
         Intent intent = new Intent(activity, CommunityActivitiesFeedActivitiy.class);
         Bundle bundle = new Bundle();
 
-
+        Log.e("ad","communityID11="+communityID);
         bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, communityID);
         bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_NAME_TEXT, communtiyText);
         bundle.putInt(BundleCommonKeywords.KEY_SCREEN_FROM_WHERE, index);
@@ -145,7 +170,7 @@ public class MyUtils {
 
 
         if (title.equals(activity.getResources().getString(R.string.feed))) {
-            MyUtils.openCommunityFeedActivity(activity, ScreensEnums.COMMMUNITY_MENU.getScrenIndex(), "", "", communityAccessbean);
+            MyUtils.openCommunityFeedActivity(activity, ScreensEnums.COMMUNTIES_FEED_ACTIVITIES.getScrenIndex(), requestParametersbean.getCommunityID(), requestParametersbean.getCommunityText(), communityAccessbean);
 
 
         } else if (title.equals(activity.getResources().getString(R.string.admins))) {
@@ -157,7 +182,13 @@ public class MyUtils {
             Intent intent = new Intent(activity, ACAdminListingActivity.class);
             Bundle bundle = new Bundle();
             bundle.putInt(BundleCommonKeywords.KEY_COMMUNITY_INNFORMATION_INDEX, CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
-            bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            //bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            if (!TextUtils.isEmpty(CommunityActivitiesFeedActivitiy.comId)) {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, CommunityActivitiesFeedActivitiy.comId);
+            }
+            else {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            }
             bundle.putSerializable(BundleCommonKeywords.KEY_COMMUNITY_ACCESSBEAN, communityAccessbean);
 
             intent.putExtras(bundle);
@@ -165,20 +196,36 @@ public class MyUtils {
 
 
         } else if (title.equals(activity.getResources().getString(R.string.info))) {
-//            if (CommunityInformationActivity.CommunityInformationActivity != null) {
-//                CommunityInformationActivity.CommunityInformationActivity.finish();
-//            }
+            if (CommunityInformationActivity.CommunityInformationActivity != null) {
+                CommunityInformationActivity.CommunityInformationActivity.finish();
+            }
             activity.finish();
 
-//            Intent intent = new Intent(activity, CommunityInformationActivity.class);
-//            Bundle bundle = new Bundle();
-//            Log.e("ad","KEY_COMMUNITY_INNFORMATION_INDEX "+CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
-//            Log.e("ad","KEY_COMMUNITY_ID "+requestParametersbean.getCommunityID());
-//            bundle.putInt(BundleCommonKeywords.KEY_COMMUNITY_INNFORMATION_INDEX, CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
-//            bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
-//
-//            intent.putExtras(bundle);
-//            activity.startActivity(intent);
+
+            Intent intent = new Intent(activity, CommunityInformationActivity.class);
+            Bundle bundle = new Bundle();
+            Log.e("ad","KEY_COMMUNITY_INNFORMATION_INDEX "+CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
+            Log.e("ad","KEY_COMMUNITY_ID "+requestParametersbean.getCommunityID());
+            bundle.putInt(BundleCommonKeywords.KEY_COMMUNITY_INNFORMATION_INDEX, CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
+
+            if (!TextUtils.isEmpty(CommunityActivitiesFeedActivitiy.comId)) {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, CommunityActivitiesFeedActivitiy.comId);
+            }
+            else {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            }
+            intent.putExtras(bundle);
+            activity.startActivity(intent);
+
+
+
+            /*//home
+            if (CommunityActivitiesFeedActivitiy.communityActivitiesFeedActivitiy != null) {
+                CommunityActivitiesFeedActivitiy.communityActivitiesFeedActivitiy.finish();
+            }
+
+            Intent intent = new Intent(activity, CommunityActivitiesFeedActivitiy.class);
+            activity.startActivity(intent);*/
 
 
         } else if (title.equals(activity.getResources().getString(R.string.followers))) {
@@ -190,7 +237,13 @@ public class MyUtils {
             Intent intent = new Intent(activity, ACFollowerAwaitingManageActivity.class);
             Bundle bundle = new Bundle();
             bundle.putInt(BundleCommonKeywords.KEY_COMMUNITY_INNFORMATION_INDEX, CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
-            bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            //bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            if (!TextUtils.isEmpty(CommunityActivitiesFeedActivitiy.comId)) {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, CommunityActivitiesFeedActivitiy.comId);
+            }
+            else {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            }
             if (communityAccessbean == null) {
                 communityAccessbean = new CommunityAccessbean();
             }
@@ -209,7 +262,13 @@ public class MyUtils {
 
             Intent intent = new Intent(activity, ClassifiedMainActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            //bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            if (!TextUtils.isEmpty(CommunityActivitiesFeedActivitiy.comId)) {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, CommunityActivitiesFeedActivitiy.comId);
+            }
+            else {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            }
             if (communityAccessbean == null) {
                 communityAccessbean = new CommunityAccessbean();
             }
@@ -229,7 +288,13 @@ public class MyUtils {
             Intent intent = new Intent(activity, NewsMainActivity.class);
             Bundle bundle = new Bundle();
             bundle.putInt(BundleCommonKeywords.KEY_COMMUNITY_INNFORMATION_INDEX, CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
-            bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            //bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            if (!TextUtils.isEmpty(CommunityActivitiesFeedActivitiy.comId)) {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, CommunityActivitiesFeedActivitiy.comId);
+            }
+            else {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            }
             if (communityAccessbean == null) {
                 communityAccessbean = new CommunityAccessbean();
             }
@@ -250,7 +315,13 @@ public class MyUtils {
 
                 Intent intent = new Intent(activity, ACListEventsMainActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+                //bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+                if (!TextUtils.isEmpty(CommunityActivitiesFeedActivitiy.comId)) {
+                    bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, CommunityActivitiesFeedActivitiy.comId);
+                }
+                else {
+                    bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+                }
                 bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_NAME_TEXT, requestParametersbean.getCommunityText());
                 if (communityAccessbean == null) {
                     communityAccessbean = new CommunityAccessbean();
@@ -267,7 +338,13 @@ public class MyUtils {
                 Intent intent = new Intent(activity, UserEventMainActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt(BundleCommonKeywords.KEY_COMMUNITY_INNFORMATION_INDEX, CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
-                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+                //bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+                if (!TextUtils.isEmpty(CommunityActivitiesFeedActivitiy.comId)) {
+                    bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, CommunityActivitiesFeedActivitiy.comId);
+                }
+                else {
+                    bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+                }
                 bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_NAME_TEXT, requestParametersbean.getCommunityText());
                 if (communityAccessbean == null) {
                     communityAccessbean = new CommunityAccessbean();
@@ -286,7 +363,13 @@ public class MyUtils {
             Intent intent = new Intent(activity, GalleryMainActivity.class);
             Bundle bundle = new Bundle();
             bundle.putInt(BundleCommonKeywords.KEY_COMMUNITY_INNFORMATION_INDEX, CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
-            bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            //bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            if (!TextUtils.isEmpty(CommunityActivitiesFeedActivitiy.comId)) {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, CommunityActivitiesFeedActivitiy.comId);
+            }
+            else {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            }
             bundle.putSerializable(BundleCommonKeywords.KEY_COMMUNITY_ACCESSBEAN, communityAccessbean);
             bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_NAME_TEXT, requestParametersbean.getCommunityText());
 
@@ -299,7 +382,13 @@ public class MyUtils {
             Intent intent = new Intent(activity, PollsMainActivity.class);
             Bundle bundle = new Bundle();
             bundle.putInt(BundleCommonKeywords.KEY_COMMUNITY_INNFORMATION_INDEX, CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
-            bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            //bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            if (!TextUtils.isEmpty(CommunityActivitiesFeedActivitiy.comId)) {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, CommunityActivitiesFeedActivitiy.comId);
+            }
+            else {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            }
             bundle.putSerializable(BundleCommonKeywords.KEY_COMMUNITY_ACCESSBEAN, communityAccessbean);
 
             intent.putExtras(bundle);
@@ -311,7 +400,8 @@ public class MyUtils {
             Intent intent = new Intent(activity, FormsAndDocsMainActivity.class);
             Bundle bundle = new Bundle();
             bundle.putInt(BundleCommonKeywords.KEY_COMMUNITY_INNFORMATION_INDEX, CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
-            bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            //bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, CommunityActivitiesFeedActivitiy.comId);
 
             intent.putExtras(bundle);
             activity.startActivity(intent);
@@ -324,7 +414,13 @@ public class MyUtils {
             Intent intent = new Intent(activity, ChatMainActivity.class);
             Bundle bundle = new Bundle();
             bundle.putInt(BundleCommonKeywords.KEY_COMMUNITY_INNFORMATION_INDEX, CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
-            bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            //bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            if (!TextUtils.isEmpty(CommunityActivitiesFeedActivitiy.comId)) {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, CommunityActivitiesFeedActivitiy.comId);
+            }
+            else {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            }
             bundle.putSerializable(BundleCommonKeywords.KEY_COMMUNITY_ACCESSBEAN, communityAccessbean);
 
             intent.putExtras(bundle);
@@ -340,7 +436,13 @@ public class MyUtils {
             Intent intent = new Intent(activity, FeatureMainActivity.class);
             Bundle bundle = new Bundle();
             bundle.putInt(BundleCommonKeywords.KEY_COMMUNITY_INNFORMATION_INDEX, CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
-            bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            //bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            if (!TextUtils.isEmpty(CommunityActivitiesFeedActivitiy.comId)) {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, CommunityActivitiesFeedActivitiy.comId);
+            }
+            else {
+                bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, requestParametersbean.getCommunityID());
+            }
             bundle.putSerializable(BundleCommonKeywords.KEY_COMMUNITY_ACCESSBEAN, communityAccessbean);
 
             intent.putExtras(bundle);
@@ -448,6 +550,7 @@ public class MyUtils {
 
 
                                 if (responcebean.getErrorMessage() == null) {
+
                                     CommonMethods.customToastMessage(activity.getResources().getString(R.string.community_set_as_home), activity);
                                 } else {
                                     CommonMethods.customToastMessage(responcebean.getErrorMessage(), activity);
@@ -473,6 +576,7 @@ public class MyUtils {
 
                                 if (jsonObject_main.has(JSONCommonKeywords.newCommunityId)) {
                                     newCommunityIDString = jsonObject_main.getString(JSONCommonKeywords.newCommunityId);
+                                    CommunityActivitiesFeedActivitiy.comId=newCommunityIDString;
                                     if (newCommunityIDString == null || newCommunityIDString.equals("") || newCommunityIDString.equals("null")) {
                                         useNewcommunityID = false;
 
@@ -618,7 +722,7 @@ public class MyUtils {
 
                 loginbean.setHomeCommunityName(communityName);
                 loginbean.setHomeCommunityId(communityID);
-
+                CommunityActivitiesFeedActivitiy.comId=communityID;
                 // here flag set true as user had selected commnity as home
                 commonSession.storeUserSetHomeCommunity(true);
 

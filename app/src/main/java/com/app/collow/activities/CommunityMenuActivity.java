@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -61,9 +63,11 @@ public class CommunityMenuActivity extends BaseActivity implements SetupViewInte
     RequestParametersbean requestParametersbean = new RequestParametersbean();
     String communityID = null;
     String communityText = null;
+    boolean isFromActivity = false;
     CommonSession commonSession = null;
     CommunityAccessbean communityAccessbean = null;
     MenuAdapter menuAdapter;
+    String isFromSearch = "";
     private RecyclerView mRecyclerView;
 
     @Override
@@ -73,14 +77,27 @@ public class CommunityMenuActivity extends BaseActivity implements SetupViewInte
             communityMenuActivity = this;
             retryParameterbean = new RetryParameterbean(CommunityMenuActivity.this, getApplicationContext(), getIntent().getExtras(), CommunityMenuActivity.class.getClass());
             commonSession = new CommonSession(this);
-
+            Log.e("Tag", "--------------=" + commonSession.isUserFollow());
+            isFromSearch = commonSession.getSearchCom();
+            Log.e("Tag", "-----isFromSearch---------=" + isFromSearch);
             communitySearchByNameActivity = this;
             Bundle bundle = getIntent().getExtras();
             if (bundle != null) {
                 communityAccessbean = (CommunityAccessbean) bundle.getSerializable(BundleCommonKeywords.KEY_COMMUNITY_ACCESSBEAN);
                 communityID = bundle.getString(BundleCommonKeywords.KEY_COMMUNITY_ID);
+
                 communityText = bundle.getString(BundleCommonKeywords.KEY_COMMUNITY_NAME_TEXT);
-                requestParametersbean.setCommunityID(communityID);
+                isFromActivity = bundle.getBoolean(BundleCommonKeywords.KEY_IS_ACTIVITY);
+
+
+
+             if (TextUtils.isEmpty(CommunityActivitiesFeedActivitiy.comId) && !TextUtils.isEmpty(communityID))
+             {
+                 Log.e("Tag", "-----communityID---------=" + communityID);
+                CommunityActivitiesFeedActivitiy.comId=communityID;}
+
+              requestParametersbean.setCommunityID(communityID);
+
 
                 //We are setting user as admin by claimed flag which comes from server
                 if (communityAccessbean != null) {
@@ -92,8 +109,6 @@ public class CommunityMenuActivity extends BaseActivity implements SetupViewInte
 
                     if (communityAccessbean.isCommunityFollowed()) {
                         commonSession.storeUserFollow(true);
-                    } else {
-                        commonSession.storeUserFollow(false);
                     }
                 }
 
@@ -101,6 +116,7 @@ public class CommunityMenuActivity extends BaseActivity implements SetupViewInte
 
             setupHeaderView();
             findViewByIDs();
+
             setupEvents();
         } catch (Exception e) {
             new BaseException(e, false, retryParameterbean);
@@ -205,20 +221,58 @@ public class CommunityMenuActivity extends BaseActivity implements SetupViewInte
 
             if (communityAccessbean.isCommunityFollowed()) {
                 enableButton();
-                imageview_community_favouriteunfavourite.setVisibility(View.GONE);
 
+
+                if (isFromActivity) {
+                    imageview_community_favouriteunfavourite.setVisibility(View.GONE);
+                    button_community_claim.setVisibility(View.GONE);
+                    setNonFollowerMenu();
+                } else {
+
+                    imageview_community_favouriteunfavourite.setVisibility(View.GONE);
+                }
+                commonSession.storeUserFollow(true);
+            } else if (commonSession.isUserFollow()) {
+                if (isFromActivity) {
+                    imageview_community_favouriteunfavourite.setVisibility(View.GONE);
+                    button_community_claim.setVisibility(View.GONE);
+                    setNonFollowerMenu();
+                } else {
+                    if (!TextUtils.isEmpty(isFromSearch) && isFromSearch.equalsIgnoreCase("1")) {
+                        setNonFollowerMenu();
+                        imageview_community_favouriteunfavourite.setVisibility(View.VISIBLE);
+                        button_community_claim.setVisibility(View.VISIBLE);
+                        disableButton();
+                    } else {
+                        imageview_community_favouriteunfavourite.setVisibility(View.GONE);
+                    }
+                }
                 commonSession.storeUserFollow(true);
             } else {
                 disableButton();
                 commonSession.storeUserFollow(false);
-                imageview_community_favouriteunfavourite.setVisibility(View.VISIBLE);
+
+
+                if (isFromActivity) {
+                    imageview_community_favouriteunfavourite.setVisibility(View.GONE);
+                    button_community_claim.setVisibility(View.GONE);
+                    setNonFollowerMenu();
+                } else {
+                    imageview_community_favouriteunfavourite.setVisibility(View.VISIBLE);
+                }
 
             }
 
             if (communityAccessbean.isClaimedCommunityRequestSent() || communityAccessbean.isCommunityClaimedAndApproved()) {
                 button_community_claim.setVisibility(View.GONE);
             } else {
-                button_community_claim.setVisibility(View.VISIBLE);
+                if (isFromActivity) {
+                    imageview_community_favouriteunfavourite.setVisibility(View.GONE);
+                    button_community_claim.setVisibility(View.GONE);
+                    setNonFollowerMenu();
+                } else {
+                    button_community_claim.setVisibility(View.VISIBLE);
+                }
             }
 
 
@@ -284,6 +338,22 @@ public class CommunityMenuActivity extends BaseActivity implements SetupViewInte
             } else {
                 if (communityAccessbean.isCommunityFollowed()) {
                     setFollowerMenu();
+                    commonSession.storeUserFollow(true);
+                } else if (commonSession.isUserFollow()) {
+                    if (isFromActivity) {
+                        setNonFollowerMenu();
+                    } else {
+                        if (!TextUtils.isEmpty(isFromSearch) && isFromSearch.equalsIgnoreCase("1")) {
+                            setNonFollowerMenu();
+                            imageview_community_favouriteunfavourite.setVisibility(View.VISIBLE);
+                            button_community_claim.setVisibility(View.VISIBLE);
+                            disableButton();
+                        } else {
+                            setFollowerMenu();
+                        }
+                    }
+
+                    commonSession.storeUserFollow(true);
                 } else {
                     setNonFollowerMenu();
                 }
@@ -413,7 +483,6 @@ public class CommunityMenuActivity extends BaseActivity implements SetupViewInte
         menubeanArrayList.add(menubean_feed);
         menubeanArrayList.add(menubean_followers);
 
-
     }
 
 
@@ -427,6 +496,8 @@ public class CommunityMenuActivity extends BaseActivity implements SetupViewInte
             requestParametersbean.setUser_email(loginbean.getEmail());
             requestParametersbean.setCommunityID(communityID);
             requestParametersbean.setCommunityText(communityText);
+
+
             JSONObject jsonObjectGetPostParameterEachScreen = GetPostParameterEachScreen.getPostParametersAccordingIndex(ScreensEnums.FOLLOW_COMMUNITY.getScrenIndex(), requestParametersbean);
             PassParameterbean passParameterbean = new PassParameterbean(this, CommunityMenuActivity.this, getApplicationContext(), URLs.FOLLOW_COMMUNITY, jsonObjectGetPostParameterEachScreen, ScreensEnums.FOLLOW_COMMUNITY.getScrenIndex(), CommunityMenuActivity.class.getClass());
 
@@ -454,6 +525,8 @@ public class CommunityMenuActivity extends BaseActivity implements SetupViewInte
                     JSONObject jsonObject_main = new JSONObject(responcebean.getResponceContent());
                     if (CommonMethods.checkSuccessResponceFromServer(jsonObject_main)) {
                         //parse here data of following
+                        CommunityInformationActivity.isFollowed=true;
+                        CommunityInformationActivity.imageview_follow.setImageResource(R.drawable.select_heart);
 
                         enableButton();
                         imageview_community_favouriteunfavourite.setVisibility(View.GONE);
@@ -461,8 +534,10 @@ public class CommunityMenuActivity extends BaseActivity implements SetupViewInte
                             responcebean.setErrorMessage(jsonObject_main.getString(JSONCommonKeywords.message));
                         }
                         communityAccessbean.setCommunityFollowed(true);
-
+                        commonSession.storeUserFollow(true);
 //                        menubeanArrayList.clear();
+                        commonSession.resetSearchCom();
+                        isFromSearch="";
                         setFollowerMenu();
                         menuAdapter = new MenuAdapter(menubeanArrayList, CommunityMenuActivity.this, communityID, communityAccessbean);
                         mRecyclerView.setAdapter(menuAdapter);

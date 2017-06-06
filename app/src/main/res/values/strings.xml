@@ -1,0 +1,477 @@
+<resources>
+
+    <!--facebook id -->
+
+
+    <string name="facebook_app_id">351302521923822</string>
+
+    <!--linked in details-->
+    <string name="client_id">81xi7zcbgh072i</string>
+    <string name="client_secret">ZG9TQtsbIAbVQj26</string>
+
+
+    <string name="app_name">Collow</string>
+
+    <!--validation message -->
+
+    <string name="enter_frist_name">Enter First Name</string>
+    <string name="enter_last_name">Enter Last Name</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_valid_email">Enter Valid Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_minimum_three_characters">Enter Minimum three characters</string>
+
+    <string name="enter_city">Enter City</string>
+    <string name="enter_change_password">Change Password</string>
+    <string name="please_select_date_of_birth">Please Select Date of Birth.</string>
+    <string name="please_select_state">Please Select State.</string>
+    <string name="no_data_founds">No Records found.</string>
+    <string name="no_my_activities_found">No My Activities found.</string>
+    <string name="no_message_found">No Message Found in Your Inbox.</string>
+
+    <string name="no_news_found">No News And Announcements Records found.</string>
+    <string name="no_form_and_document_found">No Forms And Documents Records found.</string>
+    <string name="no_polls_records_found">No Polls Records found.</string>
+    <string name="no_activties_feed_found">No Community Activity Feeds Records found.</string>
+    <string name="no_comments_found">No Comments Found.</string>
+    <string name="no_teams_record_found">No Management Team Records Found.</string>
+    <string name="no_communities_records_found">No Communities Records found.</string>
+    <string name="no_admins_records_found">No Admins Records found.</string>
+    <string name="no_galleries_found">No Galleries Found</string>
+
+    <string name="no_search_result_found">No Search Results found.</string>
+    <string name="no_amenities_found">No Amenities found.</string>
+    <string name="no">No Records found.</string>
+    <string name="no_teams_found">No Management Teams Records found.</string>
+
+    <string name="no_classified_found">No Classifieds Records found.</string>
+    <string name="write_here">Write Here</string>
+    <string name="create_news_success">New And Announcement created successfully.</string>
+
+
+    <!--classified validate message -->
+    <string name="enter_title">Enter Title</string>
+    <string name="enter_description">Enter Description</string>
+
+    <string name="enter_price">Enter Price</string>
+
+    <string name="image_upload_limit_corss_message">You can not upload images more then 12.</string>
+    <string name="image_upload_limit_corss_message_all_files">You can not upload files more then 12.</string>
+
+    <string name="upload_images_at_least_one">Please upload at least one image.</string>
+    <string name="create_classfied_done">Classified Post created successfully .</string>
+    <string name="imrequest_sent_successfully">Your Interested request sent Successfully.</string>
+    <string name="imrequest_sent_failed">Your Interested request failed please try again.</string>
+    <string name="create_formsanddocuments_done">Form And Documents Post created successfully .</string>
+    <string name="your_request_sent">Your request sent Successfully .</string>
+    <string name="your_request_sent_failed">Your request sent failed .</string>
+
+    <string name="price_should_be_valid">Price Should be valid.</string>
+    <string name="enter_message">Message should not be empty.</string>
+    <string name="event_created">Event created successfully .</string>
+    <string name="event_deleted_successfully">Event Deleted Successfully.</string>
+    <string name="event_updated">Event Updated successfully .</string>
+    <string name="gallery_deleted_successfully">Gallery Deleted Successfully.</string>
+    <string name="request_sent">Request Sent Successfully.</string>
+
+    <string name="polls_created_successfully">Poll Created Successfully .</string>
+    <string name="poll_question_not_to_be_empty">Poll Question Should be not empty .</string>
+    <string name="poll_options_not_to_be_empty">Poll Option Should be not empty .</string>
+    <string name="your_votes_saved_succesfully">Your vote sent successfully.</string>
+
+    <!--failed request -->
+    <string name="event_deleted_failed">Event Deleted failed.</string>
+    <string name="gallery_deleted_failed">Gallery Deleted failed.</string>
+    <string name="request_sent_failed">Request Sent Failed.</string>
+    <string name="polls_created_failed">Poll Created Failed Please try again .</string>
+    <string name="your_votes_saved_failed">Your vote sent failed.</string>
+
+    <string name="following_request_failed">Following request sent failed please try again.</string>
+    <string name="claim_community_request_failed">Claim Community request sent failed please try again.</string>
+    <string name="create_classfied_failed">Create Classified Post failed try again .</string>
+    <string name="create_gallery_failed">Create Gallery Post failed try again .</string>
+    <string name="event_created_failed">New Event created failed .</string>
+    <string name="event_updated_failed"> Event Update failed .</string>
+
+    <string name="create_news_failed">Create News And Announcement failed try again .</string>
+    <string name="create_formsanddocuments_failed">Forms And Documents  request failed to sent please try again.</string>
+
+    <!--sent request -->
+    <string name="following_request_sent">Following request sent successfully.</string>
+    <string name="claim_community_request_sent">Claim Community request sent successfully.</string>
+    <string name="claim_community_request_sent_failed">Claim Community request sent failed please try again.</string>
+
+
+    <string name="cannot_click_claim">You cannot click this button until you will not follow the community.</string>
+
+    <!--loading -->
+    <string name="loading">Loading...</string>
+
+    <!--user notify message -->
+
+    <string name="something_wrong">Something wrong,please try again.</string>
+    <string name="no_records_found">ohh, No data found.</string>
+
+
+    <!--internet connection message -->
+
+    <string name="internet_connection_slow">Internet connection either slow or not available.please check your network connection.</string>
+    <string name="attempting">You attempted </string>
+    <string name="times">Times.</string>
+    <string name="retry">Retry</string>
+    <string name="could_not_get_data">Couldn\'t find any content from server so please try again.</string>
+    <string name="html_comming">Data came from server either in html form instead of JSON or data may came empty please try after sometimes.</string>
+    <string name="interent_lost">Internet Connection Lost</string>
+
+    <!--Signup -->
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+
+    <string name="signup">Sign Up</string>
+
+    <string name="create_an_account">By creating an account,you are aggreing to Collow\'s</string>
+    <string name="terms_of_use">Terms of Use</string>
+    <string name="and">and</string>
+    <string name="privacy_policy">Privacy Policy</string>
+
+    <string name="iam_registered">Already Registered</string>
+
+    <!--Signup Done -->
+    <string name="thanks_for_signing">Thanks for Signing Up. Please check your</string>
+    <string name="email_confirm">email to confirm your account</string>
+    <string name="open_mailapp">OPEN MAIL APP</string>
+
+    <!--Common Fields -->
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+
+    <!-- Sign In-->
+    <string name="sign_in">Sign In</string>
+
+    <string name="create_account">Create New Account</string>
+    <string name="back">Back</string>
+    <string name="done">Done!</string>
+    <string name="search_result_empty">Please Enter Search Text.</string>
+    <string name="please_enter_any_search_criteria">Please Enter Any Search Criteria.</string>
+
+    <!-- Collow-->
+    <string name="welcom">Welcome</string>
+    <string name="welcomedescription">Improving the way we communicate with our</string>
+    <string name="welcome_community">community managers</string>
+    <string name="get_started">GET STARTED</string>
+
+    <!-- Edit Profile-->
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="city">City</string>
+    <string name="zipcode">ZIP Code</string>
+
+    <string name="state">Select State</string>
+    <string name="change_password">Change Password</string>
+    <string name="dob">Date of Birth</string>
+    <string name="select_home_community">Select home Community</string>
+    <string name="select_your_interests">Select your Interests</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="search_state">Search State</string>
+    <string name="search_">Search</string>
+
+    <string name="more_text">Read More</string>
+    <string name="select_community_type">Select Community Type</string>
+    <string name="your_profile_save_successfully">Your Profile Saved Successfully.</string>
+
+    <!--Forget Password-->
+    <string name="wejust">We just sent you an email with instructions</string>
+    <string name="toreset">to reset your password</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="forgot_password_title">Forgot Password</string>
+
+    <!--Reset Password-->
+    <string name="enteryouremail">Enter your email below and we\'ll send you</string>
+    <string name="alink">a link to reset your password</string>
+    <string name="enteremail">Email Address</string>
+    <string name="reset">RESET</string>
+
+    <string name="share">SHARE</string>
+    <string name="edit">EDIT</string>
+    <string name="delete">DELETE</string>
+
+
+    <!--LeftMenu-->
+    <string name="home">Home</string>
+    <string name="activity">Activity</string>
+    <string name="post">My Posts</string>
+    <string name="following">Following</string>
+    <string name="search">Search</string>
+    <string name="signout">Sign Out</string>
+    <string name="my_posts">My Posts</string>
+    <string name="results">Results</string>
+    <string name="search_by_communtity_name">Search By Community Name...</string>
+    <string name="settings">Settings</string>
+    <string name="menu">Menu</string>
+    <string name="team_title">Team</string>
+    <string name="searched_item">Searched Item  :</string>
+
+    <!--Menu-->
+    <string name="feed">Feed</string>
+    <string name="classified">Classified</string>
+    <string name="news">News</string>
+    <string name="select_team">Select Team</string>
+
+    <string name="chat">Chat</string>
+    <string name="events">Events</string>
+    <string name="gallery">Gallery</string>
+    <string name="polls">Polls</string>
+    <string name="forms">Forms/Docs</string>
+    <string name="info">Info</string>
+    <string name="claim">CLAIM THIS COMMUNITY</string>
+    <string name="admins">Admins</string>
+    <string name="followers">Followers</string>
+    <string name="feature">Features</string>
+    <string name="address_units">Addresses/Units</string>
+
+    <string name="claime_community">Claim Community</string>
+    <string name="communities">Communities</string>
+    <string name="inbox">Inbox</string>
+
+    <!--detailpage-->
+    <string name="likes">Likes</string>
+    <string name="comments">Comments</string>
+    <string name="views">Views</string>
+
+    <!--Claim Community-->
+    <string name="booknow">BOOK NOW</string>
+    <string name="cancel">Cancel</string>
+
+    <!--Create Team-->
+    <string name="team">Team or company name</string>
+    <string name="contactemail">Contact email</string>
+    <string name="phonenumber">Contact phone number</string>
+    <string name="street">Street</string>
+    <string name="zip">Zip</string>
+    <string name="fax">Contact Fax</string>
+    <string name="checktext">By submitting this request to claim</string>
+    <string name="save">SAVE</string>
+    <string name="save_small">Save</string>
+
+    <!--New chat-->
+    <string name="title">Title</string>
+    <string name="comment">Comment</string>
+    <string name="choosecategory">Choose a topic category</string>
+    <string name="uploadimage">Upload image</string>
+    <string name="submit">SUBMIT</string>
+
+    <!--Create Classification-->
+    <string name="selectcategory">Select Category</string>
+    <string name="uploadimages">Upload Images</string>
+    <string name="description">Description</string>
+    <string name="price">Price</string>
+    <string name="select_propert_type">Select Type</string>
+    <string name="select_category">Select Category</string>
+    <string name="new_lsiting">New Listing</string>
+    <string name="for_text">For</string>
+    <string name="create_news_annnoucement">Create News And Announcement</string>
+
+    <!--Enter Email-->
+    <string name="download">DOWNLOAD</string>
+    <string name="document">the document</string>
+    <string name="send">SEND</string>
+    <!-- Logout -->
+    <string name="logout_message">Are you sure want to logout?</string>
+    <string name="logout_ok">OK</string>
+    <string name="logout_cancel">CANCEL</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- Upload image items -->
+    <string name="upload_pictures_title">Upload Pictures Option</string>
+    <string name="how_do_you_want_set">How do you want to set your picture?</string>
+    <string name="camera">Camera</string>
+    <string name="cancelled">Cancelled</string>
+
+
+    <!-- Search Hint -->
+    <string name="filter_state">Filter States</string>
+    <string name="filter">Filter</string>
+
+    <!-- Filter screen -->
+
+    <string name="communtity_type">Community Type</string>
+    <string name="apply">Apply</string>
+
+    <string-array name="interpolators">
+        <item>Accelerate</item>
+        <item>Linear</item>
+        <item>AccelerateDecelerate</item>
+        <item>Decelerate</item>
+        <item>FastOutSlowIn</item>
+    </string-array>
+    <!-- Search screen -->
+
+    <string name="communtiy_name">Enter Name or Location</string>
+    <string name="nearby">Nearby</string>
+    <string name="recent_searches">Recent Searches</string>
+
+    <string name="no_recent_searches">No Recent Searches available now.</string>
+
+    <string name="fetching_location">Fetching Your Location...</string>
+    <string name="no_found_location">Failed to Find Current location.</string>
+
+
+    <string name="community_set_as_home">Your Community Set as Home Successfully.</string>
+    <string name="warn_unfollow">Sorry, You Can not Unfollow Home Community.</string>
+
+    <!-- Settings screen -->
+    <string name="language">Language : English</string>
+    <string name="send_feedback">Send Feedback</string>
+    <string name="about">About</string>
+
+    <!--Classified Detail-->
+    <string name="contact">CONTACT</string>
+    <string name="iam_interested">I\'M INTERESTED</string>
+
+
+    <!--Polls -->
+
+    <string name="addanothroption">Add another option</string>
+    <string name="pulldowntocreatebewitem">Pull down to create new item </string>
+    <string name="new_poll">New Poll</string>
+    <string name="enter_poll_question">Enter the Poll question</string>
+    <string name="option">Option</string>
+
+    <string name="you_can_not_add_more_options">You can not add more then 10 options for a questions.</string>
+
+    <!--Form and document -->
+    <string name="newformdoc">New Form/Doc</string>
+    <string name="viewers">Viewers</string>
+    <string name="upload">UPLOAD</string>
+    <string name="browser">BROWSE</string>
+    <string name="clear_filter">Clear Filter</string>
+    <string name="proceed">Proceed</string>
+    <string name="newteam">New Team</string>
+
+    <!--comments-->
+    <string name="write_message">Write Message</string>
+
+
+    <string name="write_caption">Write Caption</string>
+
+    <string name="second_ago">seconds ago</string>
+    <string name="mint_ago">minutes ago</string>
+    <string name="hours_ago">hours ago</string>
+    <string name="days_ago">days ago</string>
+    <string name="today">Today at</string>
+    <string name="yesterday">Yesterday at</string>
+    <string name="upload_small">Upload</string>
+    <string name="upload_iamge_or_write_text">Either upload image or write text.</string>
+
+
+    <!--admin followers-->
+    <string name="approve">Approve</string>
+    <string name="reject">Reject</string>
+    <string name="no_approved_records_found">No Any Approved Followers request found.</string>
+    <string name="no_awaiting_records_found">No Any Awaiting  Followers request found.</string>
+
+    <string name="approved">Approved</string>
+    <string name="waiting">Waiting</string>
+    <!--New Admin-->
+    <string name="sendrequest">SEND REQUEST</string>
+    <!--Community Features-->
+    <string name="walkscore">Walk Score</string>
+    <string name="greatschool">Great Schools</string>
+    <string name="addsales">Add Sales</string>
+    <string name="socialmediafeed">Social Media Feed</string>
+    <string name="maintanancerequest">Maintenance Request</string>
+    <string name="packagenotificaion">Package Notifications</string>
+    <string name="rentpayment">Rent Payments</string>
+
+    <!--View CommunityInfo-->
+    <string name="est">Est.# of Residents </string>
+    <string name="type">Type</string>
+    <string name="yearbuilt">Year Built</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone</string>
+    <string name="url">URL</string>
+
+    <string name="message">Message...</string><!--MGMT-->
+    <string name="profilepicture">Profile Picture</string>
+
+
+    <!-- Message -->
+    <string name="delete_message">Delete Message</string>
+    <string name="sure_want_delete_message">Are you sure you want to delete this message ?</string>
+    <!--Gallery-->
+    <string name="album_title">Album Title</string>
+
+    <string name="create_gallery">Create Gallery</string>
+
+    <string name="flag_as_inappropriate">Flag As Inappropriate</string>
+    <string name="download_small">Download</string>
+
+    <string name="select_options">Select Your Option</string>
+    <string name="delete_small">Delete</string>
+
+    <!--AC Edit Event-->
+    <string name="eventtitle">Event Title</string>
+    <string name="starttime">Start Time</string>
+    <string name="date">Date</string>
+    <string name="endtime">End Time</string>
+    <string name="eventlocation">Event Location</string>
+    <string name="confirm">CONFIRM</string>
+    <string name="end_time_should_be_after_start_time">End time should be after of Start time.</string>
+    <string name="start_time_end_time_not_same">Start Time and End Time Should be not same.</string>
+    <string name="start_time_should_be_before_end_time">Start time should be before of End time.</string>
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Time</string>
+
+    <!--AC New Event-->
+    <string name="addimage">Add Image</string>
+    <string name="createevent">CREATE EVENT</string>
+    <string name="no_events_exist">No Events Found</string>
+    <string name="edit_event">Edit Event</string>
+    <string name="new_event">New Event</string>
+    <string name="view_event">View Event</string>
+
+    <string name="time">Time</string>
+    <string name="no_images_exist">No Images Found</string>
+    <string name="delete_event_confirm">Are you sure that you want to delete this Event.</string>
+    <string name="delete_gallery_confirm">Are you sure that you want to delete this Gallery.</string>
+
+    <string name="all_days">All Day</string>
+    <string name="custom_time">Custom Date</string>
+    <string name="view_info">View Info</string>
+    <string name="edit_info">Edit Info</string>
+    <string name="select_event_type">Select Event Type</string>
+
+
+    <string name="options">OPTIONS</string>
+    <string name="parkingpass">Parking Pass Management</string>
+    <string name="community_features">Community Features</string>
+
+    <string name="view_form">View Form</string>
+    <!--FAQ-->
+    <string name="answer">Answer</string>
+    <string name="question">Question</string>
+    <string name="faq">FAQs</string>
+    <string name="view_faq">View FAQ</string>
+    <string name="no_documents_founds">No Documents found.</string>
+    <string name="edit_forms">Edit Form/Doc</string>
+    <string name="new_forms">New Form/Doc</string>
+    <string name="create_chat_done">Chat created successfully .</string>
+    <!--AC View Forms and Docs-->
+    <string name="documentname">Document Name</string>
+    <string name="uploaddate">Upload Date</string>
+    <string name="numberofdownloads">Number of Downloads</string>
+    <!--votes-->
+    <string name="votes">Votes</string>
+    <string name="total_number_of_votes">Total number of Votes :</string>
+    <string name="select_one_options">Select One answer before submit your vote.</string>
+    <string name="thank_you">Thank You</string>
+    <string name="chat_detail">Chat Detail</string>
+    <string name="create_chat">Create Chat</string>
+    <string name="create_chat_failed">Create Chat failed try again .</string>
+
+
+    <string name="search_event">Search Event</string>
+    <string name="delete_message_a">Are you sure want to unfollow?</string>
+
+
+</resources>

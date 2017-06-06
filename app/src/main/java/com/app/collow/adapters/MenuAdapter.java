@@ -8,6 +8,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -206,6 +207,7 @@ public class MenuAdapter extends ExpandableRecyclerViewAdapter<MenuAdapter.MainC
                             Bundle bundle = new Bundle();
                             bundle.putInt(BundleCommonKeywords.KEY_COMMUNITY_INNFORMATION_INDEX, CommunityInformationScreenEnum.NORMAL_SEARCH_LISTING.getIndexFromWhereCalledCommunityInformation());
                             bundle.putString(BundleCommonKeywords.KEY_COMMUNITY_ID, communityID);
+                            Log.e("ad","menu adaptr=="+communityID);
                             bundle.putSerializable(BundleCommonKeywords.KEY_COMMUNITY_ACCESSBEAN, communityAccessbean);
 
                             intent.putExtras(bundle);

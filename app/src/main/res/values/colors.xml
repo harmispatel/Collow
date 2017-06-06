@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <!-- comunity menu colors -->
+
+    <color name="menu_feed">#219bb7</color>
+    <color name="menu_classfied">#b73555</color>
+    <color name="menu_news">#d5632c</color>
+    <color name="menu_chat">#9eb03d</color>
+    <color name="menu_events">#e9a341</color>
+    <color name="menu_gallery">#a41aac</color>
+    <color name="menu_polls">#e5379d</color>
+    <color name="menu_forms">#bcbcbc</color>
+    <color name="menu_info">#060606</color>
+
+    <color name="colorWhite">#ffffff</color>
+    <color name="black_transparent">#75000000</color>
+    <color name="white_transparent">#76ffffff</color>
+
+
+    <color name="colorPrimary">#9AD5E5</color>
+    <color name="colorPrimaryDark">#9AD5E5</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="white">@android:color/white</color>
+    <color name="black">@android:color/black</color>
+    <color name="line_color_gray">#d6d6d6</color>
+    <color name="left_Menu_text_color_gray">#7F7F7F</color>
+
+
+
+    <color name="edittext_hint_color">#7F7F7F</color>
+    <color name="edittext_text_color">#7F7F7F</color>
+
+
+    <color name="blue_color_my_post_text">#09a9ec</color>
+
+    <color name="edittext_filter_gray_color">#EDEDED</color>
+
+
+
+
+
+    <integer-array name="colors">
+        <item>@color/holo_blue_dark</item>
+        <item>@color/holo_yellow_dark</item>
+        <item>@color/holo_green_dark</item>
+        <item>@color/holo_purple_dark</item>
+        <item>@color/holo_red_dark</item>
+    </integer-array>
+
+    <integer-array name="gplus_colors">
+        <item>@color/gplus_color_1</item>
+        <item>@color/gplus_color_2</item>
+        <item>@color/gplus_color_3</item>
+        <item>@color/gplus_color_4</item>
+    </integer-array>
+
+    <integer-array name="pocket_bar_colors">
+        <item>@color/pocket_color_1</item>
+        <item>@color/pocket_color_1</item>
+        <item>@color/pocket_color_1</item>
+        <item>@color/pocket_color_1</item>
+        <item>@color/pocket_color_2</item>
+        <item>@color/pocket_color_2</item>
+        <item>@color/pocket_color_2</item>
+        <item>@color/pocket_color_2</item>
+        <item>@color/pocket_color_3</item>
+        <item>@color/pocket_color_3</item>
+        <item>@color/pocket_color_3</item>
+        <item>@color/pocket_color_3</item>
+        <item>@color/pocket_color_4</item>
+        <item>@color/pocket_color_4</item>
+        <item>@color/pocket_color_4</item>
+        <item>@color/pocket_color_4</item>
+    </integer-array>
+
+    <integer-array name="pocket_background_colors">
+        <item>@color/pocket_color_1</item>
+        <item>@color/pocket_color_2</item>
+        <item>@color/pocket_color_3</item>
+        <item>@color/pocket_color_4</item>
+    </integer-array>
+
+    <color name="pocket_color_1">#85edb9</color>
+    <color name="pocket_color_2">#34bdb7</color>
+    <color name="pocket_color_3">#ee4458</color>
+    <color name="pocket_color_4">#fcb74d</color>
+
+    <color name="gplus_color_1">#3e802f</color>
+    <color name="gplus_color_2">#f4b400</color>
+    <color name="gplus_color_3">#427fed</color>
+    <color name="gplus_color_4">#b23424</color>
+
+    <color name="holo_blue_dark">#0099cc</color>
+    <color name="holo_yellow_dark">#ff8800</color>
+    <color name="holo_green_dark">#669900</color>
+    <color name="holo_purple_dark">#9933cc</color>
+    <color name="holo_red_dark">#cc0000</color>
+</resources>

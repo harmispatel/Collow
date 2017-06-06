@@ -7,7 +7,21 @@
 
 
 
+
+
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_create_classfied"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|end"
+        app:backgroundTint="@color/colorPrimary"
+        android:background="@android:color/transparent"
+        app:borderWidth="0dp"
+        app:elevation="6dp"
+        app:fabSize="mini"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/only_plus_icon" />
+    <!--<android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_create_classfied"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -19,7 +33,7 @@
         app:elevation="6dp"
         app:fabSize="auto"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/only_plus_icon" />
+        android:src="@drawable/only_plus_icon" />-->
 
     <include layout="@layout/classfied_main_container" />
 

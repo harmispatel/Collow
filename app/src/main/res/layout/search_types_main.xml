@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.app.collow.baseviews.BaseTextview
+        android:id="@+id/basetextview_button_search_by_communitiy_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:paddingTop="10dp"
+        android:layout_marginLeft="5dp"
+
+        android:paddingBottom="10dp"
+
+        android:textSize="@dimen/textsize_big"
+        android:text="@string/communtiy_name"/>
+
+    <include layout="@layout/horizontal_seperator_line"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+
+        android:layout_height="0.1dp"
+        ></include>
+
+    <LinearLayout
+        android:id="@+id/linerlayout_search_by_near"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+
+
+        android:orientation="vertical">
+        <com.app.collow.baseviews.BaseTextview
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginLeft="5dp"
+            android:textSize="@dimen/textsize_big"
+            android:text="@string/nearby"/>
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/baseTextview_city_country_name_current_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/left_Menu_text_color_gray"
+            android:layout_marginLeft="5dp"
+            android:textSize="@dimen/textsize_medium"
+
+            />
+    </LinearLayout>
+    <include layout="@layout/horizontal_seperator_line"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+
+        android:layout_height="0.1dp"
+        ></include>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+
+
+        android:orientation="vertical">
+        <com.app.collow.baseviews.BaseTextview
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginLeft="5dp"
+            android:textSize="@dimen/textsize_big"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="@string/recent_searches"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <include layout="@layout/horizontal_seperator_line"></include>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/my_recycler_view_recent_search_listing"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:visibility="gone"
+                android:scrollbars="vertical" />
+
+
+            <com.app.collow.baseviews.BaseTextview
+                android:id="@+id/empty_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:text="@string/no_recent_searches"
+                android:visibility="visible" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,12 +1,12 @@
 package com.app.collow.activities;
 
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -28,7 +28,6 @@ import com.app.collow.beans.RetryParameterbean;
 import com.app.collow.beans.SocialOptionbean;
 import com.app.collow.collowinterfaces.OnLoadMoreListener;
 import com.app.collow.httprequests.GetPostParameterEachScreen;
-import com.app.collow.recyledecor.DividerItemDecoration;
 import com.app.collow.recyledecor.SimpleDividerItemDecoration;
 import com.app.collow.setupUI.SetupViewInterface;
 import com.app.collow.utils.BaseException;
@@ -52,9 +51,9 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
 
     public static ArrayList<CommunityActivitiesFeedbean> communityActivitiesFeedbeanArrayList = new ArrayList<CommunityActivitiesFeedbean>();
     public static CommunityActivitiesFeedActivitiy communityActivitiesFeedActivitiy = null;
+    public static CommunityActivitiesFeedAdapter communityActivitiesFeedAdapter = null;
     protected Handler handler;
     View view_home = null;
-    public static CommunityActivitiesFeedAdapter communityActivitiesFeedAdapter = null;
     BaseTextview baseTextview_header_title = null;
     //header iterms
     ImageView imageView_left_menu = null, imageView_right_menu = null;
@@ -63,33 +62,54 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
     CommunityAccessbean communityAccessbean = null;
     int current_start = 0;
     CommonSession commonSession = null;
+    int screen_from_index = 0;
     private BaseTextview baseTextview_empty_view;
     private RecyclerView mRecyclerView;
     private BaseTextview baseTextview_error = null;
-    int screen_from_index =0;
+
+
+    public static  String comId = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.e("my", "comId=" + comId);
         try {
             communityActivitiesFeedbeanArrayList.clear();
             retryParameterbean = new RetryParameterbean(CommunityActivitiesFeedActivitiy.this, getApplicationContext(), getIntent().getExtras(), CommunityActivitiesFeedActivitiy.class.getClass());
             communityActivitiesFeedActivitiy = this;
             commonSession = new CommonSession(CommunityActivitiesFeedActivitiy.this);
+            commonSession.storeSearchCom("2");
+
+
+            Loginbean loginbean = CommonMethods.convertJSONToLoginbean(commonSession.getLoginJsonContent());
+            comId = loginbean.getHomeCommunityId();
+            Log.e("my", "communityID1 =" + comId);
+
+
             Bundle bundle = getIntent().getExtras();
             if (bundle != null) {
                 communityAccessbean = (CommunityAccessbean) bundle.getSerializable(BundleCommonKeywords.KEY_COMMUNITY_ACCESSBEAN);
-                screen_from_index= bundle.getInt(BundleCommonKeywords.KEY_SCREEN_FROM_WHERE);
+                screen_from_index = bundle.getInt(BundleCommonKeywords.KEY_SCREEN_FROM_WHERE);
+
+//                Loginbean loginbean = CommonMethods.convertJSONToLoginbean(commonSession.getLoginJsonContent());
+//                String communityID1 = loginbean.getHomeCommunityId();
+//                Log.e("ad", "communityID1=" + communityID1);
+
                 if (screen_from_index == ScreensEnums.MY_FOLLOWING_LISTING.getScrenIndex()) {
                     String communityID = bundle.getString(BundleCommonKeywords.KEY_COMMUNITY_ID);
                     String communityText = bundle.getString(BundleCommonKeywords.KEY_COMMUNITY_NAME_TEXT);
 
-                    Log.e("ad","communityID="+communityID);
+                    Log.e("ad", "communityID=" + communityID);
+
+
                     if (communityID != null) {
+                        comId=communityID;
+
                         requestParametersbean.setCommunityID(communityID);
                         requestParametersbean.setCommunityText(communityText);
 
                         requestParametersbean.setIsFromFollowing("1");
+
                     }
 
                 }
@@ -113,8 +133,13 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
         try {
 
             baseTextview_header_title = (BaseTextview) toolbar_header.findViewById(R.id.textview_header_title);
-            baseTextview_header_title.setText(getResources().getString(R.string.activity));
-
+            if (screen_from_index == ScreensEnums.COMMUNTIES_FEED_ACTIVITIES.getScrenIndex())
+            {
+                baseTextview_header_title.setText(getResources().getString(R.string.feed));
+            }
+            else {
+                baseTextview_header_title.setText(getResources().getString(R.string.home));
+            }
             imageView_left_menu = (ImageView) toolbar_header.findViewById(R.id.imageview_left_menu);
             imageView_left_menu.setVisibility(View.VISIBLE);
             imageView_right_menu = (ImageView) toolbar_header.findViewById(R.id.imageview_right_menu);
@@ -128,18 +153,27 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
 
                     if (screen_from_index == ScreensEnums.MY_FOLLOWING_LISTING.getScrenIndex()) {
 
+
                         MyUtils.openCommunityMenu(CommunityActivitiesFeedActivitiy.this, requestParametersbean.getCommunityID(), requestParametersbean.getCommunityText(), communityAccessbean);
 
-                    }
-                    else
-                    {
+                    } else {
+
                         Loginbean loginbean = CommonMethods.convertJSONToLoginbean(commonSession.getLoginJsonContent());
                         CommunityAccessbean communityAccessbean = loginbean.getCommunityAccessbean();
+//                        if (!TextUtils.isEmpty(loginbean.getHomeCommunityId())) {
+//                            Log.e("ad", "--id--" + loginbean.getHomeCommunityId());
+//                            communityAccessbean.setCommunityFollowed(true);
+//                        }
+                        //ChIJLWto4y7vMIgRQhhi91XLBO0
+                        if (!TextUtils.isEmpty(loginbean.getHomeCommunityId())) {
+                            requestParametersbean.setCommunityID(loginbean.getHomeCommunityId());
+                            requestParametersbean.setCommunityText(loginbean.getHomeCommunityName());
+
+                            requestParametersbean.setIsFromFollowing("1");
+                        }
                         MyUtils.openCommunityMenu(CommunityActivitiesFeedActivitiy.this, loginbean.getHomeCommunityId(), loginbean.getName(), communityAccessbean);
 
                     }
-
-
 
 
                 }
@@ -154,7 +188,7 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
                 @Override
                 public void onDrawerOpened(View drawerView) {
                     drawerLayout.closeDrawer(Gravity.RIGHT);
-                    MyUtils.leftMenuUpdateDataifOpenedDrawer(CommunityActivitiesFeedActivitiy.this,drawerLayout,circularImageView_profile_pic,baseTextview_left_menu_unread_message,retryParameterbean);
+                    MyUtils.leftMenuUpdateDataifOpenedDrawer(CommunityActivitiesFeedActivitiy.this, drawerLayout, circularImageView_profile_pic, baseTextview_left_menu_unread_message, retryParameterbean);
                 }
 
                 @Override
@@ -209,7 +243,7 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
             mRecyclerView.addItemDecoration(simpleDividerItemDecoration);
 
 
-            communityActivitiesFeedAdapter = new CommunityActivitiesFeedAdapter(mRecyclerView, CommunityActivitiesFeedActivitiy.this);
+            communityActivitiesFeedAdapter = new CommunityActivitiesFeedAdapter(mRecyclerView, CommunityActivitiesFeedActivitiy.this,"home");
             mRecyclerView.setAdapter(communityActivitiesFeedAdapter);
 
 
@@ -242,7 +276,6 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
         }
 
     }
-
 
     // get communties activities  feed from server
     public void getMyActivities() {
@@ -293,6 +326,7 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
                             if (jsonObject_single_activity.has(JSONCommonKeywords.CommunityID)) {
 
                                 communityActivitiesFeedbean.setCommunityID(jsonObject_single_activity.getString(JSONCommonKeywords.CommunityID));
+                                comId=jsonObject_single_activity.getString(JSONCommonKeywords.CommunityID);
                             }
 
 
@@ -334,6 +368,14 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
                             if (jsonObject_single_activity.has(JSONCommonKeywords.UserName)) {
 
                                 communityActivitiesFeedbean.setUsername(jsonObject_single_activity.getString(JSONCommonKeywords.UserName));
+                            }
+                            if (jsonObject_single_activity.has(JSONCommonKeywords.UserId)) {
+
+                                communityActivitiesFeedbean.setUserId(jsonObject_single_activity.getString(JSONCommonKeywords.UserId));
+                            }
+                            if (jsonObject_single_activity.has(JSONCommonKeywords.UserEmail)) {
+
+                                communityActivitiesFeedbean.setUserEmail(jsonObject_single_activity.getString(JSONCommonKeywords.UserEmail));
                             }
 
                             if (jsonObject_single_activity.has(JSONCommonKeywords.CommunityName)) {

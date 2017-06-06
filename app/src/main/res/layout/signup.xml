@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:paddingLeft="0dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:minHeight="?attr/actionBarSize"
+        >
+        <include
+            layout="@layout/header"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"></include>
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:id="@+id/layout_image"
+        android:layout_width="110dp"
+        android:layout_below="@+id/toolbar"
+       android:layout_centerInParent="true"
+        android:layout_height="110dp">
+
+        <ImageView
+            android:id="@+id/imageview_signup_profilepic_normal"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/uploadicon" />
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/imageview_signup_profilepic_circle"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
+            android:visibility="gone"
+            app:civ_border="false"
+            android:src="@drawable/uploadicon" />
+
+
+    </RelativeLayout>
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/layout_middle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_image"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cardview_for_sigiin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            card_view:cardCornerRadius="7dp"
+            card_view:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <com.app.collow.baseviews.BaseEdittext
+                        android:id="@+id/edittext_signup_firstname"
+                        style="@style/myEditextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_background"
+                        android:gravity="center"
+                        android:hint="@string/first_name"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textColor="@color/edittext_text_color"
+
+                        android:inputType="text" />
+
+                    <View
+                        android:layout_width="0.1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/line_color_gray"
+                        android:orientation="vertical">
+
+                    </View>
+
+                    <com.app.collow.baseviews.BaseEdittext
+                        android:id="@+id/edittext_signup_lastname"
+                        style="@style/myEditextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_background"
+                        android:gravity="center"
+                        android:hint="@string/last_name"
+                        android:inputType="text"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textColor="@color/edittext_text_color"
+                        />
+
+                </LinearLayout>
+
+                <include layout="@layout/horizontal_seperator_line"></include>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <com.app.collow.baseviews.BaseEdittext
+                        android:id="@+id/edittext_signup_emailaddress"
+                        style="@style/myEditextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_background"
+                        android:hint="@string/email_address"
+                        android:inputType="textEmailAddress"
+                        android:textAlignment="center"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textColor="@color/edittext_text_color"
+                        />
+
+                    <include layout="@layout/horizontal_seperator_line"></include>
+
+                    <com.app.collow.baseviews.BaseEdittext
+                        android:id="@+id/edittext_signup_password"
+                        style="@style/myEditextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_background"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:padding="12dp"
+                        android:textColorHint="@color/edittext_hint_color"
+                        android:textColor="@color/edittext_text_color"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp">
+
+
+            <com.app.collow.baseviews.MyButtonView
+                android:id="@+id/mybuttonview_signup"
+                style="@style/mybuttonViewStyle"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/signup" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_social_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageview_signup_facebook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/facebook" />
+
+            <ImageView
+                android:id="@+id/imageview_signup_linkdin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/linkedin" />
+
+            <ImageView
+                android:id="@+id/imageview_signup_gmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/googleplus" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_signup_bycreating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:text="@string/create_an_account"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_small" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <com.app.collow.baseviews.BaseTextview
+                android:id="@+id/textview_signup_terms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_signup_bycreating"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:text="@string/terms_of_use"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize_small" />
+
+            <com.app.collow.baseviews.BaseTextview
+                android:id="@+id/textview_signup_and"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="7dp"
+                android:text="@string/and"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize_small" />
+
+            <com.app.collow.baseviews.BaseTextview
+                android:id="@+id/textview_signup_privacy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="7dp"
+                android:text="@string/privacy_policy"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsize_small" />
+        </LinearLayout>
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_signup_iamaregistered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:text="@string/iam_registered"
+
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+</RelativeLayout>

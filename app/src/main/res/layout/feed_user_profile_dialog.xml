@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical">
+
+
+
+        <RelativeLayout
+            android:background="@drawable/background"
+            android:layout_width="280dp"
+            android:layout_height="280dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <RelativeLayout
+
+                android:id="@+id/profile_image_rrl"
+                android:layout_width="100dp"
+                android:layout_height="100dp">
+
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:src="@drawable/user_defualt_icon"
+                    android:visibility="visible"
+                    app:civ_border_color="#EEEEEE"
+                    app:civ_border_width="1dp" />
+
+                <android.support.v4.widget.ContentLoadingProgressBar
+                    android:id="@+id/profile_pgb"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_view_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profile_image_rrl"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                card_view:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <com.app.collow.baseviews.BaseEdittext
+                            android:id="@+id/edittext_editprofile_firstname"
+                            style="@style/myEditextStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/edittext_background"
+                            android:enabled="false"
+                            android:gravity="center"
+                            android:hint="@string/first_name"
+                            android:inputType="text"
+                            android:textColor="@color/edittext_text_color"
+                            android:textColorHint="@color/edittext_hint_color" />
+
+                        <View
+                            android:layout_width="0.1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/line_color_gray"
+                            android:orientation="vertical">
+
+                        </View>
+
+                        <com.app.collow.baseviews.BaseEdittext
+                            android:id="@+id/edittext_editprofile_lastname"
+                            style="@style/myEditextStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/edittext_background"
+                            android:enabled="false"
+                            android:gravity="center"
+                            android:hint="@string/last_name"
+                            android:inputType="text"
+                            android:textColor="@color/edittext_text_color"
+                            android:textColorHint="@color/edittext_hint_color"
+
+                            />
+
+                    </LinearLayout>
+
+
+                    <include layout="@layout/horizontal_seperator_line"></include>
+
+
+                    <com.app.collow.baseviews.BaseEdittext
+                        android:id="@+id/edittext_editprofile_email"
+                        style="@style/myEditextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edittext_background"
+                        android:enabled="false"
+                        android:gravity="left"
+                        android:hint="@string/email"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/edittext_text_color"
+                        android:textColorHint="@color/edittext_hint_color"
+
+                        />
+
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView></LinearLayout>
+        </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@color/white"
+    card_view:cardCornerRadius="10dp"
+    card_view:elevation="15dp">
+
+
+    <RelativeLayout
+        android:id="@+id/follow_item_relative_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="10dp">
+
+        <com.app.collow.utils.SelectableRoundedImageView
+            android:id="@+id/imageview_following_image"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/nature"
+            app:sriv_left_bottom_corner_radius="0dip"
+            app:sriv_left_top_corner_radius="10dp"
+            app:sriv_right_bottom_corner_radius="0dip"
+            app:sriv_right_top_corner_radius="10dp" />
+
+        <RelativeLayout
+            android:id="@+id/relativelayout_for_home_defualt_following"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignBottom="@id/imageview_following_image"
+            android:layout_alignRight="@id/imageview_following_image">
+
+            <ImageView
+                android:id="@+id/imageview_inside_following_imageview"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="8dp"
+
+                android:scaleType="fitXY"
+                android:src="@drawable/homeunselected" />
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/imageview_following_ring"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/imageview_following_image"
+            android:layout_alignTop="@id/imageview_following_image"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+
+            android:src="@drawable/ring_gray" />
+
+        <ImageView
+            android:id="@+id/imageview_following_heart"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignRight="@id/imageview_following_image"
+            android:layout_alignTop="@id/imageview_following_image"
+            android:layout_marginRight="3dp"
+            android:padding="5dp"
+            android:src="@drawable/select_heart" />
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_following_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageview_following_image"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="20dp"
+            android:text="Bell Air Crest"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize_medium" />
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/textview_following_full_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textview_following_name"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="20dp"
+            android:text="Air crest road,los angles"
+            android:textColor="@color/left_Menu_text_color_gray"
+            android:textSize="@dimen/common_text_size" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

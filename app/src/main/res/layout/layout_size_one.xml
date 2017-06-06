@@ -24,11 +24,11 @@
             android:scaleType="fitXY"
             android:src="@drawable/nature" />
 
-        <include
+       <!-- <include
             layout="@layout/gallery_single_item_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom" />
+            android:layout_gravity="bottom" />-->
 
     </FrameLayout>
 

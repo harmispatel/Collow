@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "269350448671",
+    "project_id": "firebase-collow2"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269350448671:android:1d23db06b2f64c30",
+        "android_client_info": {
+          "package_name": "com.app.collow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269350448671-l2khrp3tkan3db24odfshn5ost6ke0kk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.collow",
+            "certificate_hash": "6B12B55BF4CA914311753AB5CA9C1DBD940AAB0A"
+          }
+        },
+        {
+          "client_id": "269350448671-ur8sf5sj2ll91eebtc0fm8gq054dg8ek.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF5jBRV9O6SnyvZyI7jby8MiFaPQufUgg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

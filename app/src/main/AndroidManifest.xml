@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.app.collow">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <application
+        android:name=".activities.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activities.SplashActvitiy"
+            android:theme="@style/Theme.Transparent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.GettingStartedActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ClaimeCommunityActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.SignInActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.SingUpActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.SingUpDoneActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ForgotPasswordMainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ForgotPasswordDoneActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.HomeActivity" />
+        <activity
+            android:name=".activities.FollowingActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.MyActivitiesActivity"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.MyPostActivity"
+            android:label="@string/my_posts"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CommunitySearchResultsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CommunityInformationActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CommunityMenuActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ClassifiedDetailActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ClassifiedMainActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CreateClassifiedActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CreateGalleryActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CreateNewsAndAnnouncementActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CreatePollsActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.SingleImageFullScreenActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ACFollowerAwaitingManageActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.EventDetailActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.UserEventMainActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.FormsAndDocsMainActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.FormsAndDocsDetailActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!-- Gallery -->
+
+        <activity
+            android:name=".activities.GalleryMainActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.GallerySubActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.GalleryDetailActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+        <activity
+            android:name=".activities.NewsMainActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CommentListingActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.UploadPictureWithTextActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CommentSettingActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppBaseThemeDark" />
+        <activity
+            android:name=".activities.NewsDetailActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.PollsMainActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.PollDetailsActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CommunityActivitiesFeedActivitiy"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CommunitySearchByNameActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/filter_community"/>
+            -->
+
+        </activity>
+        <activity
+            android:name=".activities.FeatureMainActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.EditProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activities.SettingActivity"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.InternetLostActivity"
+            android:theme="@android:style/Theme.Dialog" />
+
+        <!-- Search state activity -->
+
+        <activity
+            android:name=".activities.CommunitySearchFilterOptionsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- admins -->
+        <activity
+            android:name=".activities.ACAdminListingActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ACNewAdmin"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ACViewAdminInfoMainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!-- mangagement -->
+
+        <activity
+            android:name=".activities.MgmtTeamListingActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.MgmtAdminAndCommunitiesListingofTeamActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Message -->
+
+        <activity
+            android:name=".activities.CollowMessageMainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <!-- Full Profile view -->
+        <activity
+            android:name=".activities.FullProfileMainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Chat -->
+
+        <activity
+            android:name=".activities.ChatMainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CreateChatMainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.ChatDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CollowMessageDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.SelectStateActivity"
+            android:label="@string/search_state"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.MyCompatTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable_states" />
+        </activity>
+        <activity
+            android:name=".activities.ReadMoreTextActivity"
+            android:label="@string/more_text"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.MyCompatTheme" />
+        <activity
+            android:name=".activities.SelectPropertyTypeOrCategoryActivity"
+            android:label="@string/search_state"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.MyCompatTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable_states" />
+        </activity>
+        <activity
+            android:name=".activities.SelectCommunityTypeActivity"
+            android:label="@string/select_community_type"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.MyCompatTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable_states" />
+        </activity>
+        <activity
+            android:name=".activities.ImageGalleryDeatilActivity"
+            android:label="@string/my_posts"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+        <activity
+            android:name=".activities.SelectEventTypeActivity"
+            android:label="@string/select_event_type"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable_states" />
+        </activity>
+        <activity
+            android:name=".activities.ACListEventsMainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable_event" />
+        </activity>
+        <activity android:name=".TestActivity">
+            ...
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            ...
+        </activity>
+
+        <!-- Event -->
+
+        <activity
+            android:name=".activities.ACEventDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CreateNewEventActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <!-- Multiple Image Selection -->
+
+        <activity
+            android:name="com.zfdang.multiple_images_selector.ImagesSelectorActivity"
+            android:configChanges="orientation|screenSize"
+            android:hardwareAccelerated="false" />
+
+        <!-- facebook configuration -->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".activities.MapsActivity"
+            android:label="@string/title_activity_maps" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".activities.SearchPlaceActivity"
+            android:label="@string/search_"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.MyCompatTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searhable_place" />
+        </activity>
+        <activity android:name=".activities.FeedsUserProfileActivity"></activity>
+    </application>
+
+</manifest>

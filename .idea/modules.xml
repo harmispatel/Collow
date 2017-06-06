@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Collow.iml" filepath="$PROJECT_DIR$/Collow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SlidingToggleSwitch/SlidingToggleSwitch.iml" filepath="$PROJECT_DIR$/SlidingToggleSwitch/SlidingToggleSwitch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/expandablerecyclerview/expandablerecyclerview.iml" filepath="$PROJECT_DIR$/expandablerecyclerview/expandablerecyclerview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/librarycalendar/librarycalendar.iml" filepath="$PROJECT_DIR$/librarycalendar/librarycalendar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libswipe/libswipe.iml" filepath="$PROJECT_DIR$/libswipe/libswipe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/linkedin-sdk/linkedin-sdk.iml" filepath="$PROJECT_DIR$/linkedin-sdk/linkedin-sdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tokenlibrary/tokenlibrary.iml" filepath="$PROJECT_DIR$/tokenlibrary/tokenlibrary.iml" />
+    </modules>
+  </component>
+</project>

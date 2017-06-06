@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="85dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/button_enteremail_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btton_background_white"
+            android:hint="@string/download"
+            android:paddingLeft="45dp"
+            android:paddingRight="45dp" />
+
+        <com.app.collow.baseviews.BaseTextview
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="OR"
+            android:textColor="@color/white"
+            android:textSize="@dimen/common_text_size" />
+
+        <com.app.collow.baseviews.BaseTextview
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:hint="@string/enteryouremail"
+            android:textColor="@color/white"
+            android:textSize="@dimen/common_text_size" />
+
+        <com.app.collow.baseviews.BaseTextview
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="@string/document"
+            android:textColor="@color/white"
+            android:textSize="@dimen/common_text_size" />
+
+        <com.app.collow.baseviews.BaseEdittext
+            android:id="@+id/edittext_entermail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/edittext_background"
+            android:hint="@string/email_address"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_medium" />
+
+        <Button
+            android:id="@+id/button_enteremail_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/button_transparent_background"
+            android:hint="@string/send"
+            android:paddingLeft="45dp"
+            android:paddingRight="45dp" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

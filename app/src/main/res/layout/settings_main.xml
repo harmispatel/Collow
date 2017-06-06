@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.app.collow.baseviews.BaseTextview
+        android:id="@+id/basetextview_signout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+
+        android:text="@string/signout"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textsize_big" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/basetextview_button_search_by_communitiy_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/language"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize_big" />
+
+        <include
+            layout="@layout/horizontal_seperator_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+
+            android:layout_marginTop="10dp"></include>
+
+        <com.app.collow.baseviews.BaseTextview
+            android:id="@+id/basetextview_send_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+
+            android:text="@string/send_feedback"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize_big" />
+
+        <include
+            layout="@layout/horizontal_seperator_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+
+            android:layout_marginTop="10dp"></include>
+
+        <com.app.collow.baseviews.BaseTextview
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+
+            android:text="@string/about"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textsize_big" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

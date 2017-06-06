@@ -1,0 +1,254 @@
+<android.support.design.widget.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_bar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="right"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+
+        android:weightSum="10">
+
+
+        <com.app.collow.baseviews.BaseTextview
+            style="@style/myEditextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:inputType="textEmailAddress"
+            android:text="@string/filter"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_big"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <com.app.collow.baseviews.BaseEdittext
+                    android:id="@+id/edittext_filter_city"
+                    style="@style/myEditextStyle_filter_screen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="left"
+
+                    android:hint="@string/city"
+                    android:inputType="text"
+                    android:textColor="@color/left_Menu_text_color_gray"
+                    android:textColorHint="@color/left_Menu_text_color_gray" />
+
+                <com.app.collow.baseviews.BaseEdittext
+                    android:id="@+id/edittext_filter_zip"
+                    style="@style/myEditextStyle_filter_screen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="left"
+                    android:hint="@string/zipcode"
+                    android:inputType="numberSigned"
+
+                    android:maxLength="8"
+                    android:textColor="@color/left_Menu_text_color_gray"
+                    android:textColorHint="@color/left_Menu_text_color_gray"
+                    android:visibility="gone" />
+
+                <RelativeLayout
+                    android:id="@+id/relativelayout_select_filter_state_right_menu_new"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@android:color/transparent">
+
+                    <com.app.collow.baseviews.BaseTextview
+                        android:id="@+id/textview_filter_state_right_menu"
+                        style="@style/myEditextStyle_filter_screen"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:gravity="left"
+                        android:inputType="text"
+                        android:text="@string/state"
+                        android:textColor="@color/left_Menu_text_color_gray"
+
+                        />
+
+                    <ImageView
+
+                        android:id="@+id/imageview_filter_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="15dp"
+                        android:src="@drawable/updown_arrow" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativelayout_select_community_type_right_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@android:color/transparent">
+
+                    <com.app.collow.baseviews.BaseTextview
+                        android:id="@+id/textview_community_type_right_menu"
+                        style="@style/myEditextStyle_filter_screen"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:gravity="left"
+                        android:text="@string/communtity_type"
+                        android:textColor="@color/left_Menu_text_color_gray"
+
+                        />
+
+                    <ImageView
+                        android:id="@+id/imageview_filter_community_type"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="15dp"
+                        android:src="@drawable/updown_arrow" />
+
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/layout_event_filter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <com.app.collow.baseviews.BaseTextview
+                        android:id="@+id/textview_start_date_right_menu"
+                        style="@style/myEditextStyle_filter_screen"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:gravity="left"
+
+                        android:layout_marginTop="15dp"
+
+                        android:text="@string/start_date"
+                        android:textColor="@color/left_Menu_text_color_gray"
+
+                        />
+
+                    <com.app.collow.baseviews.BaseTextview
+                        android:id="@+id/textview_end_date_right_menu"
+                        style="@style/myEditextStyle_filter_screen"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="15dp"
+                        android:gravity="left"
+
+                        android:text="@string/end_date"
+                        android:textColor="@color/left_Menu_text_color_gray"
+
+                        />
+
+                    <RelativeLayout
+                        android:id="@+id/relativelayout_select_event_type_right_menu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:background="@android:color/transparent">
+
+                        <com.app.collow.baseviews.BaseTextview
+                            android:id="@+id/textview_event_type_right_menu"
+                            style="@style/myEditextStyle_filter_screen"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerInParent="true"
+                            android:gravity="left"
+                            android:text="@string/select_event_type"
+                            android:textColor="@color/left_Menu_text_color_gray"
+
+                            />
+
+                        <ImageView
+                            android:id="@+id/imageview_filter_event_type"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/updown_arrow" />
+
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:gravity="center"
+
+                    android:orientation="vertical">
+
+                    <com.app.collow.baseviews.MyButtonView
+                        android:id="@+id/mybuttonview_filter_apply"
+                        style="@style/mybuttonViewStyle_filter_apply_button"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/apply" />
+
+                    <com.app.collow.baseviews.MyButtonView
+                        android:id="@+id/mybuttonview_filter_clear"
+                        style="@style/mybuttonViewStyle_filter_apply_button"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:gravity="center"
+
+                        android:text="@string/clear_filter" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.design.widget.NavigationView>
+

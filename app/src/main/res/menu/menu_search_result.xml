@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:appcompat="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools">
+
+
+    <item
+        android:id="@+id/menu_search_results"
+        android:icon="@drawable/app_search_icon"
+        android:title="@string/search"
+        appcompat:showAsAction="always"
+         />
+    <item
+        android:id="@+id/menu_post_right_icon"
+        android:icon="@drawable/right_menu_icon"
+        android:title="@string/filter"
+        appcompat:showAsAction="always"/>
+</menu>

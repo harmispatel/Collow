@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <CheckBox
+            android:id="@+id/chkSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:gravity="center"
+            />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/layout_left_image_in_my_post"
+                android:layout_width="65dp"
+                android:layout_height="65dp">
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_centerInParent="true"
+
+
+
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/imageview_mypost"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:scaleType="fitXY"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/message_icon_post" />
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@+id/layout_left_image_in_my_post"
+                android:gravity="center|left"
+                android:layout_marginLeft="8dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="left">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:orientation="vertical">
+                        <com.app.collow.baseviews.BaseTextview
+                            android:id="@+id/textview_post_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Personalized Family Canoe Art"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/textsize_medium" />
+                        <com.app.collow.baseviews.BaseTextview
+                            android:id="@+id/textview_post_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Decor"
+                            android:layout_marginTop="10dp"
+
+                            android:textColor="@color/left_Menu_text_color_gray"
+                            android:textSize="@dimen/common_text_size" />
+
+
+
+                        <com.app.collow.baseviews.BaseTextview
+                            android:id="@+id/textview_post_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginTop="10dp"
+                            android:text="$139"
+                            android:visibility="gone"
+                            android:textColor="@color/blue_color_my_post_text"
+                            android:textSize="@dimen/common_text_size" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/imageview_mypost_rightarrow"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/right_gray_arrow" />
+                </RelativeLayout>
+
+                <include
+                    layout="@layout/horizontal_seperator_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+
+                    android:layout_marginTop="10dp"></include>
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

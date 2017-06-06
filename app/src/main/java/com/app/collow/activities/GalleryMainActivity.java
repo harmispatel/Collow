@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -73,7 +74,9 @@ public class GalleryMainActivity  extends BaseActivity implements SetupViewInter
             gallerybeanArrayList_main.clear();
             Bundle bundle = getIntent().getExtras();
             if (bundle != null) {
+
                 communityID = bundle.getString(BundleCommonKeywords.KEY_COMMUNITY_ID);
+                Log.e("ad","gallary=="+communityID);
                 communityAccessbean= (CommunityAccessbean) bundle.getSerializable(BundleCommonKeywords.KEY_COMMUNITY_ACCESSBEAN);
                 communityText=bundle.getString(BundleCommonKeywords.KEY_COMMUNITY_NAME_TEXT);
 

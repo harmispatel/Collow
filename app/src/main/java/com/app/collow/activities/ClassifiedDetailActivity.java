@@ -191,9 +191,6 @@ public class ClassifiedDetailActivity extends BaseActivity {
 
             frameLayout_container.addView(view_home);
 
-
-
-
             textview_classifieddetail_description.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
