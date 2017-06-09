@@ -195,7 +195,11 @@
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.EditProfileActivity"
+        android:name=".activities.EditProfileActivity"
+        android:theme="@style/AppTheme.NoActionBar"
+        android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activities.FeedsUserProfileActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -392,7 +396,7 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searhable_place" />
         </activity>
-        <activity android:name=".activities.FeedsUserProfileActivity"></activity>
+
     </application>
 
 </manifest>

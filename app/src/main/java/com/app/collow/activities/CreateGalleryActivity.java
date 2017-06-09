@@ -258,6 +258,8 @@ public class CreateGalleryActivity extends BaseActivity implements SetupViewInte
                             requestParametersbean.setUserId(commonSession.getLoggedUserID());
                             if (bitmapArrayList_uploading.size() == 0) {
                                 requestParametersbean.setImgCount(String.valueOf(0));
+                                CommonMethods.customToastMessage(getResources().getString(R.string.selectphoto), CreateGalleryActivity.this);
+                                return;
 
                             } else {
                                 requestParametersbean.setImgCount(String.valueOf(bitmapArrayList_uploading.size() - 1));
@@ -290,8 +292,10 @@ public class CreateGalleryActivity extends BaseActivity implements SetupViewInte
     public void createGallery() {
 
         try {
-            JSONObject jsonObjectGetPostParameterEachScreen = GetPostParameterEachScreen.getPostParametersAccordingIndex(ScreensEnums.CREATE_GALLERY.getScrenIndex(), requestParametersbean);
-            PassParameterbean passParameterbean = new PassParameterbean(this, CreateGalleryActivity.this, getApplicationContext(), URLs.CREATEGALLERY, jsonObjectGetPostParameterEachScreen, ScreensEnums.CREATE_GALLERY.getScrenIndex(), SignInActivity.class.getClass());
+            JSONObject jsonObjectGetPostParameterEachScreen = GetPostParameterEachScreen.getPostParametersAccordingIndex
+                    (ScreensEnums.CREATE_GALLERY.getScrenIndex(), requestParametersbean);
+            PassParameterbean passParameterbean = new PassParameterbean(this, CreateGalleryActivity.this, getApplicationContext(),
+                    URLs.CREATEGALLERY, jsonObjectGetPostParameterEachScreen, ScreensEnums.CREATE_GALLERY.getScrenIndex(), SignInActivity.class.getClass());
             passParameterbean.setRequestMethod(HTTPRequestMethodEnums.MIME.getHTTPRequestMethodInex());
             passParameterbean.setBitmapArrayList_mutliple_image(bitmapArrayList_uploading);
             passParameterbean.setForImageUploadingCustomKeywordName(JSONCommonKeywords.GalleryImage);

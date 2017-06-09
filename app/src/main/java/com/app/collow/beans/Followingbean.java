@@ -6,22 +6,9 @@ import java.io.Serializable;
  * Created by harmis on 12/1/17.
  */
 
-public class Followingbean extends Basebean implements Serializable {
+public class Followingbean extends  Basebean implements Serializable{
 
 
-    String communityID = null;
-    String communtiyImageURL = null;
-    String communityName = null;
-    String latitude = null;
-    String longitude = null;
-    String address = null;
-    String city = null;
-    String state = null;
-    String isFollowedCommunity = null;
-    String IsHomeCommunity = null;
-    String country = null;
-    CommunityAccessbean communityAccessbean = null;
-    String fullAddress = null;
 
     public String getCountry() {
         return country;
@@ -95,6 +82,20 @@ public class Followingbean extends Basebean implements Serializable {
         this.communityID = communityID;
     }
 
+    String communityID=null;
+    String communtiyImageURL=null;
+    String communityName=null;
+    String isHomeCommunity=null;
+    String isFollowedCommunity=null;
+    String latitude=null;
+    String longitude=null;
+    String address=null;
+    String city=null;
+    String state=null;
+    String country=null;
+
+    CommunityAccessbean communityAccessbean=null;
+
     public CommunityAccessbean getCommunityAccessbean() {
         return communityAccessbean;
     }
@@ -102,6 +103,11 @@ public class Followingbean extends Basebean implements Serializable {
     public void setCommunityAccessbean(CommunityAccessbean communityAccessbean) {
         this.communityAccessbean = communityAccessbean;
     }
+
+
+
+
+    String fullAddress=null;
 
     public String getFullAddress() {
         return fullAddress;
@@ -111,19 +117,19 @@ public class Followingbean extends Basebean implements Serializable {
         this.fullAddress = fullAddress;
     }
 
+    public String getIsHomeCommunity() {
+        return isHomeCommunity;
+    }
+
+    public void setIsHomeCommunity(String isHomeCommunity) {
+        this.isHomeCommunity = isHomeCommunity;
+    }
+
     public String getIsFollowedCommunity() {
         return isFollowedCommunity;
     }
 
     public void setIsFollowedCommunity(String isFollowedCommunity) {
         this.isFollowedCommunity = isFollowedCommunity;
-    }
-
-    public String getIsHomeCommunity() {
-        return IsHomeCommunity;
-    }
-
-    public void setIsHomeCommunity(String isHomeCommunity) {
-        IsHomeCommunity = isHomeCommunity;
     }
 }

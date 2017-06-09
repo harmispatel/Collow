@@ -27,6 +27,7 @@ public class BundleCommonKeywords {
 
 
     public static String KEY_COMMUNITY_ACCESSBEAN="community_access_bean";
+    public static String KEY_COMMUNITY_FEADBEAN="community_feed_bean";
 
 
     public static String KEY_CLASSIFIED_PROPERTY_TYPE_OR_CATEGORY="classfied_property_cagegory";

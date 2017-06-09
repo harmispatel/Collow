@@ -465,7 +465,7 @@ public class RequestParametersbean implements Serializable {
     private String community = "";
     private  String interest = "";
     private String interestText = "";
-    private String communityID="";
+    private String communityID = "";
     private String startDate = "";
 
     public String getEndDate() {

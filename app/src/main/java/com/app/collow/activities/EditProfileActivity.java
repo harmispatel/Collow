@@ -61,6 +61,7 @@ import com.app.collow.utils.CommonSession;
 import com.app.collow.utils.ConnectionDetector;
 import com.app.collow.utils.JSONCommonKeywords;
 import com.app.collow.utils.URLs;
+
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -99,6 +100,7 @@ public class EditProfileActivity extends BaseActivity implements SetupViewInterf
     public static ArrayList<Interestbean> interestbeanArrayList = new ArrayList<>();
     CommonSession commonSession = null;
     MyButtonView myButtonView_save = null;
+
     BaseEdittext editText_editprofile_changepassword = null;
     BaseEdittext edittext_editprofile_firstname = null;
     BaseEdittext edittext_editprofile_lastname = null;
@@ -325,6 +327,11 @@ public class EditProfileActivity extends BaseActivity implements SetupViewInterf
 
 
             myButtonView_save = (MyButtonView) view_home.findViewById(R.id.mybuttonview_editprofile_save);
+
+
+
+
+
         } catch (Resources.NotFoundException e) {
             CommonMethods.displayLog("error", e.getMessage());
 
@@ -734,6 +741,7 @@ public class EditProfileActivity extends BaseActivity implements SetupViewInterf
         boolean isLoginSuccess = false;
         try {
             if (responcebean.isServiceSuccess()) {
+
 
 
                 JSONObject jsonObject_main = null;

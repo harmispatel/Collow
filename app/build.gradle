@@ -53,6 +53,8 @@ dependencies {
     compile project(path: ':libswipe')
     compile project(path: ':librarycalendar')
     compile 'com.zfdang.multiple-images-selector:multiple-images-selector:1.1.3'
+
+
     compile files('libs/android-support-4.0.jar')
 }
 apply plugin: 'com.google.gms.google-services'

@@ -65,7 +65,7 @@ public class CommunityInformationActivity extends BaseActivity implements SetupV
     BaseTextview textview_communityinformation_email;
     BaseTextview textview_communityinformation_fax;
     BaseTextview textview_communityinformation_description;
-    String communityID = null, communityName = "", comID = "", isFollow = null;
+    String communityID = null, communityName = "", comID = "", isFollow = null, isHomeCommunity = null;
     CommonSession commonSession = null;
     RecyclerView recyclerView_amenities = null;
     BaseTextview baseTextview_empty_message_amenities = null;
@@ -111,7 +111,7 @@ public class CommunityInformationActivity extends BaseActivity implements SetupV
             baseTextview_left_side = (BaseTextview) toolbar_header.findViewById(R.id.textview_left_side_title);
 
             imageView_right_menu.setImageResource(R.drawable.community_main_menu);
-            baseTextview_left_side.setText(getResources().getString(R.string.back));
+           // baseTextview_left_side.setText(getResources().getString(R.string.back));
             baseTextview_left_side.setCompoundDrawablesWithIntrinsicBounds(R.drawable.left_arrow, 0, 0, 0);
             imageView_right_menu.setImageResource(R.drawable.community_main_menu);
 
@@ -312,10 +312,17 @@ public class CommunityInformationActivity extends BaseActivity implements SetupV
             public void onClick(View v) {
 
                 if (isFollowed) {
-                    unFollowCommunity();
+                    if (!TextUtils.isEmpty(isHomeCommunity) && isHomeCommunity.equalsIgnoreCase("0")) {
+                    unFollowCommunity();}
+                    else
+                    {
+                        CommonMethods.customToastMessage( getResources().getString(R.string.warn_unfollow), CommunityInformationActivity);
+                    }
                 } else if (!isFollowed) {
                     commonSession.storeUserFollow(true);
-                    followCommunity();
+                   // if (TextUtils.isEmpty(isHomeCommunity) && isHomeCommunity.equalsIgnoreCase("1")) {
+                        followCommunity();
+                   // }
                 }
             }
         });
@@ -418,8 +425,11 @@ public class CommunityInformationActivity extends BaseActivity implements SetupV
                             textview_communityinformation_address.setText(jsonObject_community.getString(JSONCommonKeywords.Address));
                             textview_communityinformation_type.setText(jsonObject_community.getString(JSONCommonKeywords.CommunityType));
 
-                            isFollow = jsonObject_community.getString(JSONCommonKeywords.isFollowedCommunity);
 
+                                isFollow = jsonObject_community.getString(JSONCommonKeywords.isFollowedCommunity);
+                            isHomeCommunity = jsonObject_community.getString(JSONCommonKeywords.isMyDefualtCommunity);
+
+                            Log.e("ad", "isHomeCommunity=" + isHomeCommunity);
                             Log.e("ad", "isFollow=" + isFollow);
                             if (!TextUtils.isEmpty(isFollow) && isFollow.equalsIgnoreCase("1")) {
                                 isFollowed=true;

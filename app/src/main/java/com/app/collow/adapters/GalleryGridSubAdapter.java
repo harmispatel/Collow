@@ -45,7 +45,7 @@ public class GalleryGridSubAdapter extends RecyclerView.Adapter {
 
 
         v = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.layout_size_one, parent, false);
+                R.layout.layout_size_sub_one, parent, false);
 
         vh = new GalleryOneViewHolder(v);
         return vh;

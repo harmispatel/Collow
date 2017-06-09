@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -131,8 +130,6 @@ public class CommunityActivitiesFeedAdapter extends RecyclerView.Adapter {
             ((CommunityActivitiesFeedViewHolder) holder).image_userprofilepic.setTag(communityActivitiesFeedbean);
             ((CommunityActivitiesFeedViewHolder) holder).textview_username.setTag(communityActivitiesFeedbean);
 
-//            ((CommunityActivitiesFeedViewHolder) holder).image_userprofilepic.setTag(communityActivitiesFeedbean.getUserId());
-//            ((CommunityActivitiesFeedViewHolder) holder).textview_username.setTag(communityActivitiesFeedbean.getUserId());
 
             if (CommonMethods.isTextAvailable(communityActivitiesFeedbean.getFeedcategory())) {
 
@@ -239,14 +236,14 @@ public class CommunityActivitiesFeedAdapter extends RecyclerView.Adapter {
         ((CommunityActivitiesFeedViewHolder) holder).image_userprofilepic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showProfileDialog(v);
-                // userProfileDetil(v);
+                //showProfileDialog(v);
+                userProfileDetil(v);
             }
         });
         ((CommunityActivitiesFeedViewHolder) holder).textview_username.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // userProfileDetil(v);
+                userProfileDetil(v);
             }
         });
 
@@ -471,7 +468,7 @@ public class CommunityActivitiesFeedAdapter extends RecyclerView.Adapter {
         BaseEdittext edittext_editprofile_firstname = null;
         BaseEdittext edittext_editprofile_lastname = null;
         BaseEdittext edittext_editprofile_email = null;
-        ProgressBar profile_pgb=null;
+        ProgressBar profile_pgb = null;
 
         circularImageView_profile_edit_profile = (CircularImageView) dialogProfile.findViewById(R.id.profile_image);
         circularImageView_profile_edit_profile.setVisibility(View.VISIBLE);
@@ -504,7 +501,7 @@ public class CommunityActivitiesFeedAdapter extends RecyclerView.Adapter {
         } else {
             edittext_editprofile_email.setVisibility(View.INVISIBLE);
         }
-    
+
         String image = feedbean.getUserprofilepic();
 
         if (image == null || image.equalsIgnoreCase("")) {
@@ -528,25 +525,30 @@ public class CommunityActivitiesFeedAdapter extends RecyclerView.Adapter {
                         }
                     });
         }
-       
+
         dialogProfile.show();
     }
 
     private void userProfileDetil(View v) {
+        CommunityActivitiesFeedbean feedbean = (CommunityActivitiesFeedbean) v.getTag();
 
-        String userId = v.getTag().toString();
-        if (!TextUtils.isEmpty(userId)) {
-            if (FeedsUserProfileActivity.feedsUserProfileActivity != null) {
-                FeedsUserProfileActivity.feedsUserProfileActivity.finish();
-            }
-            Intent intent = new Intent(activity, FeedsUserProfileActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putString(BundleCommonKeywords.KEY_ID, userId);
-            intent.putExtras(bundle);
-            activity.startActivity(intent);
-        } else {
-            Log.e("my", " feed adapter - userid =" + userId);
+        String fullname = feedbean.getUsername().trim();
+        String[] parts = fullname.split(" ");
+        String fname = parts[0]; // 004
+        String lname = parts[1]; // 034556
+        String image = feedbean.getUserprofilepic();
+        String email = feedbean.getUserEmail();
+
+        if (FeedsUserProfileActivity.feedsUserProfileActivity != null) {
+            FeedsUserProfileActivity.feedsUserProfileActivity.finish();
         }
+        Intent intent = new Intent(activity, FeedsUserProfileActivity.class);
+        intent.putExtra("fname", fname);
+        intent.putExtra("lname", lname);
+        intent.putExtra("image", image);
+        intent.putExtra("email", email);
+        activity.startActivity(intent);
+
     }
 
 

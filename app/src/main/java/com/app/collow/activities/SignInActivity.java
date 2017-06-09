@@ -510,6 +510,7 @@ public class SignInActivity extends AppCompatActivity implements SetupViewInterf
             }
             if(personPhoto == null)
             {//set default image
+                requestParametersbean.setProfile_pic("");
             }else{
                 requestParametersbean.setProfile_pic(personPhoto.toString());
 

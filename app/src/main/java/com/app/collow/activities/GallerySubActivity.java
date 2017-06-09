@@ -132,7 +132,7 @@ public class GallerySubActivity extends BaseActivity {
 
         mRecyclerView = (RecyclerView) view_home.findViewById(R.id.my_recycler_view);
 
-        StaggeredGridLayoutManager gaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, 1);
+        StaggeredGridLayoutManager gaggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
         mRecyclerView.setLayoutManager(gaggeredGridLayoutManager);
 
 

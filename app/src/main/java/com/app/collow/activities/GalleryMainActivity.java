@@ -44,7 +44,7 @@ import java.util.ArrayList;
 public class GalleryMainActivity  extends BaseActivity implements SetupViewInterface {
 
     View view_home = null;
-   public static GalleryGridAdapter galleryGridAdapter = null;
+    public static GalleryGridAdapter galleryGridAdapter = null;
     public static ArrayList<Gallerybean> gallerybeanArrayList_main = new ArrayList<>();
     public static BaseTextview baseTextview_error = null;
     public static RecyclerView mRecyclerView;
@@ -52,7 +52,7 @@ public class GalleryMainActivity  extends BaseActivity implements SetupViewInter
     CommonSession commonSession = null;
     int current_start=0;
     //header iterms
-   BaseTextview baseTextview_header_title=null;
+    BaseTextview baseTextview_header_title=null;
     //header iterms
     ImageView imageView_left_menu = null, imageView_right_menu = null, imageview_right_foursquare = null;
     ImageView imageView_delete = null, imageView_view = null, imageView_edit = null, imageView_search = null;
@@ -85,7 +85,7 @@ public class GalleryMainActivity  extends BaseActivity implements SetupViewInter
             setupHeaderView();
             findViewByIDs();
             setupEvents();
-       getGalleryImageListing();
+            getGalleryImageListing();
 
         } catch (Exception e) {
             new BaseException(e, false, retryParameterbean);
@@ -205,15 +205,15 @@ public class GalleryMainActivity  extends BaseActivity implements SetupViewInter
                         current_start += 10;
 
 
-                         requestParametersbean.setStart_limit(current_start);
+                        requestParametersbean.setStart_limit(current_start);
 
                         getGalleryImageListing();
 
 
-                            }
-                        }, 2000);
-
                     }
+                }, 2000);
+
+            }
         });
 
         floatingActionButton_create_gallery.setOnClickListener(new View.OnClickListener() {

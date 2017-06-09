@@ -3,7 +3,7 @@
     <!-- Records not found at that time text size will consider. -->
 
     <dimen name="empty_textview_size">17sp</dimen>
-    <dimen name="gallery_line_size">2dp</dimen>
+    <dimen name="gallery_line_size">1dp</dimen>
 
 
     <!-- Default screen margins, per the Android Design guidelines. -->

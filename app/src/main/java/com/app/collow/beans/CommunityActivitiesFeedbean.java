@@ -12,22 +12,14 @@ import java.util.ArrayList;
 public class CommunityActivitiesFeedbean extends Basebean implements Serializable {
     String userprofilepic = null;
     String username = null;
-    String userId = null;
-    String userEmail = null;
+    String userid = null;
+    String useremail = null;
     String posttime = null;
     String postcontent = null;
     String downloadcount = null;
     String feedcategory = null;
     String activityID = null;
 
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
 
     public CommunityActivitiesFeedbean getCommunityActivitiesFeedbean() {
         return communityActivitiesFeedbean;
@@ -38,8 +30,6 @@ public class CommunityActivitiesFeedbean extends Basebean implements Serializabl
     }
 
     CommunityActivitiesFeedbean communityActivitiesFeedbean=null;
-    String communityID = null;
-
 
     public String getCommunityID() {
         return communityID;
@@ -49,9 +39,7 @@ public class CommunityActivitiesFeedbean extends Basebean implements Serializabl
         this.communityID = communityID;
     }
 
-
-
-
+    String communityID = null;
 
     public ImageSlideAdapter getImageSlideAdapter() {
         return imageSlideAdapter;
@@ -138,14 +126,6 @@ public class CommunityActivitiesFeedbean extends Basebean implements Serializabl
         this.username = username;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
     public String getPosttime() {
         return posttime;
     }
@@ -163,8 +143,21 @@ public class CommunityActivitiesFeedbean extends Basebean implements Serializabl
     }
 
 
+    public String getUserId() {
+        return userid;
+    }
 
+    public void setUserId(String userid) {
+        this.userid = userid;
+    }
 
+    public String getUserEmail() {
+        return useremail;
+    }
+
+    public void setUserEmail(String useremail) {
+        this.useremail = useremail;
+    }
 
     public String getFeedcategory() {
         return feedcategory;

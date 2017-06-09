@@ -48,14 +48,9 @@ public class ManageHttpRequest  {
         try {
             if (passParameterbean.getRequestMethod() == HTTPRequestMethodEnums.POST.getHTTPRequestMethodInex()) {
 
-
-
                 responcebean=makeRequestForWithoutImage(passParameterbean);
 
-
-
             } else if (passParameterbean.getRequestMethod() == HTTPRequestMethodEnums.GET.getHTTPRequestMethodInex()) {
-
 
             } else if (passParameterbean.getRequestMethod() == HTTPRequestMethodEnums.MIME.getHTTPRequestMethodInex()) {
 

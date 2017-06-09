@@ -172,6 +172,7 @@
     <string name="select_home_community">Select home Community</string>
     <string name="select_your_interests">Select your Interests</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="user_profile">User Profile</string>
     <string name="search_state">Search State</string>
     <string name="search_">Search</string>
 
@@ -189,6 +190,7 @@
     <string name="enteryouremail">Enter your email below and we\'ll send you</string>
     <string name="alink">a link to reset your password</string>
     <string name="enteremail">Email Address</string>
+    <string name="selectphoto">Select Images</string>
     <string name="reset">RESET</string>
 
     <string name="share">SHARE</string>

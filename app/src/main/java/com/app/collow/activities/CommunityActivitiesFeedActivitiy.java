@@ -52,6 +52,7 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
     public static ArrayList<CommunityActivitiesFeedbean> communityActivitiesFeedbeanArrayList = new ArrayList<CommunityActivitiesFeedbean>();
     public static CommunityActivitiesFeedActivitiy communityActivitiesFeedActivitiy = null;
     public static CommunityActivitiesFeedAdapter communityActivitiesFeedAdapter = null;
+    public static String comId = null;
     protected Handler handler;
     View view_home = null;
     BaseTextview baseTextview_header_title = null;
@@ -67,8 +68,6 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
     private RecyclerView mRecyclerView;
     private BaseTextview baseTextview_error = null;
 
-
-    public static  String comId = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,11 +78,6 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
             communityActivitiesFeedActivitiy = this;
             commonSession = new CommonSession(CommunityActivitiesFeedActivitiy.this);
             commonSession.storeSearchCom("2");
-
-
-            Loginbean loginbean = CommonMethods.convertJSONToLoginbean(commonSession.getLoginJsonContent());
-            comId = loginbean.getHomeCommunityId();
-            Log.e("my", "communityID1 =" + comId);
 
 
             Bundle bundle = getIntent().getExtras();
@@ -103,7 +97,7 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
 
 
                     if (communityID != null) {
-                        comId=communityID;
+                        comId = communityID;
 
                         requestParametersbean.setCommunityID(communityID);
                         requestParametersbean.setCommunityText(communityText);
@@ -133,11 +127,9 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
         try {
 
             baseTextview_header_title = (BaseTextview) toolbar_header.findViewById(R.id.textview_header_title);
-            if (screen_from_index == ScreensEnums.COMMUNTIES_FEED_ACTIVITIES.getScrenIndex())
-            {
+            if (screen_from_index == ScreensEnums.COMMUNTIES_FEED_ACTIVITIES.getScrenIndex()) {
                 baseTextview_header_title.setText(getResources().getString(R.string.feed));
-            }
-            else {
+            } else {
                 baseTextview_header_title.setText(getResources().getString(R.string.home));
             }
             imageView_left_menu = (ImageView) toolbar_header.findViewById(R.id.imageview_left_menu);
@@ -243,7 +235,7 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
             mRecyclerView.addItemDecoration(simpleDividerItemDecoration);
 
 
-            communityActivitiesFeedAdapter = new CommunityActivitiesFeedAdapter(mRecyclerView, CommunityActivitiesFeedActivitiy.this,"home");
+            communityActivitiesFeedAdapter = new CommunityActivitiesFeedAdapter(mRecyclerView, CommunityActivitiesFeedActivitiy.this, "home");
             mRecyclerView.setAdapter(communityActivitiesFeedAdapter);
 
 
@@ -326,7 +318,7 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
                             if (jsonObject_single_activity.has(JSONCommonKeywords.CommunityID)) {
 
                                 communityActivitiesFeedbean.setCommunityID(jsonObject_single_activity.getString(JSONCommonKeywords.CommunityID));
-                                comId=jsonObject_single_activity.getString(JSONCommonKeywords.CommunityID);
+                                comId = jsonObject_single_activity.getString(JSONCommonKeywords.CommunityID);
                             }
 
 
@@ -472,8 +464,13 @@ public class CommunityActivitiesFeedActivitiy extends BaseActivity implements Se
 
 
                 } else {
-                    handlerError(responcebean);
 
+                    if (TextUtils.isEmpty(comId)) {
+                        Loginbean loginbean = CommonMethods.convertJSONToLoginbean(commonSession.getLoginJsonContent());
+                        comId = loginbean.getHomeCommunityId();
+                        Log.e("my", "communityID1 =" + comId);
+                    }
+                    handlerError(responcebean);
                 }
             } else {
                 handlerError(responcebean);

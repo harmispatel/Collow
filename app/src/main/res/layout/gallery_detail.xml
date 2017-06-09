@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:orientation="vertical">
 
     <FrameLayout
@@ -20,20 +21,17 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="end"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:padding="5dp"
+
             android:src="@drawable/gallery_close" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:orientation="vertical">
+
 
             <LinearLayout
+                android:layout_gravity="bottom|center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:orientation="horizontal">
 
 
@@ -109,6 +107,8 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_gravity="top"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -166,7 +166,7 @@
 
                 </RelativeLayout>
             </LinearLayout>
-        </LinearLayout>
+
 
 
     </FrameLayout>
